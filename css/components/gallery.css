@@ -1,0 +1,142 @@
+/* ========================================
+   Gallery — Image grid with lightbox
+   ======================================== */
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.gallery__item {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-default);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.08);
+}
+
+/* ---- Overlay on Hover ---- */
+
+.gallery__item-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(152, 0, 75, 0.6);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-default);
+}
+
+.gallery__item:hover .gallery__item-overlay {
+  opacity: 1;
+}
+
+.gallery__item-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-white);
+  margin-bottom: var(--space-2);
+}
+
+.gallery__item-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-white);
+}
+
+/* ---- Filter Tabs ---- */
+
+.gallery__filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.gallery__filter-btn {
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.gallery__filter-btn:hover {
+  color: var(--text-primary);
+  background: var(--color-gray-50);
+}
+
+.gallery__filter-btn--active {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.gallery__filter-btn--active:hover {
+  background: var(--color-primary-dark);
+  color: var(--text-inverse);
+}
+
+/* ---- Featured Layout ---- */
+
+.gallery__grid--featured {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.gallery__item--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1024px) {
+  .gallery__grid--featured {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery__item--featured {
+    grid-column: span 2;
+    grid-row: span 1;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__grid--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__item--featured {
+    grid-column: span 1;
+  }
+}

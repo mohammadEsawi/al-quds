@@ -1,0 +1,182 @@
+/* ========================================
+   About Page — Company story styles
+   ======================================== */
+
+/* ---- Story Section ---- */
+
+.about-story {
+  background: var(--bg-surface);
+}
+
+.about-story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.about-story__image {
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.about-story__text p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+/* ---- Mission & Vision ---- */
+
+.about-mv__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+.about-mv__card {
+  padding: var(--space-10);
+  border-radius: var(--radius-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-mv__card--mission {
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+}
+
+.about-mv__card--vision {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-gray-100);
+}
+
+.about-mv__card-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-6);
+  opacity: 0.8;
+}
+
+.about-mv__card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-4);
+}
+
+.about-mv__card-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  opacity: 0.9;
+}
+
+/* ---- Values Section ---- */
+
+.about-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.about-value {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--color-gray-100);
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+.about-value:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.about-value__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-5);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-2xl);
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.about-value:hover .about-value__icon {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.about-value__title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.about-value__text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* ---- Team Section ---- */
+
+.about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.about-team__member {
+  text-align: center;
+}
+
+.about-team__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-4);
+  border: 3px solid var(--color-gray-100);
+  transition: border-color var(--duration-fast) var(--ease-default);
+}
+
+.about-team__member:hover .about-team__avatar {
+  border-color: var(--color-primary);
+}
+
+.about-team__name {
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.about-team__role {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1024px) {
+  .about-story__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .about-values__grid { grid-template-columns: repeat(2, 1fr); }
+  .about-team__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .about-mv__grid { grid-template-columns: 1fr; }
+  .about-values__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .about-team__grid { grid-template-columns: 1fr; }
+}

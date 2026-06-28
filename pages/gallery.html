@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore Lamico's gallery — our factory, products, team, and global operations in images.">
+  <title>Gallery — Lamico Investment</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/index.html" class="header__logo" aria-label="Lamico Investment Home">
+        <svg class="header__logo-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="20" stroke="#98004B" stroke-width="2"/><path d="M14 28V14h3v11h7v3H14z" fill="#98004B"/></svg>
+        <div>
+          <span class="header__logo-text">LAMICO</span>
+          <span class="header__logo-tagline">Investment Group</span>
+        </div>
+      </a>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a href="/index.html" class="nav__link">Home</a></li>
+          <li><a href="/pages/about.html" class="nav__link">About</a></li>
+          <li><a href="/pages/products.html" class="nav__link">Products</a></li>
+          <li><a href="/pages/gallery.html" class="nav__link nav__link--active">Gallery</a></li>
+          <li><a href="/pages/contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        <a href="/pages/contact.html" class="nav__mobile-cta">Get in Touch</a>
+      </nav>
+      <a href="/pages/contact.html" class="header__cta">Contact Us <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <button class="header__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="header__toggle-bar"></span><span class="header__toggle-bar"></span><span class="header__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== PAGE HERO ========== -->
+    <section class="hero hero--page">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <nav class="hero__breadcrumb" aria-label="Breadcrumb">
+            <a href="/index.html">Home</a>
+            <span class="hero__breadcrumb-separator">/</span>
+            <span>Gallery</span>
+          </nav>
+          <h1 class="hero__title">Our Gallery</h1>
+          <p class="hero__description">
+            A visual journey through our facilities, products, and the people who make Lamico exceptional.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section class="section">
+      <div class="container">
+        <div class="gallery__filters reveal reveal--fade-up">
+          <button class="gallery__filter-btn gallery__filter-btn--active" data-filter="all">All</button>
+          <button class="gallery__filter-btn" data-filter="factory">Factory</button>
+          <button class="gallery__filter-btn" data-filter="products">Products</button>
+          <button class="gallery__filter-btn" data-filter="team">Team</button>
+          <button class="gallery__filter-btn" data-filter="events">Events</button>
+        </div>
+
+        <div class="gallery__grid gallery__grid--featured">
+          <div class="gallery__item gallery__item--featured reveal reveal--scale" data-category="factory">
+            <img src="/assets/images/gallery-factory-1.jpg" alt="Lamico water bottling production line" loading="lazy" width="800" height="600">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Production Line</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-1" data-category="products">
+            <img src="/assets/images/gallery-products-1.jpg" alt="Al-Quds water bottle lineup" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Product Range</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-2" data-category="factory">
+            <img src="/assets/images/gallery-factory-2.jpg" alt="Quality control laboratory" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Quality Lab</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-1" data-category="team">
+            <img src="/assets/images/gallery-team-1.jpg" alt="Lamico team at work" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Our Team</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-2" data-category="products">
+            <img src="/assets/images/gallery-products-2.jpg" alt="Premium water packaging" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Packaging</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-3" data-category="factory">
+            <img src="/assets/images/gallery-factory-3.jpg" alt="Water storage and distribution center" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Distribution</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-1" data-category="events">
+            <img src="/assets/images/gallery-events-1.jpg" alt="Lamico at international trade exhibition" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Trade Show</span>
+            </div>
+          </div>
+
+          <div class="gallery__item reveal reveal--scale delay-2" data-category="team">
+            <img src="/assets/images/gallery-team-2.jpg" alt="Lamico management team" loading="lazy" width="400" height="300">
+            <div class="gallery__item-overlay">
+              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span class="gallery__item-label">Leadership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <svg class="footer__logo-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="20" stroke="#98004B" stroke-width="2"/><path d="M14 28V14h3v11h7v3H14z" fill="#98004B"/></svg>
+            <span class="footer__logo-text">LAMICO</span>
+          </div>
+          <p class="footer__description">Lamico Investment Group — delivering premium water products with uncompromising quality since 1998.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="/pages/about.html" class="footer__link">About Us</a></li>
+            <li><a href="/pages/gallery.html" class="footer__link">Gallery</a></li>
+            <li><a href="/pages/contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Products</h4>
+          <ul class="footer__links">
+            <li><a href="/pages/products.html" class="footer__link">Spring Water</a></li>
+            <li><a href="/pages/products.html" class="footer__link">Mineral Water</a></li>
+            <li><a href="/pages/products.html" class="footer__link">Sparkling Water</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Industrial Zone, Palestine</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@lamico-group.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 Lamico Investment Group. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#" class="footer__bottom-link">Privacy Policy</a>
+          <a href="#" class="footer__bottom-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/core/app.js"></script>
+</body>
+</html>

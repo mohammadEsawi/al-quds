@@ -1,0 +1,45 @@
+/* ========================================
+   Spacing Utilities — Margin & Padding
+   ======================================== */
+
+/* ---- Margin ---- */
+.m-0  { margin: 0; }
+.m-auto { margin: auto; }
+.mx-auto { margin-inline: auto; }
+
+.mt-2  { margin-top: var(--space-2); }
+.mt-4  { margin-top: var(--space-4); }
+.mt-6  { margin-top: var(--space-6); }
+.mt-8  { margin-top: var(--space-8); }
+.mt-10 { margin-top: var(--space-10); }
+.mt-12 { margin-top: var(--space-12); }
+.mt-16 { margin-top: var(--space-16); }
+
+.mb-2  { margin-bottom: var(--space-2); }
+.mb-4  { margin-bottom: var(--space-4); }
+.mb-6  { margin-bottom: var(--space-6); }
+.mb-8  { margin-bottom: var(--space-8); }
+.mb-10 { margin-bottom: var(--space-10); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+
+/* ---- Padding ---- */
+.p-0  { padding: 0; }
+
+.pt-4  { padding-top: var(--space-4); }
+.pt-8  { padding-top: var(--space-8); }
+.pt-16 { padding-top: var(--space-16); }
+
+.pb-4  { padding-bottom: var(--space-4); }
+.pb-8  { padding-bottom: var(--space-8); }
+.pb-16 { padding-bottom: var(--space-16); }
+
+.px-4  { padding-inline: var(--space-4); }
+.px-6  { padding-inline: var(--space-6); }
+.px-8  { padding-inline: var(--space-8); }
+
+.py-4  { padding-block: var(--space-4); }
+.py-6  { padding-block: var(--space-6); }
+.py-8  { padding-block: var(--space-8); }
+.py-16 { padding-block: var(--space-16); }
+.py-24 { padding-block: var(--space-24); }

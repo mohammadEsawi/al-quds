@@ -1,0 +1,113 @@
+/* ========================================
+   Statistics — Animated counters section
+   ======================================== */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+.stat {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.stat__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  background: rgba(152, 0, 75, 0.08);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stat__suffix {
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+}
+
+.stat__label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+/* ---- On Dark Background ---- */
+
+.stats--dark .stat__icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-secondary);
+}
+
+.stats--dark .stat__value {
+  color: var(--color-white);
+}
+
+.stats--dark .stat__suffix {
+  color: var(--color-secondary);
+}
+
+.stats--dark .stat__label {
+  color: var(--color-gray-400);
+}
+
+/* ---- With Dividers ---- */
+
+.stats--divided .stat {
+  position: relative;
+}
+
+.stats--divided .stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60px;
+  width: 1px;
+  background: var(--color-gray-200);
+}
+
+.stats--dark.stats--divided .stat:not(:last-child)::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1024px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats--divided .stat:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .stats--divided .stat::after {
+    display: none;
+  }
+
+  .stat__value {
+    font-size: var(--text-4xl);
+  }
+}

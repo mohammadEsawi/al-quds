@@ -1,0 +1,157 @@
+/* ========================================
+   Home Page — Section-specific styles
+   ======================================== */
+
+/* ---- About Preview Section ---- */
+
+.home-about {
+  background: var(--bg-surface);
+}
+
+.home-about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.home-about__image-wrapper {
+  position: relative;
+}
+
+.home-about__image {
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.home-about__experience {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-primary);
+}
+
+.home-about__experience-value {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.home-about__experience-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-top: var(--space-1);
+}
+
+/* ---- Products Preview Section ---- */
+
+.home-products__header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--space-12);
+}
+
+/* ---- Export Countries Section ---- */
+
+.home-export {
+  background: var(--gradient-dark);
+  color: var(--text-inverse);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-export__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.home-export__map {
+  opacity: 0.6;
+}
+
+.home-export__countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.home-export__country {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  color: var(--color-gray-300);
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.home-export__country:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+.home-export__country-flag {
+  font-size: var(--text-lg);
+}
+
+/* ---- Statistics Section ---- */
+
+.home-stats {
+  background: var(--color-primary);
+  position: relative;
+}
+
+.home-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 100%);
+}
+
+/* ---- CTA Section ---- */
+
+.home-cta {
+  text-align: center;
+  background: var(--gradient-hero);
+}
+
+.home-cta__inner {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1024px) {
+  .home-about__grid,
+  .home-export__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-about__experience {
+    bottom: -10px;
+    right: -10px;
+    padding: var(--space-4);
+  }
+
+  .home-about__experience-value {
+    font-size: var(--text-3xl);
+  }
+}

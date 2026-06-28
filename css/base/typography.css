@@ -1,0 +1,178 @@
+/* ========================================
+   Typography — Font loading & text styles
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+/* ---- Headings ---- */
+
+.heading-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.heading-2 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.heading-3 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.heading-4 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.heading-5 {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.heading-6 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+/* ---- Body Text ---- */
+
+.text-lg {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.text-base {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+/* ---- Special Text ---- */
+
+.text-lead {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.text-caption {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-tertiary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.text-overline {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-primary);
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---- Links ---- */
+
+.link {
+  color: var(--text-link);
+  font-weight: var(--weight-medium);
+  transition: color var(--duration-fast) var(--ease-default);
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-accent);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* ---- Text Alignment ---- */
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* ---- Text Colors ---- */
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-inverse { color: var(--text-inverse); }
+.text-brand { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+
+/* ---- Responsive Typography ---- */
+
+@media (max-width: 1024px) {
+  .heading-1 { font-size: var(--text-5xl); }
+  .heading-2 { font-size: var(--text-4xl); }
+  .heading-3 { font-size: var(--text-3xl); }
+}
+
+@media (max-width: 768px) {
+  .heading-1 { font-size: var(--text-4xl); }
+  .heading-2 { font-size: var(--text-3xl); }
+  .heading-3 { font-size: var(--text-2xl); }
+  .heading-4 { font-size: var(--text-xl); }
+  .text-lead { font-size: var(--text-lg); }
+}
+
+@media (max-width: 480px) {
+  .heading-1 { font-size: var(--text-3xl); }
+  .heading-2 { font-size: var(--text-2xl); }
+}

@@ -1,0 +1,17 @@
+[
+  { "name": "United Arab Emirates", "flag": "🇦🇪", "code": "AE" },
+  { "name": "Saudi Arabia", "flag": "🇸🇦", "code": "SA" },
+  { "name": "Kuwait", "flag": "🇰🇼", "code": "KW" },
+  { "name": "Qatar", "flag": "🇶🇦", "code": "QA" },
+  { "name": "Bahrain", "flag": "🇧🇭", "code": "BH" },
+  { "name": "Oman", "flag": "🇴🇲", "code": "OM" },
+  { "name": "Jordan", "flag": "🇯🇴", "code": "JO" },
+  { "name": "Iraq", "flag": "🇮🇶", "code": "IQ" },
+  { "name": "Lebanon", "flag": "🇱🇧", "code": "LB" },
+  { "name": "Egypt", "flag": "🇪🇬", "code": "EG" },
+  { "name": "Libya", "flag": "🇱🇾", "code": "LY" },
+  { "name": "Sudan", "flag": "🇸🇩", "code": "SD" },
+  { "name": "Yemen", "flag": "🇾🇪", "code": "YE" },
+  { "name": "Turkey", "flag": "🇹🇷", "code": "TR" },
+  { "name": "United States", "flag": "🇺🇸", "code": "US" }
+]

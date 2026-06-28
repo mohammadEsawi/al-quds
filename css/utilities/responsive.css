@@ -1,0 +1,40 @@
+/* ========================================
+   Responsive — Breakpoint-specific overrides
+   ======================================== */
+
+/* ---- Tablet and below (1024px) ---- */
+@media (max-width: 1024px) {
+  .hide-tablet { display: none !important; }
+  .show-tablet { display: block !important; }
+}
+
+/* ---- Mobile and below (768px) ---- */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+
+  .text-center-mobile { text-align: center !important; }
+
+  .section-header__title {
+    font-size: var(--text-3xl);
+  }
+
+  .section-header__text {
+    font-size: var(--text-base);
+  }
+}
+
+/* ---- Small mobile (480px) ---- */
+@media (max-width: 480px) {
+  .hide-sm { display: none !important; }
+
+  .section-header__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* ---- Default hidden, show at breakpoints ---- */
+.show-tablet,
+.show-mobile {
+  display: none !important;
+}

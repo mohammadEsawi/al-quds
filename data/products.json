@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Al-Quds Natural Spring Water",
+    "category": "Drinking Water",
+    "description": "Pure natural spring water sourced from protected underground springs. Crystal clear with balanced mineral content for perfect hydration.",
+    "image": "/assets/images/product-spring-water.jpg",
+    "sizes": ["330ml", "500ml", "1L", "1.5L", "5L"],
+    "tag": "Best Seller"
+  },
+  {
+    "id": 2,
+    "name": "Al-Quds Premium Mineral Water",
+    "category": "Mineral Water",
+    "description": "Enriched with essential minerals from natural rock formations. A premium choice for health-conscious consumers.",
+    "image": "/assets/images/product-mineral-water.jpg",
+    "sizes": ["250ml", "500ml", "1L"],
+    "tag": "Premium"
+  },
+  {
+    "id": 3,
+    "name": "Al-Quds Sparkling Water",
+    "category": "Sparkling Water",
+    "description": "Naturally carbonated water with fine, elegant bubbles. Perfect for dining and special occasions.",
+    "image": "/assets/images/product-sparkling-water.jpg",
+    "sizes": ["330ml", "750ml"],
+    "tag": null
+  },
+  {
+    "id": 4,
+    "name": "Al-Quds Cups",
+    "category": "Drinking Water",
+    "description": "Convenient sealed cups for events, offices, and on-the-go hydration. Individually sealed for maximum freshness.",
+    "image": "/assets/images/product-cups.jpg",
+    "sizes": ["200ml", "250ml"],
+    "tag": null
+  },
+  {
+    "id": 5,
+    "name": "Al-Quds 5 Gallon",
+    "category": "Bulk Water",
+    "description": "Large format refillable bottles for homes and offices. Compatible with standard water dispensers.",
+    "image": "/assets/images/product-5gallon.jpg",
+    "sizes": ["18.9L"],
+    "tag": "Popular"
+  },
+  {
+    "id": 6,
+    "name": "Al-Quds Flavored Water",
+    "category": "Flavored Water",
+    "description": "Lightly flavored with natural fruit essences. Zero calories, zero sugar — pure refreshment.",
+    "image": "/assets/images/product-flavored-water.jpg",
+    "sizes": ["330ml", "500ml"],
+    "tag": "New"
+  }
+]

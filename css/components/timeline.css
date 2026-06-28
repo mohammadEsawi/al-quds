@@ -1,0 +1,93 @@
+/* ========================================
+   Timeline — Company history / milestones
+   ======================================== */
+
+.timeline {
+  position: relative;
+  padding-left: var(--space-12);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent)
+  );
+}
+
+.timeline__item {
+  position: relative;
+  padding-bottom: var(--space-12);
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* ---- Marker ---- */
+
+.timeline__marker {
+  position: absolute;
+  left: calc(-1 * var(--space-12) + 6px);
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--color-primary);
+  z-index: 2;
+  transition: background var(--duration-fast) var(--ease-default),
+              transform var(--duration-fast) var(--ease-default);
+}
+
+.timeline__item:hover .timeline__marker {
+  background: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* ---- Content ---- */
+
+.timeline__year {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 500px;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: var(--space-8);
+  }
+
+  .timeline__marker {
+    left: calc(-1 * var(--space-8) + 6px);
+    width: 16px;
+    height: 16px;
+  }
+}
