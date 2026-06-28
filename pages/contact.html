@@ -131,7 +131,12 @@
             <h3 class="contact-form__title">أرسل لنا رسالة</h3>
             <p class="contact-form__subtitle">املأ النموذج أدناه وسنعود إليك في أقرب وقت.</p>
 
-            <form novalidate>
+            <form action="https://formsubmit.co/info@lamicogroup.com" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="_subject" id="form-subject" value="رسالة جديدة من موقع لاميكو">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://lamicogroup.com/pages/contact.html?sent=true">
+              <input type="hidden" name="_template" value="box">
+              <input type="text" name="_honey" style="display:none">
               <div class="contact-form__fields">
                 <div class="form-input-group">
                   <div class="form-group">
@@ -151,14 +156,31 @@
                   </div>
                   <div class="form-group">
                     <label for="subject" class="form-label">الموضوع</label>
-                    <select id="subject" name="subject" class="form-input form-select">
+                    <select id="subject" name="subject" class="form-input form-select" onchange="toggleCareerFields(this.value)">
                       <option value="" disabled selected>اختر موضوعاً</option>
-                      <option value="distribution">استفسار عن التوزيع</option>
-                      <option value="partnership">شراكة</option>
-                      <option value="products">معلومات عن المنتجات</option>
-                      <option value="careers">وظائف</option>
-                      <option value="other">أخرى</option>
+                      <option value="استفسار عن التوزيع">استفسار عن التوزيع</option>
+                      <option value="شراكة">شراكة</option>
+                      <option value="معلومات عن المنتجات">معلومات عن المنتجات</option>
+                      <option value="طلب توظيف">وظائف</option>
+                      <option value="أخرى">أخرى</option>
                     </select>
+                  </div>
+                </div>
+
+                <!-- حقول الوظائف — تظهر فقط عند اختيار "وظائف" -->
+                <div id="career-fields" style="display:none">
+                  <div class="form-group mb-4" style="margin-bottom:var(--space-5)">
+                    <label for="job-title" class="form-label form-label--required">الوظيفة المطلوبة</label>
+                    <input type="text" id="job-title" name="job_title" class="form-input" placeholder="مثال: محاسب، سائق توزيع، مهندس...">
+                  </div>
+                  <div class="form-group mb-4" style="margin-bottom:var(--space-5)">
+                    <label for="experience" class="form-label">الخبرات والمؤهلات</label>
+                    <textarea id="experience" name="experience" class="form-input form-textarea" placeholder="اذكر خبراتك ومؤهلاتك العلمية..." rows="3"></textarea>
+                  </div>
+                  <div class="form-group" style="margin-bottom:var(--space-5)">
+                    <label for="cv" class="form-label form-label--required">السيرة الذاتية (CV)</label>
+                    <input type="file" id="cv" name="attachment" class="form-input" accept=".pdf,.doc,.docx" style="padding:var(--space-3)">
+                    <span class="form-helper">PDF أو Word — الحد الأقصى 5 ميغابايت</span>
                   </div>
                 </div>
 
@@ -173,6 +195,13 @@
                 </button>
               </div>
             </form>
+
+            <!-- زر واتساب -->
+            <a href="https://wa.me/9720597959536?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%20%D9%84%D8%A7%D9%85%D9%8A%D9%83%D9%88" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:var(--space-3);width:100%;padding:var(--space-4);margin-top:var(--space-4);background:#25D366;color:#fff;font-size:var(--text-base);font-weight:var(--weight-semibold);border-radius:var(--radius-full);transition:background var(--duration-fast) var(--ease-default),transform var(--duration-fast) var(--ease-default);text-decoration:none" onmouseover="this.style.background='#1EBE57';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#25D366';this.style.transform='none'">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              تواصل عبر واتساب
+            </a>
+            <p style="text-align:center;font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-2)">أو أرسل رسالتك عبر النموذج أعلاه</p>
 
             <div class="contact-form__success">
               <svg class="contact-form__success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -249,13 +278,39 @@
       <div class="footer__bottom">
         <p>&copy; 2024 لاميكو الاستثمارية. جميع الحقوق محفوظة.</p>
         <div class="footer__bottom-links">
-          <a href="#" class="footer__bottom-link">سياسة الخصوصية</a>
-          <a href="#" class="footer__bottom-link">شروط الاستخدام</a>
+          <a href="/pages/privacy.html" class="footer__bottom-link">سياسة الخصوصية</a>
+          <a href="/pages/terms.html" class="footer__bottom-link">شروط الاستخدام</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <a href="https://wa.me/9720597959536" target="_blank" rel="noopener" class="whatsapp-float" aria-label="تواصل عبر واتساب">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
   <script type="module" src="/js/core/app.js"></script>
+  <script>
+    function toggleCareerFields(value) {
+      var careerFields = document.getElementById('career-fields');
+      var subjectHidden = document.getElementById('form-subject');
+      var jobTitle = document.getElementById('job-title');
+      var cv = document.getElementById('cv');
+
+      if (value === 'طلب توظيف') {
+        careerFields.style.display = 'block';
+        jobTitle.required = true;
+        cv.required = true;
+        subjectHidden.value = 'طلب توظيف جديد من موقع لاميكو';
+      } else {
+        careerFields.style.display = 'none';
+        jobTitle.required = false;
+        cv.required = false;
+        jobTitle.value = '';
+        document.getElementById('experience').value = '';
+        cv.value = '';
+        subjectHidden.value = 'رسالة جديدة من موقع لاميكو — ' + value;
+      }
+    }
+  </script>
 </body>
 </html>

@@ -54,7 +54,7 @@
 
   /* ---- Gradients ---- */
   --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  --gradient-hero: linear-gradient(135deg, #F8FCFF 0%, #E8F4FE 50%, #D6ECFD 100%);
+  --gradient-hero: #FFFFFF;
   --gradient-blue: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-accent) 100%);
   --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
   --gradient-dark: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);

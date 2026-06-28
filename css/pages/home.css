@@ -145,6 +145,10 @@
 }
 
 @media (max-width: 768px) {
+  .home-about__grid {
+    text-align: center;
+  }
+
   .home-about__experience {
     bottom: -10px;
     inset-inline-start: -10px;
@@ -153,5 +157,31 @@
 
   .home-about__experience-value {
     font-size: var(--text-3xl);
+  }
+
+  .home-export__grid {
+    text-align: center;
+  }
+
+  .home-export__countries {
+    justify-content: center;
+  }
+
+  .home-cta__inner .flex {
+    flex-direction: column;
+  }
+
+  .home-cta__inner .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-about__experience {
+    bottom: auto;
+    inset-inline-start: auto;
+    position: relative;
+    margin-top: var(--space-4);
+    display: inline-block;
   }
 }

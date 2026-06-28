@@ -41,10 +41,17 @@
 }
 
 .header__logo-img {
-  height: 85px;
+  height: 105px;
   width: auto;
   object-fit: contain;
-  margin-block: -22px;
+  margin-block: -32px;
+}
+
+@media (max-width: 768px) {
+  .header__logo-img {
+    height: 70px;
+    margin-block: -18px;
+  }
 }
 
 .header__logo-tagline {
