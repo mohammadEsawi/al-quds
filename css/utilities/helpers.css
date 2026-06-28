@@ -124,6 +124,7 @@
   margin: var(--space-6) auto;
 }
 
-.divider--left {
-  margin-left: 0;
+.divider--start {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
 }

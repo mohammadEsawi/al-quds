@@ -94,6 +94,10 @@
   gap: var(--space-3);
 }
 
+[dir="rtl"] .card__link svg {
+  transform: rotate(180deg);
+}
+
 /* ---- Card Variants ---- */
 
 /* Elevated */

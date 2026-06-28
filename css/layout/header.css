@@ -118,6 +118,17 @@
 
 /* ---- Responsive ---- */
 
+/* ---- RTL Adjustments ---- */
+
+[dir="rtl"] .header__cta svg,
+[dir="rtl"] .btn__arrow {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .btn:hover .btn__arrow {
+  transform: rotate(180deg) translateX(4px);
+}
+
 @media (max-width: 1024px) {
   .header__toggle {
     display: flex;

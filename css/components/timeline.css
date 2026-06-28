@@ -4,13 +4,13 @@
 
 .timeline {
   position: relative;
-  padding-left: var(--space-12);
+  padding-inline-start: var(--space-12);
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 15px;
+  inset-inline-start: 15px;
   top: 0;
   bottom: 0;
   width: 2px;
@@ -35,7 +35,7 @@
 
 .timeline__marker {
   position: absolute;
-  left: calc(-1 * var(--space-12) + 6px);
+  inset-inline-start: calc(-1 * var(--space-12) + 6px);
   top: 4px;
   width: 20px;
   height: 20px;
@@ -58,7 +58,6 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   color: var(--color-primary);
-  text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
   margin-bottom: var(--space-2);
 }
@@ -82,11 +81,11 @@
 
 @media (max-width: 640px) {
   .timeline {
-    padding-left: var(--space-8);
+    padding-inline-start: var(--space-8);
   }
 
   .timeline__marker {
-    left: calc(-1 * var(--space-8) + 6px);
+    inset-inline-start: calc(-1 * var(--space-8) + 6px);
     width: 16px;
     height: 16px;
   }

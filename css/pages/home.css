@@ -27,7 +27,7 @@
 .home-about__experience {
   position: absolute;
   bottom: -20px;
-  right: -20px;
+  inset-inline-start: -20px;
   background: var(--color-primary);
   color: var(--text-inverse);
   padding: var(--space-6);
@@ -147,7 +147,7 @@
 @media (max-width: 768px) {
   .home-about__experience {
     bottom: -10px;
-    right: -10px;
+    inset-inline-start: -10px;
     padding: var(--space-4);
   }
 

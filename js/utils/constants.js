@@ -34,9 +34,9 @@ export const CLASSES = {
 };
 
 export const NAV_ITEMS = [
-  { label: 'Home', href: '/index.html' },
-  { label: 'About', href: '/pages/about.html' },
-  { label: 'Products', href: '/pages/products.html' },
-  { label: 'Gallery', href: '/pages/gallery.html' },
-  { label: 'Contact', href: '/pages/contact.html' },
+  { label: 'الرئيسية', href: '/index.html' },
+  { label: 'من نحن', href: '/pages/about.html' },
+  { label: 'منتجاتنا', href: '/pages/products.html' },
+  { label: 'معرض الصور', href: '/pages/gallery.html' },
+  { label: 'تواصل معنا', href: '/pages/contact.html' },
 ];

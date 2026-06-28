@@ -83,3 +83,9 @@ p {
 :focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ---- RTL Base ---- */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}

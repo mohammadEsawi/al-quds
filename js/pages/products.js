@@ -34,7 +34,7 @@ function renderProducts(grid, products) {
         ` : ''}
         <div class="product-card__footer">
           <a href="#" class="card__link">
-            Learn More
+            اعرف المزيد
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -46,10 +46,10 @@ function renderProducts(grid, products) {
 function initFilters(container, grid, products) {
   if (!container) return;
 
-  const categories = ['All', ...new Set(products.map(p => p.category))];
+  const categories = ['الكل', ...new Set(products.map(p => p.category))];
   container.innerHTML = categories.map((cat, i) => `
     <button class="products__filter ${i === 0 ? 'products__filter--active' : ''}"
-            data-filter="${cat.toLowerCase()}">
+            data-filter="${cat}">
       ${cat}
     </button>
   `).join('');
@@ -61,7 +61,7 @@ function initFilters(container, grid, products) {
 
       const filter = btn.dataset.filter;
       $$('.product-card', grid).forEach(card => {
-        const match = filter === 'all' || card.dataset.category.toLowerCase() === filter;
+        const match = filter === 'الكل' || card.dataset.category === filter;
         card.style.display = match ? '' : 'none';
       });
     });
@@ -69,5 +69,5 @@ function initFilters(container, grid, products) {
 }
 
 function renderFallbackProducts(grid) {
-  grid.innerHTML = '<p class="text-center text-secondary">Products coming soon.</p>';
+  grid.innerHTML = '<p class="text-center text-secondary">المنتجات قريباً.</p>';
 }

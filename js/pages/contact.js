@@ -25,14 +25,14 @@ function handleSubmit(e) {
 
   const submitBtn = form.querySelector('[type="submit"]');
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
+  submitBtn.textContent = 'جاري الإرسال...';
 
   setTimeout(() => {
     form.style.display = 'none';
     const success = $('.contact-form__success');
     if (success) success.classList.add('show');
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Send Message';
+    submitBtn.textContent = 'إرسال الرسالة';
   }, 1500);
 }
 
@@ -40,17 +40,17 @@ function validate(fields) {
   let valid = true;
 
   if (!fields.name?.value.trim()) {
-    showError(fields.name, 'Please enter your name');
+    showError(fields.name, 'يرجى إدخال اسمك');
     valid = false;
   }
 
   if (!fields.email?.value.trim() || !isEmail(fields.email.value)) {
-    showError(fields.email, 'Please enter a valid email');
+    showError(fields.email, 'يرجى إدخال بريد إلكتروني صحيح');
     valid = false;
   }
 
   if (!fields.message?.value.trim()) {
-    showError(fields.message, 'Please enter your message');
+    showError(fields.message, 'يرجى إدخال رسالتك');
     valid = false;
   }
 

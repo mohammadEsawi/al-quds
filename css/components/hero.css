@@ -143,13 +143,13 @@
 
 .hero__float-card--top {
   top: -20px;
-  right: -30px;
+  inset-inline-end: -30px;
   animation-delay: 0s;
 }
 
 .hero__float-card--bottom {
   bottom: 30px;
-  left: -40px;
+  inset-inline-start: -40px;
   animation-delay: 1.5s;
 }
 
