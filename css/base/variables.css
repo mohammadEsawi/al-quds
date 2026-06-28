@@ -4,20 +4,20 @@
 
 :root {
   /* ---- Brand Colors ---- */
-  --color-primary: #98004B;
-  --color-primary-light: #B8236E;
-  --color-primary-dark: #7A003C;
-  --color-primary-rgb: 152, 0, 75;
+  --color-primary: #014681;
+  --color-primary-light: #0A6BB5;
+  --color-primary-dark: #013562;
+  --color-primary-rgb: 1, 70, 129;
 
-  --color-secondary: #6ED4FF;
-  --color-secondary-light: #9AE2FF;
-  --color-secondary-dark: #42C6FF;
-  --color-secondary-rgb: 110, 212, 255;
+  --color-secondary: #0891B2;
+  --color-secondary-light: #22D3EE;
+  --color-secondary-dark: #0E7490;
+  --color-secondary-rgb: 8, 145, 178;
 
-  --color-accent: #0B75C9;
+  --color-accent: #0A6BB5;
   --color-accent-light: #2E8FDB;
-  --color-accent-dark: #085DA1;
-  --color-accent-rgb: 11, 117, 201;
+  --color-accent-dark: #014681;
+  --color-accent-rgb: 10, 107, 181;
 
   /* ---- Neutral Colors ---- */
   --color-white: #FFFFFF;
@@ -126,8 +126,8 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.04);
   --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.12);
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04);
-  --shadow-primary: 0 8px 24px rgba(152, 0, 75, 0.2);
-  --shadow-accent: 0 8px 24px rgba(11, 117, 201, 0.2);
+  --shadow-primary: 0 8px 24px rgba(1, 70, 129, 0.25);
+  --shadow-accent: 0 8px 24px rgba(1, 70, 129, 0.2);
 
   /* ---- Container Widths ---- */
   --container-sm: 640px;

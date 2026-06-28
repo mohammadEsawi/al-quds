@@ -36,7 +36,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: rgba(152, 0, 75, 0.08);
+  background: rgba(1, 70, 129, 0.08);
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
   font-weight: var(--weight-semibold);
@@ -173,7 +173,7 @@
 .hero__bg-circle--2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(152, 0, 75, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(1, 70, 129, 0.1) 0%, transparent 70%);
   bottom: -100px;
   left: -100px;
 }

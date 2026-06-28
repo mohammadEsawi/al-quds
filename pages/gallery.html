@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="استكشف معرض صور لاميكو — مصنعنا، منتجاتنا، فريقنا، وعملياتنا العالمية بالصور.">
-  <title>معرض الصور — لاميكو للاستثمار</title>
+  <meta name="description" content="Academy House — يعيش وعيساوي. مشروع سكني متميز من تنفيذ لاميكو العقارية. تصميم عصري وتشطيبات فاخرة.">
+  <title>العقارات — لاميكو للاستثمار</title>
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
   <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -14,18 +14,17 @@
   <header class="header" role="banner">
     <div class="header__inner">
       <a href="/index.html" class="header__logo" aria-label="الصفحة الرئيسية - لاميكو">
-        <svg class="header__logo-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="20" stroke="#98004B" stroke-width="2"/><path d="M14 28V14h3v11h7v3H14z" fill="#98004B"/></svg>
+        <img src="/assets/images/lamicoLogo.png" alt="لاميكو" class="header__logo-img" width="140" height="44">
         <div>
-          <span class="header__logo-text">لاميكو</span>
-          <span class="header__logo-tagline">LAMICO Investment</span>
+          <span class="header__logo-tagline">الاستثمارية</span>
         </div>
       </a>
       <nav class="nav" role="navigation" aria-label="التنقل الرئيسي">
         <ul class="nav__list">
           <li><a href="/index.html" class="nav__link">الرئيسية</a></li>
           <li><a href="/pages/about.html" class="nav__link">من نحن</a></li>
-          <li><a href="/pages/products.html" class="nav__link">منتجاتنا</a></li>
-          <li><a href="/pages/gallery.html" class="nav__link nav__link--active">معرض الصور</a></li>
+          <li><a href="/pages/products.html" class="nav__link">المياه</a></li>
+          <li><a href="/pages/gallery.html" class="nav__link nav__link--active">العقارات</a></li>
           <li><a href="/pages/contact.html" class="nav__link">تواصل معنا</a></li>
         </ul>
         <a href="/pages/contact.html" class="nav__mobile-cta">تواصل معنا</a>
@@ -46,89 +45,71 @@
           <nav class="hero__breadcrumb" aria-label="مسار التنقل">
             <a href="/index.html">الرئيسية</a>
             <span class="hero__breadcrumb-separator">/</span>
-            <span>معرض الصور</span>
+            <span>العقارات</span>
           </nav>
-          <h1 class="hero__title">معرض الصور</h1>
+          <h1 class="hero__title">Academy House<br>يعيش وعيساوي</h1>
           <p class="hero__description">
-            رحلة بصرية عبر مرافقنا ومنتجاتنا والأشخاص الذين يجعلون لاميكو استثنائية.
+            مشروع سكني متميز من تنفيذ لاميكو العقارية. تصميم عصري يجمع بين الفخامة والراحة.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ========== المعرض ========== -->
+    <!-- ========== المشروع ========== -->
     <section class="section">
       <div class="container">
-        <div class="gallery__filters reveal reveal--fade-up">
-          <button class="gallery__filter-btn gallery__filter-btn--active" data-filter="all">الكل</button>
-          <button class="gallery__filter-btn" data-filter="factory">المصنع</button>
-          <button class="gallery__filter-btn" data-filter="products">المنتجات</button>
-          <button class="gallery__filter-btn" data-filter="team">الفريق</button>
-          <button class="gallery__filter-btn" data-filter="events">الفعاليات</button>
+        <div class="section-header reveal reveal--fade-up">
+          <span class="section-header__overline">قسم العقارات</span>
+          <h2 class="section-header__title">Academy House — يعيش وعيساوي</h2>
+          <p class="section-header__text">
+            بناء بأعلى المعايير الهندسية مع تشطيبات فاخرة ومساحات واسعة. مشروع يعكس التزام لاميكو بالجودة.
+          </p>
         </div>
 
-        <div class="gallery__grid gallery__grid--featured">
-          <div class="gallery__item gallery__item--featured reveal reveal--scale" data-category="factory">
-            <img src="/assets/images/landingPage.png" alt="خط إنتاج تعبئة مياه القدس" loading="lazy" width="800" height="600">
+        <!-- صورة المشروع الرئيسية -->
+        <div class="reveal reveal--fade-up mb-12" style="text-align:center">
+          <img src="/assets/images/Academy House .png" alt="Academy House - يعيش وعيساوي" loading="lazy" style="max-width:600px;width:100%;border-radius:var(--radius-2xl);box-shadow:var(--shadow-2xl);margin-inline:auto">
+        </div>
+
+        <!-- معرض صور المشروع -->
+        <div class="gallery__grid">
+          <div class="gallery__item reveal reveal--scale delay-1" data-category="all">
+            <img src="/assets/images/house1.png" alt="Academy House - واجهة المبنى" loading="lazy" width="400" height="500">
             <div class="gallery__item-overlay">
               <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">خط الإنتاج</span>
+              <span class="gallery__item-label">واجهة المبنى</span>
             </div>
           </div>
 
-          <div class="gallery__item reveal reveal--scale delay-1" data-category="products">
-            <img src="/assets/images/landingPage.png" alt="تشكيلة عبوات مياه القدس" loading="lazy" width="400" height="300">
+          <div class="gallery__item reveal reveal--scale delay-2" data-category="all">
+            <img src="/assets/images/house2.png" alt="Academy House - منظر جانبي" loading="lazy" width="400" height="500">
             <div class="gallery__item-overlay">
               <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">تشكيلة المنتجات</span>
+              <span class="gallery__item-label">منظر جانبي</span>
             </div>
           </div>
 
-          <div class="gallery__item reveal reveal--scale delay-2" data-category="factory">
-            <img src="/assets/images/landingPage.png" alt="مختبر مراقبة الجودة" loading="lazy" width="400" height="300">
+          <div class="gallery__item reveal reveal--scale delay-3" data-category="all">
+            <img src="/assets/images/house3.png" alt="Academy House - تفاصيل التصميم" loading="lazy" width="400" height="500">
             <div class="gallery__item-overlay">
               <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">مختبر الجودة</span>
+              <span class="gallery__item-label">تفاصيل التصميم</span>
             </div>
           </div>
 
-          <div class="gallery__item reveal reveal--scale delay-1" data-category="team">
-            <img src="/assets/images/landingPage.png" alt="فريق لاميكو أثناء العمل" loading="lazy" width="400" height="300">
+          <div class="gallery__item reveal reveal--scale delay-1" data-category="all">
+            <img src="/assets/images/house4.png" alt="Academy House - منظر مسائي" loading="lazy" width="400" height="500">
             <div class="gallery__item-overlay">
               <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">فريقنا</span>
+              <span class="gallery__item-label">منظر مسائي</span>
             </div>
           </div>
 
-          <div class="gallery__item reveal reveal--scale delay-2" data-category="products">
-            <img src="/assets/images/landingPage.png" alt="تعبئة المياه المتميزة" loading="lazy" width="400" height="300">
+          <div class="gallery__item reveal reveal--scale delay-2" data-category="all">
+            <img src="/assets/images/house5.png" alt="Academy House - المدخل" loading="lazy" width="400" height="500">
             <div class="gallery__item-overlay">
               <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">التعبئة</span>
-            </div>
-          </div>
-
-          <div class="gallery__item reveal reveal--scale delay-3" data-category="factory">
-            <img src="/assets/images/landingPage.png" alt="مركز التخزين والتوزيع" loading="lazy" width="400" height="300">
-            <div class="gallery__item-overlay">
-              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">التوزيع</span>
-            </div>
-          </div>
-
-          <div class="gallery__item reveal reveal--scale delay-1" data-category="events">
-            <img src="/assets/images/landingPage.png" alt="لاميكو في المعرض التجاري الدولي" loading="lazy" width="400" height="300">
-            <div class="gallery__item-overlay">
-              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">معرض تجاري</span>
-            </div>
-          </div>
-
-          <div class="gallery__item reveal reveal--scale delay-2" data-category="team">
-            <img src="/assets/images/landingPage.png" alt="فريق إدارة لاميكو" loading="lazy" width="400" height="300">
-            <div class="gallery__item-overlay">
-              <svg class="gallery__item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              <span class="gallery__item-label">القيادة</span>
+              <span class="gallery__item-label">المدخل</span>
             </div>
           </div>
         </div>
@@ -143,25 +124,25 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <div class="footer__logo">
-            <svg class="footer__logo-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="20" stroke="#98004B" stroke-width="2"/><path d="M14 28V14h3v11h7v3H14z" fill="#98004B"/></svg>
-            <span class="footer__logo-text">لاميكو</span>
+            <img src="/assets/images/lamicoLogo.png" alt="لاميكو" class="footer__logo-img" width="120" height="40">
+            <span class="footer__logo-tagline">الاستثمارية</span>
           </div>
-          <p class="footer__description">لاميكو للاستثمار — نقدم منتجات المياه المتميزة بجودة لا تقبل المساومة منذ عام 1998.</p>
+          <p class="footer__description">لاميكو للاستثمار — نقدم منتجات المياه المتميزة بجودة لا تقبل المساومة منذ عام 2005.</p>
         </div>
         <div>
           <h4 class="footer__heading">الشركة</h4>
           <ul class="footer__links">
             <li><a href="/pages/about.html" class="footer__link">من نحن</a></li>
-            <li><a href="/pages/gallery.html" class="footer__link">معرض الصور</a></li>
+            <li><a href="/pages/gallery.html" class="footer__link">العقارات</a></li>
             <li><a href="/pages/contact.html" class="footer__link">تواصل معنا</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="footer__heading">المنتجات</h4>
+          <h4 class="footer__heading">أقسامنا</h4>
           <ul class="footer__links">
-            <li><a href="/pages/products.html" class="footer__link">مياه الينابيع</a></li>
-            <li><a href="/pages/products.html" class="footer__link">مياه معدنية</a></li>
-            <li><a href="/pages/products.html" class="footer__link">مياه غازية</a></li>
+            <li><a href="/pages/products.html" class="footer__link">مياه القدس</a></li>
+            <li><a href="/pages/gallery.html" class="footer__link">العقارات</a></li>
+            <li><a href="/pages/gallery.html" class="footer__link">Academy House</a></li>
           </ul>
         </div>
         <div>
@@ -177,7 +158,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2024 لاميكو للاستثمار. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2024 لاميكو الاستثمارية. جميع الحقوق محفوظة.</p>
         <div class="footer__bottom-links">
           <a href="#" class="footer__bottom-link">سياسة الخصوصية</a>
           <a href="#" class="footer__bottom-link">شروط الاستخدام</a>

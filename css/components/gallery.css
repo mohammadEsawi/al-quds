@@ -36,7 +36,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(152, 0, 75, 0.6);
+  background: rgba(1, 70, 129, 0.6);
   opacity: 0;
   transition: opacity var(--duration-normal) var(--ease-default);
 }

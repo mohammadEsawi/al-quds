@@ -45,8 +45,8 @@ body {
 }
 
 ::selection {
-  background: rgba(152, 0, 75, 0.15);
-  color: var(--color-primary-dark);
+  background: rgba(1, 70, 129, 0.15);
+  color: var(--color-accent);
 }
 
 /* ---- Scrollbar ---- */

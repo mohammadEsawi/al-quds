@@ -20,7 +20,7 @@
   width: 56px;
   height: 56px;
   margin: 0 auto var(--space-4);
-  background: rgba(152, 0, 75, 0.08);
+  background: rgba(1, 70, 129, 0.08);
   border-radius: var(--radius-xl);
   color: var(--color-primary);
 }

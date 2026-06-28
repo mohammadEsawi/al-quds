@@ -36,7 +36,7 @@ export const CLASSES = {
 export const NAV_ITEMS = [
   { label: 'الرئيسية', href: '/index.html' },
   { label: 'من نحن', href: '/pages/about.html' },
-  { label: 'منتجاتنا', href: '/pages/products.html' },
-  { label: 'معرض الصور', href: '/pages/gallery.html' },
+  { label: 'المياه', href: '/pages/products.html' },
+  { label: 'العقارات', href: '/pages/gallery.html' },
   { label: 'تواصل معنا', href: '/pages/contact.html' },
 ];
