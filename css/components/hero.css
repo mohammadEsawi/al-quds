@@ -156,26 +156,7 @@
 /* ---- Background Elements ---- */
 
 .hero__bg-circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.hero__bg-circle--1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--color-secondary-light) 0%, transparent 70%);
-  top: -200px;
-  right: -100px;
-}
-
-.hero__bg-circle--2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(1, 70, 129, 0.1) 0%, transparent 70%);
-  bottom: -100px;
-  left: -100px;
+  display: none;
 }
 
 /* ---- Page Hero (smaller, for inner pages) ---- */
