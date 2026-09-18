@@ -1,0 +1,1513 @@
+{
+  "company": {
+    "name": {
+      "ar": "شركة لاميكو الاستثمارية",
+      "en": "Lamico Investment Company"
+    },
+    "legalName": {
+      "ar": "شركة لاميكو للاستثمار الصناعي والتوريدات",
+      "en": "Lamico for Industrial Investment & Supplies"
+    },
+    "founded": 2005,
+    "address": {
+      "ar": "المنطقة الصناعية، نابلس، فلسطين",
+      "en": "Industrial Zone, Nablus, Palestine"
+    },
+    "phone": "+970597959536",
+    "phoneDisplay": "+970 5 9795 9536",
+    "email": "info@lamicogroup.com",
+    "hours": {
+      "ar": "الأحد – الخميس: 8:00 ص – 5:00 م",
+      "en": "Sunday – Thursday: 8:00 AM – 5:00 PM"
+    },
+    "logo": "/assets/branding/lamico-logo.webp",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3375.3155974877973!2d35.264721024564174!3d32.22266777390022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ce1272cfa10cd%3A0xa61f18460155d838!2sLamico%20Trading%20Company!5e0!3m2!1sar!2s!4v1782738891402!5m2!1sar!2s",
+    "social": {},
+    "about": [
+      {
+        "ar": "تأسست لاميكو للاستثمار عام 2005 برؤية بسيطة وقوية: تقديم منتجات فلسطينية بجودة عالية للمجتمعات في المنطقة وخارجها.",
+        "en": "Lamico Investment was founded in 2005 with a simple, powerful vision: delivering high-quality Palestinian products to communities in the region and beyond."
+      },
+      {
+        "ar": "ما بدأ كعملية صغيرة نما ليصبح واحداً من أبرز الأسماء في فلسطين. رحلتنا تعكس التزاماً عميقاً بالجودة والاستدامة ورفاهية المجتمع.",
+        "en": "What started as a small operation grew into one of the best-known names in Palestine. Our journey reflects a deep commitment to quality, sustainability and community well-being."
+      },
+      {
+        "ar": "اليوم، مرافق الإنتاج الحديثة لدينا تعتمد أحدث التقنيات، لضمان أن كل منتج يحمل اسمنا يلبي أعلى معايير الجودة والسلامة.",
+        "en": "Today, our modern production facilities rely on the latest technologies, ensuring that every product carrying our name meets the highest quality and safety standards."
+      }
+    ],
+    "mission": {
+      "ar": "تقديم أنقى وأسلم المنتجات للمجتمع الفلسطيني من خلال ممارسات مستدامة وتكنولوجيا مبتكرة والتزام لا يتزعزع بالتميز في كل منتج ننتجه.",
+      "en": "To deliver the purest and safest products to the Palestinian community through sustainable practices, innovative technology and an unwavering commitment to excellence in everything we produce."
+    },
+    "vision": {
+      "ar": "أن نكون العلامة التجارية الأولى في فلسطين — نضع معياراً للنقاء والجودة والمسؤولية تجاه مجتمعنا في كل مدينة وقرية فلسطينية.",
+      "en": "To be the leading brand in Palestine — setting a standard for purity, quality and responsibility toward our community in every Palestinian city and village."
+    },
+    "values": [
+      {
+        "icon": "shield",
+        "title": {
+          "ar": "النقاء",
+          "en": "Purity"
+        },
+        "text": {
+          "ar": "معايير لا تقبل المساومة في كل خطوة من عملية الإنتاج.",
+          "en": "Uncompromising standards at every step of production."
+        }
+      },
+      {
+        "icon": "check",
+        "title": {
+          "ar": "الجودة",
+          "en": "Quality"
+        },
+        "text": {
+          "ar": "عمليات مضبوطة تضمن الثبات والتميز.",
+          "en": "Controlled processes that ensure consistency and excellence."
+        }
+      },
+      {
+        "icon": "moon",
+        "title": {
+          "ar": "الاستدامة",
+          "en": "Sustainability"
+        },
+        "text": {
+          "ar": "إنتاج مسؤول يحمي بيئتنا للأجيال القادمة.",
+          "en": "Responsible production that protects our environment for future generations."
+        }
+      },
+      {
+        "icon": "users",
+        "title": {
+          "ar": "المجتمع",
+          "en": "Community"
+        },
+        "text": {
+          "ar": "بناء مجتمعات أقوى من خلال التوظيف والمسؤولية الاجتماعية.",
+          "en": "Building stronger communities through employment and social responsibility."
+        }
+      },
+      {
+        "icon": "bolt",
+        "title": {
+          "ar": "الابتكار",
+          "en": "Innovation"
+        },
+        "text": {
+          "ar": "تطوير مستمر لتقنياتنا وعملياتنا لمنتجات أفضل.",
+          "en": "Continuous improvement of our technology and processes for better products."
+        }
+      },
+      {
+        "icon": "globe",
+        "title": {
+          "ar": "الانتشار المحلي",
+          "en": "Local reach"
+        },
+        "text": {
+          "ar": "التواجد في كل مدينة وقرية فلسطينية في الضفة الغربية والداخل.",
+          "en": "Present in every Palestinian city and village across the West Bank and the interior."
+        }
+      }
+    ],
+    "milestones": [
+      {
+        "year": "2005",
+        "title": {
+          "ar": "تأسيس لاميكو",
+          "en": "Lamico is founded"
+        },
+        "text": {
+          "ar": "انطلاقة لاميكو للاستثمار برؤية طموحة لبناء مجموعة استثمارية متنوعة في فلسطين.",
+          "en": "Lamico Investment launches with an ambitious vision to build a diversified investment group in Palestine."
+        }
+      },
+      {
+        "year": "2012",
+        "title": {
+          "ar": "شهادة ISO 9001",
+          "en": "ISO 9001 certification"
+        },
+        "text": {
+          "ar": "الحصول على شهادة الجودة، تأكيداً لالتزامنا بأعلى معايير الإنتاج والسلامة.",
+          "en": "Earning the quality certification, confirming our commitment to the highest production and safety standards."
+        }
+      },
+      {
+        "year": "2022",
+        "title": {
+          "ar": "إطلاق خط البقوليات والزعتر",
+          "en": "Legumes and zaatar line launched"
+        },
+        "text": {
+          "ar": "التوسع في قطاع المواد الغذائية بإطلاق منتجات البقوليات والزعتر الفلسطيني الأصيل.",
+          "en": "Expanding into food products with legumes and authentic Palestinian zaatar."
+        }
+      },
+      {
+        "year": "2023",
+        "title": {
+          "ar": "إطلاق مياه القدس",
+          "en": "Al-Quds Water launched"
+        },
+        "text": {
+          "ar": "إطلاق العلامة التجارية \"مياه القدس\" — مياه شرب معبأة نقية بجميع الأحجام بخطوط تعبئة حديثة.",
+          "en": "Launching the \"Al-Quds Water\" brand — pure bottled drinking water in every size on modern filling lines."
+        }
+      },
+      {
+        "year": "2026",
+        "title": {
+          "ar": "دخول قطاع العقارات",
+          "en": "Entering real estate"
+        },
+        "text": {
+          "ar": "تأسيس لاميكو العقارية وإطلاق مشروع أكاديمي هاوس — يعيش وعيساوي كأول مشروع سكني متميز.",
+          "en": "Founding Lamico Real Estate and launching Academy House as its first distinguished residential project."
+        }
+      }
+    ],
+    "standards": [
+      {
+        "icon": "check",
+        "title": {
+          "ar": "ISO 9001:2015",
+          "en": "ISO 9001:2015"
+        },
+        "text": {
+          "ar": "نظام إدارة الجودة المعتمد لضمان ثبات التميز في الإنتاج.",
+          "en": "A certified quality management system that keeps production excellence consistent."
+        }
+      },
+      {
+        "icon": "shield",
+        "title": {
+          "ar": "HACCP",
+          "en": "HACCP"
+        },
+        "text": {
+          "ar": "تحليل المخاطر ونقاط التحكم الحرجة لضمان الامتثال لسلامة الغذاء.",
+          "en": "Hazard analysis and critical control points ensuring food-safety compliance."
+        }
+      },
+      {
+        "icon": "moon",
+        "title": {
+          "ar": "ISO 22000",
+          "en": "ISO 22000"
+        },
+        "text": {
+          "ar": "نظام إدارة سلامة الغذاء لضمان سلامة المنتج عبر سلسلة التوريد.",
+          "en": "A food-safety management system protecting the product across the supply chain."
+        }
+      },
+      {
+        "icon": "globe",
+        "title": {
+          "ar": "GMP",
+          "en": "GMP"
+        },
+        "text": {
+          "ar": "ممارسات التصنيع الجيدة لبيئات إنتاج صحية ومراقبة.",
+          "en": "Good manufacturing practices for hygienic, monitored production environments."
+        }
+      }
+    ],
+    "stats": [
+      {
+        "key": "years",
+        "value": 21,
+        "suffix": "+"
+      },
+      {
+        "key": "cities",
+        "value": 22,
+        "suffix": ""
+      },
+      {
+        "key": "bottles",
+        "value": 50,
+        "suffix": "M+"
+      },
+      {
+        "key": "team",
+        "value": 500,
+        "suffix": "+"
+      }
+    ],
+    "cities": [
+      {
+        "ar": "نابلس",
+        "en": "Nablus"
+      },
+      {
+        "ar": "رام الله",
+        "en": "Ramallah"
+      },
+      {
+        "ar": "القدس",
+        "en": "Jerusalem"
+      },
+      {
+        "ar": "الخليل",
+        "en": "Hebron"
+      },
+      {
+        "ar": "بيت لحم",
+        "en": "Bethlehem"
+      },
+      {
+        "ar": "جنين",
+        "en": "Jenin"
+      },
+      {
+        "ar": "طولكرم",
+        "en": "Tulkarm"
+      },
+      {
+        "ar": "قلقيلية",
+        "en": "Qalqilya"
+      },
+      {
+        "ar": "طوباس",
+        "en": "Tubas"
+      },
+      {
+        "ar": "سلفيت",
+        "en": "Salfit"
+      },
+      {
+        "ar": "أريحا",
+        "en": "Jericho"
+      },
+      {
+        "ar": "حيفا",
+        "en": "Haifa"
+      },
+      {
+        "ar": "يافا",
+        "en": "Jaffa"
+      },
+      {
+        "ar": "عكا",
+        "en": "Acre"
+      },
+      {
+        "ar": "الناصرة",
+        "en": "Nazareth"
+      },
+      {
+        "ar": "اللد",
+        "en": "Lydda"
+      },
+      {
+        "ar": "الرملة",
+        "en": "Ramla"
+      },
+      {
+        "ar": "أم الفحم",
+        "en": "Umm al-Fahm"
+      },
+      {
+        "ar": "الطيبة",
+        "en": "Tayibe"
+      },
+      {
+        "ar": "باقة الغربية",
+        "en": "Baqa al-Gharbiyye"
+      },
+      {
+        "ar": "سخنين",
+        "en": "Sakhnin"
+      },
+      {
+        "ar": "النقب",
+        "en": "Negev"
+      }
+    ],
+    "whatsapp": {
+      "general": {
+        "number": "9720597959536",
+        "message": {
+          "ar": "مرحباً، أرغب بالتواصل مع شركة لاميكو الاستثمارية.",
+          "en": "Hello, I would like to get in touch with Lamico Investment Company."
+        }
+      },
+      "water": {
+        "number": "9720597959536",
+        "message": {
+          "ar": "مرحباً، أرغب بالاستفسار عن منتجات المياه.",
+          "en": "Hello, I would like to inquire about your water products."
+        }
+      },
+      "realEstate": {
+        "number": "9720597959536",
+        "message": {
+          "ar": "مرحباً، أرغب بالاستفسار عن إسكان أكاديمي هاوس.",
+          "en": "Hello, I would like to inquire about Academy House residences."
+        }
+      },
+      "jobs": {
+        "number": "9720597959536",
+        "message": {
+          "ar": "مرحباً، لدي استفسار بخصوص الوظائف المتاحة.",
+          "en": "Hello, I have a question about the available jobs."
+        }
+      }
+    }
+  },
+  "sectors": [
+    {
+      "key": "water",
+      "path": "/water",
+      "number": "01",
+      "icon": "droplets",
+      "name": {
+        "ar": "المياه",
+        "en": "Water"
+      },
+      "description": {
+        "ar": "مياه القدس — مياه شرب معبأة من آبار وينابيع قرية النصارية.",
+        "en": "Al-Quds Water — bottled drinking water from the wells and springs of Al-Nasariya."
+      },
+      "image": "/assets/water/water-lake-bottle.webp"
+    },
+    {
+      "key": "plastic",
+      "path": "/plastic",
+      "number": "02",
+      "icon": "factory",
+      "name": {
+        "ar": "البلاستيك",
+        "en": "Plastic"
+      },
+      "description": {
+        "ar": "حلول متقدمة في صناعة البلاستيك من المادة الخام إلى المنتج النهائي.",
+        "en": "Advanced plastic manufacturing solutions, from raw material to finished product."
+      }
+    },
+    {
+      "key": "preforms",
+      "path": "/preforms",
+      "number": "03",
+      "icon": "flask",
+      "name": {
+        "ar": "البريفورم",
+        "en": "Preforms"
+      },
+      "description": {
+        "ar": "بريفورم مصنّع بدقة ليكون البداية المثالية لعبوات PET.",
+        "en": "Precisely manufactured preforms — the ideal starting point for PET bottles."
+      }
+    },
+    {
+      "key": "caps",
+      "path": "/caps",
+      "number": "04",
+      "icon": "circle-dot",
+      "name": {
+        "ar": "الأغطية",
+        "en": "Caps"
+      },
+      "description": {
+        "ar": "أغطية بلاستيكية بأنواع متعددة تناسب احتياجات التعبئة.",
+        "en": "Plastic caps in multiple types to suit every filling need."
+      }
+    },
+    {
+      "key": "food",
+      "path": "/food",
+      "number": "05",
+      "icon": "wheat",
+      "name": {
+        "ar": "المنتجات الغذائية",
+        "en": "Food Products"
+      },
+      "description": {
+        "ar": "منتجات القدس الفلسطينية: زعتر، فريكة، سماق، قهوة وأكثر.",
+        "en": "Al-Quds Palestinian products: zaatar, freekeh, sumac, coffee and more."
+      },
+      "image": "/assets/food/all-products.webp"
+    },
+    {
+      "key": "real-estate",
+      "path": "/real-estate",
+      "number": "06",
+      "icon": "building",
+      "name": {
+        "ar": "العقار",
+        "en": "Real Estate"
+      },
+      "description": {
+        "ar": "مشاريع سكنية متميزة، أولها إسكان أكاديمي هاوس في نابلس.",
+        "en": "Distinguished residential projects, starting with Academy House in Nablus."
+      },
+      "image": "/assets/real-estate/academy-house.webp"
+    },
+    {
+      "key": "investment",
+      "path": "/about",
+      "number": "07",
+      "icon": "trending-up",
+      "name": {
+        "ar": "الاستثمار والتطوير",
+        "en": "Investment & Development"
+      },
+      "description": {
+        "ar": "استثمار متنوع وتطوير مستمر لقطاعات جديدة داخل فلسطين.",
+        "en": "Diversified investment and continuous development of new sectors in Palestine."
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "water-1-5l",
+      "slug": "al-quds-water-1-5l",
+      "sector": "water",
+      "name": {
+        "ar": "مياه القدس 1.5 لتر",
+        "en": "Al-Quds Water 1.5 L"
+      },
+      "category": {
+        "ar": "مياه شرب معبأة",
+        "en": "Bottled drinking water"
+      },
+      "shortDescription": {
+        "ar": "الحجم العائلي المثالي للمنزل والمكتب. تعبئة من آبار وينابيع قرية النصارية.",
+        "en": "The ideal family size for home and office. Filled from the wells and springs of Al-Nasariya."
+      },
+      "description": {
+        "ar": "الحجم العائلي المثالي للمنزل والمكتب. مياه شرب معبأة نقية من آبار وينابيع قرية النصارية.",
+        "en": "The ideal family size for home and office. Pure bottled drinking water from the wells and springs of Al-Nasariya."
+      },
+      "image": "/assets/water/water-1-5l.webp",
+      "secondaryImage": "/assets/water/water-1-5l-pack.webp",
+      "gallery": [
+        "/assets/water/water-1-5l.webp",
+        "/assets/water/water-1-5l-pack.webp"
+      ],
+      "size": {
+        "ar": "1.5 لتر",
+        "en": "1.5 L"
+      },
+      "tag": {
+        "ar": "الأكثر مبيعاً",
+        "en": "Best seller"
+      },
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "water-500ml",
+      "slug": "al-quds-water-500ml",
+      "sector": "water",
+      "name": {
+        "ar": "مياه القدس 500 مل",
+        "en": "Al-Quds Water 500 ml"
+      },
+      "category": {
+        "ar": "مياه شرب معبأة",
+        "en": "Bottled drinking water"
+      },
+      "shortDescription": {
+        "ar": "الحجم المناسب للتنقل والرحلات. سهلة الحمل ومثالية ليومك.",
+        "en": "The right size for commuting and trips. Easy to carry and perfect for your day."
+      },
+      "description": {
+        "ar": "الحجم المناسب للتنقل والرحلات. سهلة الحمل ومثالية ليومك.",
+        "en": "The right size for commuting and trips. Easy to carry and perfect for your day."
+      },
+      "image": "/assets/water/water-500ml.webp",
+      "secondaryImage": "/assets/water/water-500ml-pack.webp",
+      "gallery": [
+        "/assets/water/water-500ml.webp",
+        "/assets/water/water-500ml-pack.webp"
+      ],
+      "size": {
+        "ar": "500 مل",
+        "en": "500 ml"
+      },
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "water-250ml",
+      "slug": "al-quds-water-250ml",
+      "sector": "water",
+      "name": {
+        "ar": "مياه القدس 250 مل",
+        "en": "Al-Quds Water 250 ml"
+      },
+      "category": {
+        "ar": "مياه شرب معبأة",
+        "en": "Bottled drinking water"
+      },
+      "shortDescription": {
+        "ar": "الحجم المثالي للفعاليات والمناسبات والاجتماعات. أنيقة وعملية.",
+        "en": "The ideal size for events, occasions and meetings. Elegant and practical."
+      },
+      "description": {
+        "ar": "الحجم المثالي للفعاليات والمناسبات والاجتماعات. أنيقة وعملية.",
+        "en": "The ideal size for events, occasions and meetings. Elegant and practical."
+      },
+      "image": "/assets/water/water-250ml.webp",
+      "secondaryImage": "/assets/water/water-250ml-pack.webp",
+      "gallery": [
+        "/assets/water/water-250ml.webp",
+        "/assets/water/water-250ml-pack.webp"
+      ],
+      "size": {
+        "ar": "250 مل",
+        "en": "250 ml"
+      },
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "food-zaatar-mix",
+      "slug": "palestinian-zaatar-mix",
+      "sector": "food",
+      "name": {
+        "ar": "خليط الزعتر الفلسطيني",
+        "en": "Palestinian Zaatar Mix"
+      },
+      "category": {
+        "ar": "بهارات وتوابل",
+        "en": "Spices & seasonings"
+      },
+      "shortDescription": {
+        "ar": "زعتر فلسطيني أصيل مخلوط بالسمسم والسماق. طعم لا يُنسى من أرض فلسطين.",
+        "en": "Authentic Palestinian zaatar blended with sesame and sumac. An unforgettable taste from the land of Palestine."
+      },
+      "description": {
+        "ar": "زعتر فلسطيني أصيل مخلوط بالسمسم والسماق. طعم لا يُنسى من أرض فلسطين.",
+        "en": "Authentic Palestinian zaatar blended with sesame and sumac. An unforgettable taste from the land of Palestine."
+      },
+      "image": "/assets/food/zaatar-mix.webp",
+      "gallery": [
+        "/assets/food/zaatar-mix.webp",
+        "/assets/food/zaatar-alt.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "food-freekeh",
+      "slug": "palestinian-freekeh",
+      "sector": "food",
+      "name": {
+        "ar": "فريكة فلسطينية مجروشة",
+        "en": "Palestinian Cracked Freekeh"
+      },
+      "category": {
+        "ar": "حبوب وبقوليات",
+        "en": "Grains & legumes"
+      },
+      "shortDescription": {
+        "ar": "فريكة خضراء مجروشة فاخرة من سنابل القمح الفلسطيني. غنية بالنكهة والفوائد.",
+        "en": "Premium cracked green freekeh from Palestinian wheat ears. Rich in flavor and benefits."
+      },
+      "description": {
+        "ar": "فريكة خضراء مجروشة فاخرة من سنابل القمح الفلسطيني. غنية بالنكهة والفوائد.",
+        "en": "Premium cracked green freekeh from Palestinian wheat ears. Rich in flavor and benefits."
+      },
+      "image": "/assets/food/freekeh.webp",
+      "gallery": [
+        "/assets/food/freekeh.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "food-sumac",
+      "slug": "palestinian-sumac",
+      "sector": "food",
+      "name": {
+        "ar": "السماق الفلسطيني الفاخر",
+        "en": "Premium Palestinian Sumac"
+      },
+      "category": {
+        "ar": "بهارات وتوابل",
+        "en": "Spices & seasonings"
+      },
+      "shortDescription": {
+        "ar": "سماق فلسطيني طبيعي بنكهة حامضة مميزة. يضيف طعماً أصيلاً لكل طبق.",
+        "en": "Natural Palestinian sumac with a distinctive tang. Adds an authentic taste to every dish."
+      },
+      "description": {
+        "ar": "سماق فلسطيني طبيعي بنكهة حامضة مميزة. يضيف طعماً أصيلاً لكل طبق.",
+        "en": "Natural Palestinian sumac with a distinctive tang. Adds an authentic taste to every dish."
+      },
+      "image": "/assets/food/sumac.webp",
+      "gallery": [
+        "/assets/food/sumac.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": true
+    },
+    {
+      "id": "food-sage",
+      "slug": "palestinian-dried-sage",
+      "sector": "food",
+      "name": {
+        "ar": "ميرمية فلسطينية مجففة",
+        "en": "Dried Palestinian Sage"
+      },
+      "category": {
+        "ar": "أعشاب طبيعية",
+        "en": "Natural herbs"
+      },
+      "shortDescription": {
+        "ar": "ميرمية فلسطينية فاخرة مجففة بعناية. مثالية للشاي والمشروبات الساخنة.",
+        "en": "Premium Palestinian sage, carefully dried. Perfect for tea and hot drinks."
+      },
+      "description": {
+        "ar": "ميرمية فلسطينية فاخرة مجففة بعناية. مثالية للشاي والمشروبات الساخنة.",
+        "en": "Premium Palestinian sage, carefully dried. Perfect for tea and hot drinks."
+      },
+      "image": "/assets/food/sage.webp",
+      "gallery": [
+        "/assets/food/sage.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": false
+    },
+    {
+      "id": "food-dukkah",
+      "slug": "palestinian-dukkah",
+      "sector": "food",
+      "name": {
+        "ar": "الدقة الفلسطينية الفاخرة",
+        "en": "Premium Palestinian Dukkah"
+      },
+      "category": {
+        "ar": "بهارات وتوابل",
+        "en": "Spices & seasonings"
+      },
+      "shortDescription": {
+        "ar": "خليط الدقة الفلسطينية (زعتر أحمر) من القمح المطحون والسمسم والتوابل الأصيلة.",
+        "en": "Palestinian dukkah (red zaatar) made from ground wheat, sesame and authentic spices."
+      },
+      "description": {
+        "ar": "خليط الدقة الفلسطينية (زعتر أحمر) من القمح المطحون والسمسم والتوابل الأصيلة.",
+        "en": "Palestinian dukkah (red zaatar) made from ground wheat, sesame and authentic spices."
+      },
+      "image": "/assets/food/dukkah.webp",
+      "gallery": [
+        "/assets/food/dukkah.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": false
+    },
+    {
+      "id": "food-cardamom-coffee",
+      "slug": "al-quds-cardamom-coffee",
+      "sector": "food",
+      "name": {
+        "ar": "قهوة القدس بالهيل",
+        "en": "Al-Quds Cardamom Coffee"
+      },
+      "category": {
+        "ar": "مشروبات",
+        "en": "Beverages"
+      },
+      "shortDescription": {
+        "ar": "قهوة عربية فاخرة بالهيل. تحميص مثالي ونكهة غنية تعكس أصالة القهوة الفلسطينية.",
+        "en": "Premium Arabic coffee with cardamom. A perfect roast and rich flavor that reflects authentic Palestinian coffee."
+      },
+      "description": {
+        "ar": "قهوة عربية فاخرة بالهيل. تحميص مثالي ونكهة غنية تعكس أصالة القهوة الفلسطينية.",
+        "en": "Premium Arabic coffee with cardamom. A perfect roast and rich flavor that reflects authentic Palestinian coffee."
+      },
+      "image": "/assets/food/cardamom-coffee.webp",
+      "gallery": [
+        "/assets/food/cardamom-coffee.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": false
+    },
+    {
+      "id": "food-watermelon-seeds",
+      "slug": "roasted-watermelon-seeds",
+      "sector": "food",
+      "name": {
+        "ar": "بذر بطيخ محمص فاخر",
+        "en": "Premium Roasted Watermelon Seeds"
+      },
+      "category": {
+        "ar": "مكسرات وبذور",
+        "en": "Nuts & seeds"
+      },
+      "shortDescription": {
+        "ar": "بذر بطيخ فلسطيني محمص بإتقان. تسالي طبيعية بنكهة مميزة.",
+        "en": "Palestinian watermelon seeds, expertly roasted. A natural snack with a distinctive flavor."
+      },
+      "description": {
+        "ar": "بذر بطيخ فلسطيني محمص بإتقان. تسالي طبيعية بنكهة مميزة.",
+        "en": "Palestinian watermelon seeds, expertly roasted. A natural snack with a distinctive flavor."
+      },
+      "image": "/assets/food/watermelon-seeds.webp",
+      "gallery": [
+        "/assets/food/watermelon-seeds.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": false
+    },
+    {
+      "id": "food-dried-thyme",
+      "slug": "dried-palestinian-thyme",
+      "sector": "food",
+      "name": {
+        "ar": "زعتر فلسطيني مجفف",
+        "en": "Dried Palestinian Thyme"
+      },
+      "category": {
+        "ar": "أعشاب طبيعية",
+        "en": "Natural herbs"
+      },
+      "shortDescription": {
+        "ar": "أوراق زعتر فلسطيني مجففة طبيعياً. للطبخ والمشروبات بنكهة عطرية أصيلة.",
+        "en": "Naturally dried Palestinian thyme leaves. For cooking and drinks with an authentic aromatic flavor."
+      },
+      "description": {
+        "ar": "أوراق زعتر فلسطيني مجففة طبيعياً. للطبخ والمشروبات بنكهة عطرية أصيلة.",
+        "en": "Naturally dried Palestinian thyme leaves. For cooking and drinks with an authentic aromatic flavor."
+      },
+      "image": "/assets/food/dried-thyme.webp",
+      "gallery": [
+        "/assets/food/dried-thyme.webp"
+      ],
+      "specs": [],
+      "features": [],
+      "featured": false
+    },
+    {
+      "id": "preform-1",
+      "slug": "preform-sample-1",
+      "sector": "preforms",
+      "name": {
+        "ar": "بريفورم — نموذج 1",
+        "en": "Preform — Sample 1"
+      },
+      "category": {
+        "ar": "بريفورم PET",
+        "en": "PET preform"
+      },
+      "shortDescription": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
+        "en": "Placeholder text — to be replaced with the real product information."
+      },
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
+        "en": "Placeholder text — to be replaced with the real product information."
+      },
+      "gallery": [],
+      "specs": [],
+      "features": [],
+      "featured": false,
+      "isPlaceholder": true
+    },
+    {
+      "id": "preform-2",
+      "slug": "preform-sample-2",
+      "sector": "preforms",
+      "name": {
+        "ar": "بريفورم — نموذج 2",
+        "en": "Preform — Sample 2"
+      },
+      "category": {
+        "ar": "بريفورم PET",
+        "en": "PET preform"
+      },
+      "shortDescription": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
+        "en": "Placeholder text — to be replaced with the real product information."
+      },
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
+        "en": "Placeholder text — to be replaced with the real product information."
+      },
+      "gallery": [],
+      "specs": [],
+      "features": [],
+      "featured": false,
+      "isPlaceholder": true
+    },
+    {
+      "id": "cap-1",
+      "slug": "cap-type-1",
+      "sector": "caps",
+      "name": {
+        "ar": "غطاء — النوع 1",
+        "en": "Cap — Type 1"
+      },
+      "category": {
+        "ar": "أغطية بلاستيكية",
+        "en": "Plastic caps"
+      },
+      "shortDescription": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "gallery": [],
+      "specs": [],
+      "features": [],
+      "featured": false,
+      "isPlaceholder": true
+    },
+    {
+      "id": "cap-2",
+      "slug": "cap-type-2",
+      "sector": "caps",
+      "name": {
+        "ar": "غطاء — النوع 2",
+        "en": "Cap — Type 2"
+      },
+      "category": {
+        "ar": "أغطية بلاستيكية",
+        "en": "Plastic caps"
+      },
+      "shortDescription": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "gallery": [],
+      "specs": [],
+      "features": [],
+      "featured": false,
+      "isPlaceholder": true
+    },
+    {
+      "id": "cap-3",
+      "slug": "cap-type-3",
+      "sector": "caps",
+      "name": {
+        "ar": "غطاء — النوع 3",
+        "en": "Cap — Type 3"
+      },
+      "category": {
+        "ar": "أغطية بلاستيكية",
+        "en": "Plastic caps"
+      },
+      "shortDescription": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بمعلومات النوع الفعلية.",
+        "en": "Placeholder text — to be replaced with the real type information."
+      },
+      "gallery": [],
+      "specs": [],
+      "features": [],
+      "featured": false,
+      "isPlaceholder": true
+    }
+  ],
+  "waterLabels": [
+    {
+      "id": "label-01",
+      "name": {
+        "ar": "الملصق 01",
+        "en": "Label 01"
+      },
+      "active": true
+    },
+    {
+      "id": "label-02",
+      "name": {
+        "ar": "الملصق 02",
+        "en": "Label 02"
+      },
+      "active": true
+    }
+  ],
+  "waterOverview": {
+    "image": "/assets/water/water-all-sizes.webp",
+    "title": {
+      "ar": "مياه القدس — مياه شرب معبأة",
+      "en": "Al-Quds Water — bottled drinking water"
+    },
+    "lead": {
+      "ar": "منتجنا الرئيسي — مياه شرب معبأة نقية من آبار وينابيع قرية النصارية. صافية بالكامل مع محتوى معدني متوازن للترطيب المثالي.",
+      "en": "Our flagship product — pure bottled drinking water from the wells and springs of Al-Nasariya. Fully clear with a balanced mineral content for ideal hydration."
+    },
+    "body": {
+      "ar": "كل عبوة تخضع لاختبارات جودة صارمة لضمان توافقها مع أعلى معايير الجودة والسلامة.",
+      "en": "Every bottle goes through strict quality tests to ensure it meets the highest quality and safety standards."
+    },
+    "specs": [
+      {
+        "label": {
+          "ar": "المصدر",
+          "en": "Source"
+        },
+        "value": {
+          "ar": "آبار وينابيع قرية النصارية",
+          "en": "Wells and springs of Al-Nasariya"
+        }
+      },
+      {
+        "label": {
+          "ar": "درجة الحموضة",
+          "en": "pH level"
+        },
+        "value": {
+          "ar": "7.2 متوازنة",
+          "en": "7.2 balanced"
+        }
+      },
+      {
+        "label": {
+          "ar": "المواد الصلبة الذائبة",
+          "en": "Total dissolved solids"
+        },
+        "value": {
+          "ar": "180 mg/L",
+          "en": "180 mg/L"
+        }
+      },
+      {
+        "label": {
+          "ar": "الأحجام المتوفرة",
+          "en": "Available sizes"
+        },
+        "value": {
+          "ar": "250مل — 500مل — 1.5لتر",
+          "en": "250 ml — 500 ml — 1.5 L"
+        }
+      }
+    ]
+  },
+  "foodOverview": {
+    "image": "/assets/food/all-products.webp"
+  },
+  "realEstateProjects": [
+    {
+      "id": "academy-house",
+      "slug": "academy-house",
+      "name": {
+        "ar": "إسكان أكاديمي هاوس",
+        "en": "Academy House Residences"
+      },
+      "tagline": {
+        "ar": "يعيش وعيساوي",
+        "en": "يعيش وعيساوي"
+      },
+      "description": [
+        {
+          "ar": "مشروع سكني متميز من تنفيذ لاميكو العقارية. تصميم عصري يجمع بين الفخامة والراحة في موقع استراتيجي.",
+          "en": "A distinguished residential project delivered by Lamico Real Estate. A modern design that combines elegance and comfort in a strategic location."
+        },
+        {
+          "ar": "بناء بأعلى المعايير الهندسية مع تشطيبات فاخرة ومساحات واسعة. مشروع يعكس التزام لاميكو بالجودة في كل ما نبنيه.",
+          "en": "Built to the highest engineering standards with premium finishes and generous spaces. A project that reflects Lamico’s commitment to quality in everything we build."
+        }
+      ],
+      "location": {
+        "ar": "نابلس - رفيديا، الأكاديمية، فلسطين",
+        "en": "Nablus – Rafidia, Al-Academia, Palestine"
+      },
+      "featuredImage": "/assets/real-estate/academy-house.webp",
+      "gallery": [
+        {
+          "src": "/assets/real-estate/academy-house-1.webp",
+          "caption": {
+            "ar": "واجهة المبنى",
+            "en": "Building facade"
+          }
+        },
+        {
+          "src": "/assets/real-estate/academy-house-2.webp",
+          "caption": {
+            "ar": "منظر جانبي",
+            "en": "Side view"
+          }
+        },
+        {
+          "src": "/assets/real-estate/academy-house-3.webp",
+          "caption": {
+            "ar": "تفاصيل التصميم",
+            "en": "Design details"
+          }
+        },
+        {
+          "src": "/assets/real-estate/academy-house-4.webp",
+          "caption": {
+            "ar": "منظر مسائي",
+            "en": "Evening view"
+          }
+        },
+        {
+          "src": "/assets/real-estate/academy-house-5.webp",
+          "caption": {
+            "ar": "المدخل",
+            "en": "Entrance"
+          }
+        }
+      ],
+      "features": [
+        {
+          "ar": "تصميم عصري",
+          "en": "Modern design"
+        },
+        {
+          "ar": "تشطيبات فاخرة",
+          "en": "Premium finishes"
+        },
+        {
+          "ar": "مساحات واسعة",
+          "en": "Generous spaces"
+        },
+        {
+          "ar": "موقع استراتيجي",
+          "en": "Strategic location"
+        }
+      ],
+      "contactPhone": "+970597959536",
+      "whatsappNumber": "9720597959536",
+      "status": "construction"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-1",
+      "slug": "production-engineer",
+      "title": {
+        "ar": "مهندس إنتاج",
+        "en": "Production Engineer"
+      },
+      "department": {
+        "ar": "الإنتاج",
+        "en": "Production"
+      },
+      "location": {
+        "ar": "نابلس، فلسطين",
+        "en": "Nablus, Palestine"
+      },
+      "employmentType": "fullTime",
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+        "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+      },
+      "responsibilities": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "requirements": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "benefits": [],
+      "status": "open",
+      "isPlaceholder": true
+    },
+    {
+      "id": "job-2",
+      "slug": "maintenance-technician",
+      "title": {
+        "ar": "فني صيانة",
+        "en": "Maintenance Technician"
+      },
+      "department": {
+        "ar": "الصيانة",
+        "en": "Maintenance"
+      },
+      "location": {
+        "ar": "نابلس، فلسطين",
+        "en": "Nablus, Palestine"
+      },
+      "employmentType": "fullTime",
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+        "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+      },
+      "responsibilities": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "requirements": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "benefits": [],
+      "status": "open",
+      "isPlaceholder": true
+    },
+    {
+      "id": "job-3",
+      "slug": "accountant",
+      "title": {
+        "ar": "محاسب",
+        "en": "Accountant"
+      },
+      "department": {
+        "ar": "المالية",
+        "en": "Finance"
+      },
+      "location": {
+        "ar": "نابلس، فلسطين",
+        "en": "Nablus, Palestine"
+      },
+      "employmentType": "fullTime",
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+        "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+      },
+      "responsibilities": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "requirements": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "benefits": [],
+      "status": "open",
+      "isPlaceholder": true
+    },
+    {
+      "id": "job-4",
+      "slug": "production-supervisor",
+      "title": {
+        "ar": "مشرف إنتاج",
+        "en": "Production Supervisor"
+      },
+      "department": {
+        "ar": "الإنتاج",
+        "en": "Production"
+      },
+      "location": {
+        "ar": "نابلس، فلسطين",
+        "en": "Nablus, Palestine"
+      },
+      "employmentType": "fullTime",
+      "description": {
+        "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+        "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+      },
+      "responsibilities": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "requirements": [
+        {
+          "ar": "نص تجريبي — سيتم استبداله بتفاصيل الوظيفة الفعلية عند نشرها من لوحة التحكم.",
+          "en": "Placeholder text — to be replaced with the real job details once published from the dashboard."
+        }
+      ],
+      "benefits": [],
+      "status": "open",
+      "isPlaceholder": true
+    }
+  ],
+  "legal": {
+    "privacy": {
+      "updated": {
+        "ar": "يناير 2026",
+        "en": "January 2026"
+      },
+      "sections": [
+        {
+          "heading": {
+            "ar": "مقدمة",
+            "en": "Introduction"
+          },
+          "paragraphs": [
+            {
+              "ar": "نحن في لاميكو الاستثمارية نلتزم بحماية خصوصيتك وبياناتك الشخصية. توضح هذه السياسة كيف نجمع ونستخدم ونحمي المعلومات التي تقدمها لنا عند استخدام موقعنا الإلكتروني أو التواصل معنا.",
+              "en": "At Lamico Investment we are committed to protecting your privacy and personal data. This policy explains how we collect, use and protect the information you provide when using our website or contacting us."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "المعلومات التي نجمعها",
+            "en": "Information we collect"
+          },
+          "paragraphs": [
+            {
+              "ar": "نجمع المعلومات التي تقدمها لنا طوعاً عند:",
+              "en": "We collect the information you give us voluntarily when you:"
+            }
+          ],
+          "items": [
+            {
+              "ar": "ملء نموذج التواصل على موقعنا (الاسم، البريد الإلكتروني، رقم الهاتف، الرسالة)",
+              "en": "Fill in the contact form on our website (name, email, phone number, message)"
+            },
+            {
+              "ar": "التقدم لإحدى الوظائف وإرفاق السيرة الذاتية والبيانات المهنية",
+              "en": "Apply for a job and attach your CV and professional details"
+            },
+            {
+              "ar": "التواصل معنا عبر البريد الإلكتروني أو الهاتف أو واتساب",
+              "en": "Contact us by email, phone or WhatsApp"
+            },
+            {
+              "ar": "طلب معلومات حول منتجاتنا أو خدماتنا",
+              "en": "Request information about our products or services"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "كيف نستخدم معلوماتك",
+            "en": "How we use your information"
+          },
+          "paragraphs": [
+            {
+              "ar": "نستخدم المعلومات التي نجمعها لـ:",
+              "en": "We use the information we collect to:"
+            }
+          ],
+          "items": [
+            {
+              "ar": "الرد على استفساراتك ورسائلك",
+              "en": "Reply to your inquiries and messages"
+            },
+            {
+              "ar": "دراسة طلبات التوظيف والتواصل مع المتقدمين",
+              "en": "Review job applications and get in touch with applicants"
+            },
+            {
+              "ar": "تقديم معلومات حول منتجاتنا وخدماتنا",
+              "en": "Provide information about our products and services"
+            },
+            {
+              "ar": "تحسين تجربة استخدام موقعنا",
+              "en": "Improve your experience on our website"
+            },
+            {
+              "ar": "الامتثال للمتطلبات القانونية",
+              "en": "Comply with legal requirements"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "بيانات طلبات التوظيف",
+            "en": "Job application data"
+          },
+          "paragraphs": [
+            {
+              "ar": "تُعامل السير الذاتية وبيانات المتقدمين للوظائف على أنها بيانات خاصة، ولا يطّلع عليها إلا الفريق المسؤول عن التوظيف، ولا تُستخدم لأي غرض آخر.",
+              "en": "CVs and applicant data are treated as private. Only the hiring team can see them and they are not used for any other purpose."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "حماية معلوماتك",
+            "en": "Protecting your information"
+          },
+          "paragraphs": [
+            {
+              "ar": "نتخذ إجراءات أمنية مناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التغيير أو الإفصاح أو الإتلاف. لا نبيع أو نؤجر أو نشارك معلوماتك الشخصية مع أطراف ثالثة لأغراض تسويقية.",
+              "en": "We take appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure or destruction. We do not sell, rent or share your personal information with third parties for marketing purposes."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "ملفات تعريف الارتباط (Cookies)",
+            "en": "Cookies"
+          },
+          "paragraphs": [
+            {
+              "ar": "قد يستخدم موقعنا ملفات تعريف الارتباط وتخزيناً محلياً لتحسين تجربة التصفح وتذكّر تفضيلاتك مثل اللغة. يمكنك التحكم في هذه الإعدادات من خلال متصفحك.",
+              "en": "Our website may use cookies and local storage to improve browsing and remember your preferences such as language. You can control these settings through your browser."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "حقوقك",
+            "en": "Your rights"
+          },
+          "paragraphs": [
+            {
+              "ar": "يحق لك:",
+              "en": "You have the right to:"
+            }
+          ],
+          "items": [
+            {
+              "ar": "طلب الوصول إلى بياناتك الشخصية",
+              "en": "Request access to your personal data"
+            },
+            {
+              "ar": "طلب تصحيح أو حذف بياناتك",
+              "en": "Request correction or deletion of your data"
+            },
+            {
+              "ar": "الاعتراض على معالجة بياناتك",
+              "en": "Object to the processing of your data"
+            },
+            {
+              "ar": "سحب موافقتك في أي وقت",
+              "en": "Withdraw your consent at any time"
+            }
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "updated": {
+        "ar": "يناير 2026",
+        "en": "January 2026"
+      },
+      "sections": [
+        {
+          "heading": {
+            "ar": "القبول بالشروط",
+            "en": "Acceptance of terms"
+          },
+          "paragraphs": [
+            {
+              "ar": "باستخدامك لموقع لاميكو الاستثمارية الإلكتروني، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي من هذه الشروط، يرجى عدم استخدام الموقع.",
+              "en": "By using the Lamico Investment website you agree to be bound by these terms and conditions. If you do not agree with any of them, please do not use the website."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "استخدام الموقع",
+            "en": "Use of the website"
+          },
+          "paragraphs": [
+            {
+              "ar": "يُسمح لك باستخدام هذا الموقع للأغراض المشروعة فقط. يُحظر عليك:",
+              "en": "You may use this website for lawful purposes only. You must not:"
+            }
+          ],
+          "items": [
+            {
+              "ar": "استخدام الموقع بطريقة تنتهك أي قانون أو لائحة محلية أو دولية",
+              "en": "Use the website in a way that violates any local or international law or regulation"
+            },
+            {
+              "ar": "نسخ أو توزيع أو تعديل أي محتوى من الموقع دون إذن مسبق",
+              "en": "Copy, distribute or modify any content of the website without prior permission"
+            },
+            {
+              "ar": "محاولة الوصول غير المصرح به إلى أنظمة الموقع",
+              "en": "Attempt unauthorized access to the website systems"
+            },
+            {
+              "ar": "استخدام الموقع لأغراض تجارية غير مصرح بها",
+              "en": "Use the website for unauthorized commercial purposes"
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "الملكية الفكرية",
+            "en": "Intellectual property"
+          },
+          "paragraphs": [
+            {
+              "ar": "جميع المحتويات المعروضة على هذا الموقع — بما في ذلك النصوص والصور والشعارات والتصاميم والعلامات التجارية — هي ملكية حصرية لشركة لاميكو الاستثمارية ومحمية بموجب قوانين الملكية الفكرية. لا يجوز استخدام أي من هذه المحتويات دون إذن خطي مسبق.",
+              "en": "All content displayed on this website — including text, images, logos, designs and trademarks — is the exclusive property of Lamico Investment Company and is protected by intellectual property laws. None of it may be used without prior written permission."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "المنتجات والخدمات",
+            "en": "Products and services"
+          },
+          "paragraphs": [
+            {
+              "ar": "المعلومات المعروضة على الموقع حول منتجاتنا وخدماتنا هي لأغراض إعلامية فقط. نحتفظ بالحق في تعديل أو تحديث معلومات المنتجات في أي وقت دون إشعار مسبق. الصور المعروضة قد تختلف قليلاً عن المنتج الفعلي.",
+              "en": "The information on the website about our products and services is for informational purposes only. We reserve the right to change or update product information at any time without prior notice. Images shown may differ slightly from the actual product."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "إخلاء المسؤولية",
+            "en": "Disclaimer"
+          },
+          "paragraphs": [
+            {
+              "ar": "يُقدم هذا الموقع \"كما هو\" دون أي ضمانات صريحة أو ضمنية. لا نتحمل المسؤولية عن أي أضرار مباشرة أو غير مباشرة ناتجة عن استخدام الموقع أو عدم القدرة على استخدامه.",
+              "en": "This website is provided \"as is\" without any express or implied warranties. We are not liable for any direct or indirect damages arising from the use of, or inability to use, the website."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "الروابط الخارجية",
+            "en": "External links"
+          },
+          "paragraphs": [
+            {
+              "ar": "قد يحتوي الموقع على روابط لمواقع خارجية. لا نتحمل أي مسؤولية عن محتوى أو سياسات الخصوصية الخاصة بهذه المواقع.",
+              "en": "The website may contain links to external websites. We accept no responsibility for the content or privacy policies of those websites."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "التعديلات على الشروط",
+            "en": "Changes to the terms"
+          },
+          "paragraphs": [
+            {
+              "ar": "نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم نشر أي تعديلات على هذه الصفحة مع تحديث تاريخ آخر تعديل. استمرارك في استخدام الموقع بعد نشر التعديلات يعني موافقتك على الشروط المعدلة.",
+              "en": "We reserve the right to change these terms at any time. Any changes will be posted on this page with an updated date. Continuing to use the website after changes are posted means you accept the revised terms."
+            }
+          ]
+        },
+        {
+          "heading": {
+            "ar": "القانون المطبق",
+            "en": "Governing law"
+          },
+          "paragraphs": [
+            {
+              "ar": "تخضع هذه الشروط وتُفسر وفقاً للقوانين المعمول بها في فلسطين. أي نزاع ينشأ عن استخدام هذا الموقع يخضع للاختصاص القضائي للمحاكم المختصة في فلسطين.",
+              "en": "These terms are governed by and interpreted under the laws in force in Palestine. Any dispute arising from the use of this website falls under the jurisdiction of the competent courts in Palestine."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens — carried over from the original Lamico site (legacy/css/base/variables.css).
+  Every color is a CSS variable so the palette can be changed in one place.
+*/
+@theme {
+  --font-sans: 'Tajawal', 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --font-display: 'Noto Kufi Arabic', 'Tajawal', 'Inter', sans-serif;
+
+  /* Brand */
+  --color-primary: #014681;
+  --color-primary-light: #0a6bb5;
+  --color-primary-dark: #013562;
+  --color-secondary: #0891b2;
+  --color-secondary-light: #22d3ee;
+  --color-secondary-dark: #0e7490;
+  --color-accent: #0a6bb5;
+  /* Al-Quds water brand crimson (sampled from the product label and the truck) */
+  --color-quds: #ad1355;
+  --color-quds-dark: #8c0f44;
+  --color-whatsapp: #25d366;
+
+  /* Neutrals (blue-tinted, as in the original site) */
+  --color-gray-50: #f0f4f8;
+  --color-gray-100: #e1e8ef;
+  --color-gray-200: #c9d4df;
+  --color-gray-300: #a3b3c4;
+  --color-gray-400: #7d91a5;
+  --color-gray-500: #5a6f84;
+  --color-gray-600: #445566;
+  --color-gray-700: #334455;
+  --color-gray-800: #223344;
+  --color-gray-900: #112233;
+
+  --color-success: #10b981;
+  --color-error: #ef4444;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.04);
+  --shadow-primary: 0 8px 24px rgba(1, 70, 129, 0.25);
+  --shadow-deep: 0 25px 50px rgba(0, 0, 0, 0.14);
+
+  --ease-out-soft: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* English uses Inter first; Arabic glyphs fall through to Tajawal / Noto Kufi. */
+:root[lang='en'] {
+  --font-sans: 'Inter', 'Tajawal', 'Segoe UI', sans-serif;
+  --font-display: 'Inter', 'Noto Kufi Arabic', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: #fff;
+  color: var(--color-gray-900);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(1, 70, 129, 0.15);
+  color: var(--color-primary-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1.5rem;
+}
+
+@utility text-overline {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Scrollbar, as in the original site */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gray-50);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

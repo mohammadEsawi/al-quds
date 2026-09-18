@@ -1,0 +1,24 @@
+{
+  "name": "lamico-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lamico Investment Company — corporate website and admin platform",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w server && npm run build -w client",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
+    "db:generate": "npm run prisma:generate -w server",
+    "db:migrate": "npm run prisma:migrate -w server",
+    "db:seed": "npm run prisma:seed -w server",
+    "db:studio": "npm run prisma:studio -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

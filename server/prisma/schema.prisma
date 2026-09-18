@@ -1,0 +1,375 @@
+// Lamico platform schema.
+// Bilingual content uses paired columns (nameAr / nameEn). The API turns each pair into `{ ar, en }`
+// so the website and the admin dashboard share one shape.
+// Small ordered lists that are always edited as a whole (features, milestones...) are stored as JSON.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────────────────── Enums ─────────────────────────
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
+
+enum ProductSector {
+  WATER
+  PLASTIC
+  PREFORMS
+  CAPS
+  FOOD
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  HIDDEN
+}
+
+enum RealEstateStatus {
+  PLANNING
+  CONSTRUCTION
+  AVAILABLE
+  SOLD
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+enum ApplicationStatus {
+  NEW
+  REVIEWED
+  SHORTLISTED
+  INTERVIEW
+  REJECTED
+  ACCEPTED
+}
+
+enum NotificationType {
+  CONTACT_MESSAGE
+  JOB_APPLICATION
+  PRODUCT_INQUIRY
+}
+
+enum MediaKind {
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+// ───────────────────────── Users ─────────────────────────
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         UserRole  @default(ADMIN)
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// ───────────────────────── Company & settings ─────────────────────────
+
+/// Single-row table (id is always "default").
+model CompanyInfo {
+  id            String   @id @default("default")
+  nameAr        String
+  nameEn        String
+  legalNameAr   String
+  legalNameEn   String
+  founded       Int
+  addressAr     String
+  addressEn     String
+  phone         String
+  phoneDisplay  String
+  email         String
+  hoursAr       String
+  hoursEn       String
+  logoLightUrl  String?
+  logoDarkUrl   String?
+  logoMobileUrl String?
+  faviconUrl    String?
+  mapEmbedUrl   String?
+  facebookUrl   String?
+  instagramUrl  String?
+  linkedinUrl   String?
+  /// [{ ar, en }] paragraphs
+  about         Json     @default("[]")
+  missionAr     String
+  missionEn     String
+  visionAr      String
+  visionEn      String
+  /// [{ icon, title:{ar,en}, text:{ar,en} }]
+  values        Json     @default("[]")
+  /// [{ year, title:{ar,en}, text:{ar,en} }]
+  milestones    Json     @default("[]")
+  /// [{ icon, title:{ar,en}, text:{ar,en} }]
+  standards     Json     @default("[]")
+  /// [{ key, value, suffix }]
+  stats         Json     @default("[]")
+  /// [{ ar, en }]
+  cities        Json     @default("[]")
+  updatedAt     DateTime @updatedAt
+}
+
+/// One row per communication channel: GENERAL, WATER, PLASTIC, PREFORMS, CAPS, FOOD, REAL_ESTATE, JOBS.
+model WhatsAppSetting {
+  channel   String   @id
+  number    String
+  messageAr String
+  messageEn String
+  isActive  Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}
+
+/// Free-form content blocks (homepage copy, legal pages, water overview...).
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// ───────────────────────── Catalogue ─────────────────────────
+
+model Sector {
+  id            String   @id @default(cuid())
+  key           String   @unique
+  path          String
+  number        String
+  icon          String
+  nameAr        String
+  nameEn        String
+  descriptionAr String
+  descriptionEn String
+  imageUrl      String?
+  isActive      Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ProductCategory {
+  id        String         @id @default(cuid())
+  slug      String         @unique
+  sector    ProductSector?
+  nameAr    String
+  nameEn    String
+  sortOrder Int            @default(0)
+  products  Product[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+/// One table for every product line (water, plastic, preforms, caps, food). Technical details
+/// (weight, material, dimensions...) go in `specs`, so new sizes/types need no code change.
+model Product {
+  id                 String           @id @default(cuid())
+  slug               String           @unique
+  sector             ProductSector
+  categoryId         String?
+  category           ProductCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  nameAr             String
+  nameEn             String
+  categoryLabelAr    String?
+  categoryLabelEn    String?
+  shortDescriptionAr String
+  shortDescriptionEn String
+  descriptionAr      String
+  descriptionEn      String
+  imageUrl           String?
+  secondaryImageUrl  String?
+  videoUrl           String?
+  sizeAr             String?
+  sizeEn             String?
+  tagAr              String?
+  tagEn              String?
+  sku                String?
+  /// [{ label:{ar,en}, value:{ar,en} }]
+  specs              Json             @default("[]")
+  /// [{ ar, en }]
+  features           Json             @default("[]")
+  featured           Boolean          @default(false)
+  status             ContentStatus    @default(PUBLISHED)
+  sortOrder          Int              @default(0)
+  isSample           Boolean          @default(false)
+  images             ProductImage[]
+  labels             WaterLabel[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@index([sector, status, sortOrder])
+  @@index([featured])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  altAr     String?
+  altEn     String?
+  sortOrder Int     @default(0)
+
+  @@index([productId, sortOrder])
+}
+
+model WaterLabel {
+  id        String    @id @default(cuid())
+  nameAr    String
+  nameEn    String
+  imageUrl  String?
+  isActive  Boolean   @default(true)
+  sortOrder Int       @default(0)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// ───────────────────────── Real estate ─────────────────────────
+
+model RealEstateProject {
+  id               String           @id @default(cuid())
+  slug             String           @unique
+  nameAr           String
+  nameEn           String
+  taglineAr        String?
+  taglineEn        String?
+  /// [{ ar, en }] paragraphs
+  description      Json             @default("[]")
+  locationAr       String
+  locationEn       String
+  featuredImageUrl String
+  /// [{ src, caption:{ar,en} }]
+  gallery          Json             @default("[]")
+  /// [{ ar, en }]
+  features         Json             @default("[]")
+  contactPhone     String
+  whatsappNumber   String
+  status           RealEstateStatus @default(CONSTRUCTION)
+  published        Boolean          @default(true)
+  sortOrder        Int              @default(0)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+// ───────────────────────── Careers ─────────────────────────
+
+model Job {
+  id               String           @id @default(cuid())
+  slug             String           @unique
+  titleAr          String
+  titleEn          String
+  departmentAr     String
+  departmentEn     String
+  locationAr       String
+  locationEn       String
+  employmentType   EmploymentType   @default(FULL_TIME)
+  descriptionAr    String
+  descriptionEn    String
+  /// [{ ar, en }]
+  responsibilities Json             @default("[]")
+  requirements     Json             @default("[]")
+  benefits         Json             @default("[]")
+  deadline         DateTime?
+  status           JobStatus        @default(OPEN)
+  isSample         Boolean          @default(false)
+  applications     JobApplication[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([status])
+}
+
+model JobApplication {
+  id             String            @id @default(cuid())
+  /// Null for a general (spontaneous) application.
+  jobId          String?
+  job            Job?              @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  fullName       String
+  phone          String
+  email          String
+  city           String
+  position       String
+  education      String
+  experience     String
+  message        String?
+  linkedin       String?
+  portfolio      String?
+  /// Storage key inside the private CV directory (never exposed as a URL).
+  cvFile         String
+  cvOriginalName String
+  cvMimeType     String
+  cvSize         Int
+  status         ApplicationStatus @default(NEW)
+  notes          String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([status, createdAt])
+  @@index([jobId])
+}
+
+// ───────────────────────── Inbox, media, notifications ─────────────────────────
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead, createdAt])
+}
+
+model Media {
+  id           String    @id @default(cuid())
+  kind         MediaKind
+  /// Stored file name inside uploads/media.
+  filename     String    @unique
+  originalName String
+  url          String
+  mimeType     String
+  size         Int
+  altAr        String?
+  altEn        String?
+  createdAt    DateTime  @default(now())
+
+  @@index([kind, createdAt])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  title     String
+  body      String?
+  /// Id of the related message / application / product.
+  refId     String?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@index([isRead, createdAt])
+}

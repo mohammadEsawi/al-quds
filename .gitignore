@@ -2,3 +2,20 @@
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+
+# Dependencies / build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Environment (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# Runtime data
+uploads/
+*.log
+
+# Generated Prisma client
+server/src/generated/
