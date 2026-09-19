@@ -35,8 +35,13 @@ function markSeen() {
  * With `prefers-reduced-motion` the final, static hero is shown immediately.
  */
 export function HeroIntro() {
-  const { t } = useI18n();
-  const { company } = useSiteData();
+  const { t, pick } = useI18n();
+  const { company, home } = useSiteData();
+  const hero = home.hero ?? {};
+  const text = (key: 'overline' | 'title' | 'subtitle' | 'ctaSectors' | 'ctaContact', fallback: string) => {
+    const override = hero[key];
+    return override && override.ar && override.en ? pick(override) : fallback;
+  };
   const reduced = usePrefersReducedMotion();
   const root = useRef<HTMLElement>(null);
   const timeline = useRef<gsap.core.Timeline | null>(null);
@@ -278,26 +283,26 @@ export function HeroIntro() {
             className="text-overline mb-6 inline-flex items-center gap-2 rounded-full bg-primary/8 px-4 py-2 text-primary"
           >
             <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-            {t.hero.overline}
+            {text('overline', t.hero.overline)}
           </span>
 
           <h1
             data-h="text-item"
             className="font-display text-4xl leading-tight font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
           >
-            {t.hero.title}
+            {text('title', t.hero.title)}
           </h1>
 
           <p data-h="text-item" className="mt-6 text-lg leading-relaxed font-light text-gray-600 sm:text-xl">
-            {t.hero.subtitle}
+            {text('subtitle', t.hero.subtitle)}
           </p>
 
           <div data-h="text-item" className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <ButtonLink to="/sectors" size="lg" arrow>
-              {t.hero.ctaSectors}
+              {text('ctaSectors', t.hero.ctaSectors)}
             </ButtonLink>
             <ButtonLink to="/contact" size="lg" variant="secondary">
-              {t.hero.ctaContact}
+              {text('ctaContact', t.hero.ctaContact)}
             </ButtonLink>
           </div>
 

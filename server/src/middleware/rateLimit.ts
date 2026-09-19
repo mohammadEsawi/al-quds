@@ -4,10 +4,23 @@ const limitMessage = {
   error: { code: 'RATE_LIMITED', message: 'Too many requests, please try again later' },
 };
 
-/** Baseline limiter for the whole API. */
+/**
+ * Baseline limiter for the public API. Generous on purpose: many visitors share one IP
+ * (mobile carriers, offices) and every page view makes several API calls.
+ */
 export const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 300,
+  limit: 1500,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: limitMessage,
+  skip: (req) => req.path.startsWith('/admin'),
+});
+
+/** The dashboard polls and navigates a lot; it is protected by authentication and the login limiter. */
+export const adminLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 4000,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: limitMessage,

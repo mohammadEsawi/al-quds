@@ -164,6 +164,8 @@ async function seedSettings() {
     ['food.overview', content.foodOverview],
     ['legal.privacy', content.legal.privacy],
     ['legal.terms', content.legal.terms],
+    // Empty = "use the built-in homepage texts"; the dashboard fills it in.
+    ['home.content', {}],
   ];
   for (const [key, value] of entries) {
     await prisma.siteSetting.upsert({ where: { key }, update: {}, create: { key, value: json(value) } });

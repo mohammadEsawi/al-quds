@@ -107,7 +107,12 @@ export interface CompanyInfo {
     water: WhatsAppChannel;
     realEstate: WhatsAppChannel;
     jobs: WhatsAppChannel;
-  };
+  } & Partial<Record<'plastic' | 'preforms' | 'caps' | 'food', WhatsAppChannel>>;
+}
+
+/** Homepage texts the admin can override (the `home.content` setting). Missing fields use the built-in text. */
+export interface HomeContent {
+  hero?: Partial<Record<'overline' | 'title' | 'subtitle' | 'ctaSectors' | 'ctaContact', LocalizedText>>;
 }
 
 export interface GalleryImage {

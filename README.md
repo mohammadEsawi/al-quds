@@ -51,6 +51,23 @@ All requests and responses use the same bilingual shape as the website: `{ "name
 Uploads: media library files are public under `/uploads/media/*`; CVs are stored privately and only downloadable by signed-in admins.
 Files are identified by their content (not the extension); SVG and disguised files are rejected.
 
+## Admin dashboard (`/admin`)
+
+Arabic, RTL, responsive. Sign in at `/admin/login` with the account created by `npm run db:seed`.
+
+| Section | What you can do |
+| ------- | --------------- |
+| Dashboard | totals, 14-day activity chart, application status, latest events, shortcuts |
+| Products (all sectors) | add / edit / delete / hide / feature; **water sizes, plastic, preforms, caps, food**; upload images from the form; gallery, video, specs, features; drag-and-drop ordering |
+| Water labels · Categories · Sectors | label artwork per size, product groups, sector cards |
+| Real estate · Jobs | projects with gallery; job ads with deadline |
+| Applications · Messages · Notifications | status workflow, notes, protected CV download, WhatsApp / e-mail reply, bell with unread count |
+| Media library | drag-and-drop upload, alt text, replace (URL stays), delete |
+| Company · WhatsApp · Homepage · Advanced | logos, contact, about, values, milestones, stats, cities; number + message per sector; hero texts; JSON settings |
+| Users | roles: **Editor** (content), **Admin** (+ applications, messages, settings), **Super admin** (+ users) |
+
+Everything is stored bilingual (Arabic + English) and appears on the public site immediately. The dashboard is a separate code-split bundle, so visitors never download it.
+
 ## Client structure (`client/src`)
 
 | Folder         | Purpose                                                                                   |
@@ -59,6 +76,7 @@ Files are identified by their content (not the extension); SVG and disguised fil
 | `content/`     | Typed **built-in seed** (the site falls back to it if the API is down; also the DB seed source) |
 | `services/`    | Data access layer: reads from the API, falls back to `content/` when the API is unreachable |
 | `components/`  | `layout/` (header, footer, WhatsApp), `ui/` (design system), `sections/`, `hero/`         |
+| `admin/`       | the dashboard: `pages/`, `components/` (tables, forms, media picker), `api.ts`, `auth.tsx` |
 | `pages/`       | One file per route                                                                        |
 
 ### Languages
@@ -83,4 +101,4 @@ Components never embed images: paths come from `content/`, so they can move to t
 
 1 Architecture + auth ✅ · **2 DB schema, migrations & seed ✅ (API complete, 118 integration checks)** · **3 Design system ✅ · 4 Homepage & intro ✅ · 5 Water ✅ · 6 Plastic/preforms/caps ✅ ·
 7 Food ✅ · 8 Real estate ✅ · 9 Careers & applications ✅ · 10 Contact & WhatsApp ✅** ·
-11 Admin dashboard (UI — the API is ready) · 12 SEO / security / performance polish · 13 Animation polish
+**11 Admin dashboard ✅ (46 browser checks)** · 12 SEO / security / performance polish · 13 Animation polish

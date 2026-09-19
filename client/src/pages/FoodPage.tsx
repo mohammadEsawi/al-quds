@@ -12,8 +12,9 @@ import { whatsappLink } from '@/lib/whatsapp';
 import { getFoodOverview } from '@/services/content.service';
 
 export default function FoodPage() {
-  const { t } = useI18n();
+  const { t, pick } = useI18n();
   const { company } = useSiteData();
+  const channel = company.whatsapp.food ?? company.whatsapp.general;
   const overview = useAsync(getFoodOverview);
   useSeo({ title: t.nav.food, description: t.food.metaDescription, image: '/assets/food/all-products.webp' });
 
@@ -45,7 +46,7 @@ export default function FoodPage() {
               {t.common.contactUs}
             </ButtonLink>
             <ButtonAnchor
-              href={whatsappLink(company.whatsapp.general.number, t.food.whatsappMessage)}
+              href={whatsappLink(channel.number, company.whatsapp.food ? pick(channel.message) : t.food.whatsappMessage)}
               variant="whatsapp"
               size="lg"
             >

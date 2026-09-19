@@ -1,8 +1,8 @@
 import { Suspense, useEffect } from 'react';
-import { Navigate, Outlet, useLocation, useParams } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { SiteDataProvider } from '@/context/SiteData';
 import { I18nProvider, useI18n } from '@/i18n/I18nProvider';
-import { DEFAULT_LOCALE, isLocale } from '@/i18n/types';
+import type { Locale } from '@/i18n/types';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { WhatsAppFloat } from './WhatsAppFloat';
@@ -44,16 +44,10 @@ function Shell() {
   );
 }
 
-/** Route element for `/:lang/*` — validates the language prefix and provides translations. */
-export function LangLayout() {
-  const { lang } = useParams();
-  const { pathname, search, hash } = useLocation();
-
-  // `/about` (no prefix) → `/ar/about`
-  if (!isLocale(lang)) return <Navigate to={`/${DEFAULT_LOCALE}${pathname}${search}${hash}`} replace />;
-
+/** Route element for `/ar/*` and `/en/*` — provides translations and the page shell. */
+export function LangLayout({ locale }: { locale: Locale }) {
   return (
-    <I18nProvider locale={lang}>
+    <I18nProvider locale={locale}>
       <Shell />
     </I18nProvider>
   );

@@ -8,6 +8,7 @@ import { realEstateProjects as seedProjects } from '@/content/realEstate';
 import { sectors as seedSectors } from '@/content/sectors';
 import type {
   CompanyInfo,
+  HomeContent,
   Job,
   LegalDocument,
   Product,
@@ -86,3 +87,12 @@ export const getJob = (slug: string): Promise<Job | undefined> =>
 
 export const getLegalDocument = (kind: 'privacy' | 'terms'): Promise<LegalDocument> =>
   load<LegalDocument>(`/settings/legal.${kind}`, () => (kind === 'privacy' ? privacyPolicy : termsOfUse));
+
+/** Admin-edited homepage texts. No setting saved yet (404) or an unreachable API both mean "use the defaults". */
+export async function getHomeContent(): Promise<HomeContent> {
+  try {
+    return await load<HomeContent>('/settings/home.content', () => ({}));
+  } catch {
+    return {};
+  }
+}

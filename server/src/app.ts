@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import { env } from './config/env.js';
 import { MEDIA_DIR } from './lib/files.js';
 import { errorHandler, notFoundHandler } from './middleware/error.js';
-import { apiLimiter } from './middleware/rateLimit.js';
+import { adminLimiter, apiLimiter } from './middleware/rateLimit.js';
 import { apiRouter } from './routes/index.js';
 
 export function createApp() {
@@ -30,6 +30,7 @@ export function createApp() {
     }),
   );
 
+  app.use('/api/admin', adminLimiter);
   app.use('/api', apiLimiter, apiRouter);
 
   app.use(notFoundHandler);

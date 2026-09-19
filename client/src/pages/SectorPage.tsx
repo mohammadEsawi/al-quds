@@ -20,8 +20,9 @@ type ManufacturingSector = 'plastic' | 'preforms' | 'caps';
  * dictionary; products come from the data layer.
  */
 export default function SectorPage({ sector }: { sector: ManufacturingSector }) {
-  const { t } = useI18n();
+  const { t, pick } = useI18n();
   const { company } = useSiteData();
+  const channel = company.whatsapp[sector];
   const nameAnchor = useRef<HTMLDivElement>(null);
   const copy = t.sectorPage[sector];
   const stages = t.process[sector] as Record<string, { title: string; text: string }>;
@@ -90,8 +91,8 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
         <InquiryCta
           title={t.sectorPage.inquiryTitle}
           text={t.sectorPage.inquiryText}
-          whatsappNumber={company.whatsapp.general.number}
-          whatsappMessage={copy.whatsappMessage}
+          whatsappNumber={(channel ?? company.whatsapp.general).number}
+          whatsappMessage={channel ? pick(channel.message) : copy.whatsappMessage}
         />
       </Section>
     </>
