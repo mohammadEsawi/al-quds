@@ -39,7 +39,7 @@ export async function updateUser(
       ...(input.name && { name: input.name }),
       ...(input.role && { role: input.role }),
       ...(input.isActive !== undefined && { isActive: input.isActive }),
-      ...(input.password && { passwordHash: await hashPassword(input.password) }),
+      ...(input.password && { passwordHash: await hashPassword(input.password), passwordChangedAt: new Date() }),
     },
     select,
   });
@@ -60,5 +60,9 @@ export async function changeOwnPassword(userId: string, currentPassword: string,
   if (!user || !(await verifyPassword(user.passwordHash, currentPassword))) {
     throw AppError.badRequest('The current password is incorrect', 'INVALID_CURRENT_PASSWORD');
   }
-  await prisma.user.update({ where: { id: userId }, data: { passwordHash: await hashPassword(newPassword) } });
+  return prisma.user.update({
+    where: { id: userId },
+    data: { passwordHash: await hashPassword(newPassword), passwordChangedAt: new Date() },
+    select: { id: true, role: true },
+  });
 }

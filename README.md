@@ -36,6 +36,32 @@ npm run build
    ```
 The server refuses to start (and the seed refuses to run) if the database is not UTF8, and tells you how to fix it.
 
+`npm run db:check` inspects the configured database (read-only): encoding, applied migrations, row counts, users, and warnings.
+
+### Database user (do this before going live)
+
+The `postgres` superuser is fine for a first local run, but the website itself should never connect as a superuser: a single SQL bug would then mean full control of the server. Create a dedicated user that owns only the `lamico` database (run as `postgres`, replace the password with a long random one):
+
+```sql
+CREATE ROLE lamico_app LOGIN PASSWORD 'CHANGE-ME-long-random' NOSUPERUSER NOCREATEDB NOCREATEROLE;
+ALTER DATABASE lamico OWNER TO lamico_app;
+REVOKE ALL ON DATABASE lamico FROM PUBLIC;
+GRANT CONNECT ON DATABASE lamico TO lamico_app;
+\c lamico
+ALTER SCHEMA public OWNER TO lamico_app;
+```
+
+Then point `DATABASE_URL` in `server/.env` at `lamico_app`. (Optionally keep a separate owner in `MIGRATE_DATABASE_URL` that only `npm run db:migrate` uses, and give the app user just `SELECT/INSERT/UPDATE/DELETE`.)
+
+## Security notes
+
+- **Sessions**: JWT in an `httpOnly` cookie (`Secure` when `NODE_ENV=production`, `SameSite=Lax`), 8 h lifetime, checked against the database on every request (deactivating a user takes effect immediately; changing a password signs out every other session).
+- **Passwords**: argon2id. Login is rate limited per IP *and* per account.
+- **CSRF**: state-changing requests from a browser page on another origin are refused (`CLIENT_URL` + `ALLOWED_ORIGINS` are the only allowed origins).
+- **Uploads**: identified by content, size limited, never executed (`Content-Security-Policy: sandbox`), CVs are private.
+- **Deployment checklist**: `NODE_ENV=production`, HTTPS, `TRUST_PROXY=true` behind a proxy, a strong `JWT_SECRET`, the dedicated database user above, regular database backups (`pg_dump`), and security headers (CSP, HSTS) on the layer that serves the built client.
+- `npm audit --omit=dev` reports issues that come only through the **Prisma CLI** (`prisma` → `mysql2`). The CLI is a dev/deploy tool (`devDependencies`); the running API uses the PostgreSQL adapter and never loads it. The suggested "fix" is a breaking downgrade to Prisma 6, so it is intentionally not applied; update Prisma when a fixed 7.x is released.
+
 ## API (`/api`, Express + Prisma)
 
 | Area | Endpoints |

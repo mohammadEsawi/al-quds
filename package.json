@@ -16,7 +16,8 @@
     "db:generate": "npm run prisma:generate -w server",
     "db:migrate": "npm run prisma:migrate -w server",
     "db:seed": "npm run prisma:seed -w server",
-    "db:studio": "npm run prisma:studio -w server"
+    "db:studio": "npm run prisma:studio -w server",
+    "db:check": "npm run db:check -w server"
   },
   "devDependencies": {
     "concurrently": "^10.0.5"

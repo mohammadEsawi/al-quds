@@ -36,6 +36,30 @@ export const loginLimiter = rateLimit({
   message: limitMessage,
 });
 
+/** Per-account limiter: stops a botnet from guessing one account's password from many IPs. */
+export const loginEmailLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 8,
+  skipSuccessfulRequests: true,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: limitMessage,
+  validate: { keyGeneratorIpFallback: false },
+  keyGenerator: (req) => `email:${String((req.body as { email?: unknown } | undefined)?.email ?? '').trim().toLowerCase()}`,
+});
+
+/** Guessing the current password through "change password" is limited per signed-in user. */
+export const passwordLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 8,
+  skipSuccessfulRequests: true,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: limitMessage,
+  validate: { keyGeneratorIpFallback: false },
+  keyGenerator: (req) => `user:${req.user?.id ?? ''}`,
+});
+
 /** For public form submissions (contact, job applications). */
 export const formLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,

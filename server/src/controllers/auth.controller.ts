@@ -1,6 +1,6 @@
 import type { CookieOptions, RequestHandler } from 'express';
 import { isProduction } from '../config/env.js';
-import { TOKEN_MAX_AGE_SECONDS } from '../lib/jwt.js';
+import { signToken, TOKEN_MAX_AGE_SECONDS } from '../lib/jwt.js';
 import { AUTH_COOKIE } from '../middleware/auth.js';
 import * as authService from '../services/auth.service.js';
 import { changeOwnPassword } from '../services/users.service.js';
@@ -30,6 +30,8 @@ export const me: RequestHandler = (req, res) => {
 
 export const changePassword: RequestHandler = async (req, res) => {
   const { currentPassword, newPassword } = req.body as { currentPassword: string; newPassword: string };
-  await changeOwnPassword(req.user!.id, currentPassword, newPassword);
+  const user = await changeOwnPassword(req.user!.id, currentPassword, newPassword);
+  // Every other session is now invalid; give this one a fresh token so the user stays signed in.
+  res.cookie(AUTH_COOKIE, signToken({ sub: user.id, role: user.role }), { ...cookieOptions, maxAge: TOKEN_MAX_AGE_SECONDS * 1000 });
   res.status(204).end();
 };

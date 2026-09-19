@@ -22,9 +22,13 @@ export const requireAuth: RequestHandler = async (req, _res, next) => {
 
   const user = await prisma.user.findUnique({
     where: { id: payload.sub },
-    select: { id: true, email: true, name: true, role: true, isActive: true },
+    select: { id: true, email: true, name: true, role: true, isActive: true, passwordChangedAt: true },
   });
   if (!user || !user.isActive) throw AppError.unauthorized();
+  // A password change signs out every session that was created before it.
+  if (user.passwordChangedAt && (payload.iat ?? 0) < Math.floor(user.passwordChangedAt.getTime() / 1000)) {
+    throw AppError.unauthorized();
+  }
 
   req.user = { id: user.id, email: user.email, name: user.name, role: user.role };
   next();

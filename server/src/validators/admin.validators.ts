@@ -187,7 +187,13 @@ const companyShape = {
   logoDark: optionalAssetUrl,
   logoMobile: optionalAssetUrl,
   favicon: optionalAssetUrl,
-  mapEmbedUrl: optionalAssetUrl,
+  mapEmbedUrl: z
+    .string()
+    .trim()
+    .max(2000)
+    .regex(/^https:\/\/(www\.)?google\.com\/maps\/embed\?[^\s]*$/, 'Must be a Google Maps embed URL')
+    .nullish()
+    .transform((v) => v || null),
   social: z.object({ facebook: optionalAssetUrl, instagram: optionalAssetUrl, linkedin: optionalAssetUrl }).partial(),
   about: localizedList,
   mission: localizedRequired,

@@ -8,6 +8,10 @@ if (env.DATABASE_URL.includes('USER:PASSWORD')) {
   console.warn('DATABASE_URL in server/.env still has the USER:PASSWORD placeholder — put your real PostgreSQL user and password there.');
 }
 
+if (env.NODE_ENV !== 'production' && env.CLIENT_URL.startsWith('https://')) {
+  console.warn('CLIENT_URL is https but NODE_ENV is not "production": login cookies will NOT be marked Secure. Set NODE_ENV=production.');
+}
+
 // Arabic content needs a UTF8 database; fail early with instructions instead of on the first insert.
 const encoding = await getDatabaseEncoding();
 if (encoding && encoding !== 'UTF8') {

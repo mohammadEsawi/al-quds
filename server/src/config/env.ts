@@ -13,6 +13,8 @@ const schema = z.object({
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
   JWT_EXPIRES_HOURS: z.coerce.number().positive().default(8),
   CLIENT_URL: z.string().url().default('http://localhost:5173'),
+  /** Extra browser origins allowed to call the API with cookies (comma separated), besides CLIENT_URL. */
+  ALLOWED_ORIGINS: z.string().optional(),
   TRUST_PROXY: booleanString,
   UPLOAD_DIR: z.string().min(1).default('uploads'),
   /** Images and other media in the library. */

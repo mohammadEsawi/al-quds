@@ -85,6 +85,8 @@ model User {
   role         UserRole  @default(ADMIN)
   isActive     Boolean   @default(true)
   lastLoginAt  DateTime?
+  /// Sessions issued before this moment are rejected (set on every password change).
+  passwordChangedAt DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 }
