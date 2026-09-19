@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
-  Design tokens — carried over from the original Lamico site (legacy/css/base/variables.css).
+  Design tokens — carried over from the original Lamico static site (blue #014681, Tajawal / Noto Kufi).
   Every color is a CSS variable so the palette can be changed in one place.
 */
 @theme {

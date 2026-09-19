@@ -3,6 +3,11 @@ import { createApp } from './app.js';
 import { getDatabaseEncoding, UTF8_HELP } from './lib/dbcheck.js';
 import { prisma } from './lib/prisma.js';
 
+// A copied-but-not-edited .env is the most common first-run mistake, so say so plainly.
+if (env.DATABASE_URL.includes('USER:PASSWORD')) {
+  console.warn('DATABASE_URL in server/.env still has the USER:PASSWORD placeholder — put your real PostgreSQL user and password there.');
+}
+
 // Arabic content needs a UTF8 database; fail early with instructions instead of on the first insert.
 const encoding = await getDatabaseEncoding();
 if (encoding && encoding !== 'UTF8') {

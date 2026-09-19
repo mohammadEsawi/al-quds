@@ -11,7 +11,6 @@ Bilingual (Arabic RTL / English LTR) corporate website + admin platform for **ش
 ```
 client/   React SPA — public site (done, design phase) + /admin (later phase)
 server/   REST API — auth is done; content endpoints arrive with the database
-legacy/   The previous static HTML site (kept for reference, not served)
 ```
 
 ## Run
