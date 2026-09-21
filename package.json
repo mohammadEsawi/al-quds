@@ -17,9 +17,18 @@
     "db:migrate": "npm run prisma:migrate -w server",
     "db:seed": "npm run prisma:seed -w server",
     "db:studio": "npm run prisma:studio -w server",
-    "db:check": "npm run db:check -w server"
+    "db:check": "npm run db:check -w server",
+    "admin:reset-password": "npm run admin:reset-password -w server --",
+    "backup": "npm run backup -w server",
+    "backup:verify": "npm run backup:verify -w server --",
+    "backup:restore": "npm run backup:restore -w server --",
+    "test": "npm run test -w server",
+    "test:unit": "npm run test:unit -w server",
+    "test:api": "npm run test:api -w server --",
+    "test:e2e": "node e2e/run.mjs"
   },
   "devDependencies": {
-    "concurrently": "^10.0.5"
+    "concurrently": "^10.0.5",
+    "pg": "^8.13.0"
   }
 }
