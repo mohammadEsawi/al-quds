@@ -1,12 +1,21 @@
 import { Router } from 'express';
 import { AppError } from '../lib/errors.js';
+import { emailConfigured } from '../lib/mailer.js';
+import { whatsappConfigured } from '../lib/whatsappCloud.js';
 import { safeDownloadName } from '../lib/files.js';
 import { paginationQuery } from '../lib/pagination.js';
-import { requireAuth, requireRole } from '../middleware/auth.js';
+import { auditAdmin } from '../middleware/audit.js';
+import { enforceTwoFactor, requireAuth, requireRole } from '../middleware/auth.js';
 import { mediaUpload } from '../middleware/upload.js';
 import { validate } from '../middleware/validate.js';
 import { deleteApplication, getApplication, getCvFile, listApplications, updateApplication } from '../services/applications.service.js';
 import { getCompany, listSettings, listWhatsAppChannels, saveSetting, saveWhatsAppChannels, updateCompany } from '../services/company.service.js';
+import { listAudit } from '../services/audit.service.js';
+import { getNotificationConfig, notificationConfigSchema, saveNotificationConfig } from '../services/notificationConfig.service.js';
+import { sendTestNotification } from '../services/notify.service.js';
+import { deleteQuote, getQuote, listQuotes, updateQuote } from '../services/quotes.service.js';
+import { createTeamMember, deleteTeamMember, getAdminTeamMember, listAdminTeam, reorderTeam, updateTeamMember } from '../services/team.service.js';
+import { getReadiness } from '../services/readiness.service.js';
 import { getDashboard } from '../services/dashboard.service.js';
 import {
   deleteMessage,
@@ -42,6 +51,8 @@ import { idParams } from '../validators/common.js';
 import { createUser, deleteUser, listUsers, updateUser } from '../services/users.service.js';
 import {
   adminApplicationsQuery,
+  adminQuotesQuery,
+  auditQuery,
   adminJobsQuery,
   adminMessagesQuery,
   adminProductsQuery,
@@ -49,6 +60,7 @@ import {
   createJobSchema,
   createProductSchema,
   createRealEstateSchema,
+  createTeamMemberSchema,
   createUserSchema,
   mediaQuery,
   notificationsQuery,
@@ -61,7 +73,9 @@ import {
   updateMediaSchema,
   updateMessageSchema,
   updateProductSchema,
+  updateQuoteSchema,
   updateRealEstateSchema,
+  updateTeamMemberSchema,
   updateSettingSchema,
   updateUserSchema,
   updateWhatsAppSchema,
@@ -72,6 +86,8 @@ export const adminRoutes = Router();
 
 // Every admin route needs a signed-in, active user. Each group below narrows it by role.
 adminRoutes.use(requireAuth);
+adminRoutes.use(enforceTwoFactor);
+adminRoutes.use(auditAdmin);
 
 const anyStaff = requireRole('SUPER_ADMIN', 'ADMIN', 'EDITOR'); // content editors and up
 const admins = requireRole('SUPER_ADMIN', 'ADMIN'); // private data: applications, messages, settings
@@ -162,6 +178,28 @@ adminRoutes.delete('/real-estate/:id', anyStaff, validate(idParams, 'params'), a
   res.status(204).end();
 });
 
+// ───────── Board of directors and executive management ─────────
+adminRoutes.get('/team', anyStaff, async (_req, res) => {
+  res.json(await listAdminTeam());
+});
+adminRoutes.post('/team/reorder', anyStaff, validate(reorderSchema), async (req, res) => {
+  await reorderTeam(req.body.items);
+  res.status(204).end();
+});
+adminRoutes.get('/team/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  res.json(await getAdminTeamMember(id(req)));
+});
+adminRoutes.post('/team', anyStaff, validate(createTeamMemberSchema), async (req, res) => {
+  res.status(201).json(await createTeamMember(req.body));
+});
+adminRoutes.put('/team/:id', anyStaff, validate(idParams, 'params'), validate(updateTeamMemberSchema), async (req, res) => {
+  res.json(await updateTeamMember(id(req), req.body));
+});
+adminRoutes.delete('/team/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  await deleteTeamMember(id(req));
+  res.status(204).end();
+});
+
 // ───────── Jobs ─────────
 adminRoutes.get('/jobs', anyStaff, validate(adminJobsQuery, 'query'), async (req, res) => {
   res.json(await listAdminJobs(req.query as never));
@@ -221,6 +259,38 @@ adminRoutes.delete('/messages/:id', admins, validate(idParams, 'params'), async 
   res.status(204).end();
 });
 
+// ───────── Quote requests ─────────
+adminRoutes.get('/quotes', admins, validate(adminQuotesQuery, 'query'), async (req, res) => {
+  res.json(await listQuotes(req.query as never));
+});
+adminRoutes.get('/quotes/:id', admins, validate(idParams, 'params'), async (req, res) => {
+  res.json(await getQuote(id(req)));
+});
+adminRoutes.patch('/quotes/:id', admins, validate(idParams, 'params'), validate(updateQuoteSchema), async (req, res) => {
+  res.json(await updateQuote(id(req), req.body));
+});
+adminRoutes.delete('/quotes/:id', admins, validate(idParams, 'params'), async (req, res) => {
+  await deleteQuote(id(req));
+  res.status(204).end();
+});
+
+// ───────── Alert settings and site checklist ─────────
+adminRoutes.get('/notification-settings', admins, async (_req, res) => {
+  res.json({
+    config: await getNotificationConfig(),
+    channels: { email: emailConfigured(), whatsapp: whatsappConfigured() },
+  });
+});
+adminRoutes.put('/notification-settings', admins, validate(notificationConfigSchema), async (req, res) => {
+  res.json({ config: await saveNotificationConfig(req.body), channels: { email: emailConfigured(), whatsapp: whatsappConfigured() } });
+});
+adminRoutes.post('/notification-settings/test', admins, async (_req, res) => {
+  res.json(await sendTestNotification());
+});
+adminRoutes.get('/readiness', admins, async (req, res) => {
+  res.json(await getReadiness(req.user!.id));
+});
+
 // ───────── Notifications ─────────
 adminRoutes.get('/notifications', admins, validate(notificationsQuery, 'query'), async (req, res) => {
   res.json(await listNotifications(req.query as never));
@@ -238,7 +308,7 @@ adminRoutes.get('/media', anyStaff, validate(mediaQuery, 'query'), async (req, r
   res.json(await listMedia(req.query as never));
 });
 adminRoutes.post('/media', anyStaff, mediaUpload, async (req, res) => {
-  res.status(201).json(await uploadMedia(req.file));
+  res.status(201).json(await uploadMedia(req.file, req.ip));
 });
 adminRoutes.post('/media/:id/replace', anyStaff, validate(idParams, 'params'), mediaUpload, async (req, res) => {
   res.json(await replaceMedia(id(req), req.file));
@@ -269,6 +339,11 @@ adminRoutes.get('/settings', admins, async (_req, res) => {
 });
 adminRoutes.put('/settings/:key', admins, validate(settingKeyParams, 'params'), validate(updateSettingSchema), async (req, res) => {
   res.json(await saveSetting(req.params['key'] as string, req.body.value));
+});
+
+// ───────── Activity log (super admin only) ─────────
+adminRoutes.get('/audit', superAdmin, validate(auditQuery, 'query'), async (req, res) => {
+  res.json(await listAudit(req.query as never));
 });
 
 // ───────── Users (super admin only) ─────────

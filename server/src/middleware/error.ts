@@ -8,7 +8,8 @@ export const notFoundHandler: RequestHandler = (_req, _res, next) => {
 };
 
 /** Translates the Prisma error codes a client can actually cause. */
-function fromPrisma(err: { code?: string; meta?: { target?: unknown } }): AppError | null {
+function fromPrisma(err: { code?: string; message?: string; meta?: { target?: unknown } }): AppError | null {
+  if (err.message?.includes('invalid byte sequence')) return AppError.badRequest('Invalid characters in request', 'INVALID_CHARACTERS');
   switch (err.code) {
     case 'P2002':
       return new AppError(409, 'CONFLICT', 'A record with the same unique value already exists');
@@ -30,7 +31,7 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, _next) => {
         ? new AppError(413, 'FILE_TOO_LARGE', 'The file is larger than the allowed size')
         : AppError.badRequest('Invalid upload', 'UPLOAD_ERROR');
   }
-  if (!appError && err?.name === 'PrismaClientKnownRequestError') appError = fromPrisma(err);
+  if (!appError && (err?.name === 'PrismaClientKnownRequestError' || /invalid byte sequence/.test(String(err?.message)))) appError = fromPrisma(err);
 
   if (appError) {
     res.status(appError.status).json({

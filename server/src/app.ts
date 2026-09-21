@@ -6,8 +6,9 @@ import { env } from './config/env.js';
 import { MEDIA_DIR } from './lib/files.js';
 import { errorHandler, notFoundHandler } from './middleware/error.js';
 import { adminLimiter, apiLimiter } from './middleware/rateLimit.js';
-import { allowedOrigins, noStore, originGuard } from './middleware/security.js';
+import { allowedOrigins, noStore, originGuard, permissionsPolicy, rejectNulInUrl } from './middleware/security.js';
 import { apiRouter } from './routes/index.js';
+import { seoRoutes } from './routes/seo.routes.js';
 
 export function createApp() {
   const app = express();
@@ -16,6 +17,8 @@ export function createApp() {
   if (env.TRUST_PROXY) app.set('trust proxy', 1);
 
   app.use(helmet());
+  app.use(permissionsPolicy);
+  app.use(rejectNulInUrl);
   app.use(cors({ origin: allowedOrigins, credentials: true }));
   app.use(express.json({ limit: '1mb' }));
   app.use(cookieParser());
@@ -34,6 +37,8 @@ export function createApp() {
       },
     }),
   );
+
+  app.use(seoRoutes);
 
   app.use(['/api/admin', '/api/auth'], noStore, originGuard);
   app.use('/api/admin', adminLimiter);

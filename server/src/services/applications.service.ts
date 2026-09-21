@@ -2,12 +2,14 @@ import path from 'node:path';
 import { env } from '../config/env.js';
 import type { ApplicationStatus, Prisma } from '../generated/prisma/client.js';
 import { AppError } from '../lib/errors.js';
-import { CV_DIR, CV_TYPES, detectFile, removeFile, storeFile } from '../lib/files.js';
+import { CV_DIR, CV_TYPES, cleanOriginalName, detectFile, removeFile, storeFile } from '../lib/files.js';
+import { DAY_MS, HOUR_MS, enforceSubmissionQuota } from '../lib/quota.js';
 import { pageArgs, type Page } from '../lib/pagination.js';
 import { prisma } from '../lib/prisma.js';
 import type { ApplicationInput } from '../validators/public.validators.js';
 import { whatsappUrlFor } from './inbox.service.js';
 import { notifyAdmins } from './notify.service.js';
+import { assertFileClean } from './scan.service.js';
 
 const applicationInclude = { job: { select: { id: true, slug: true, titleAr: true, titleEn: true } } } satisfies Prisma.JobApplicationInclude;
 type ApplicationRow = Prisma.JobApplicationGetPayload<{ include: typeof applicationInclude }>;
@@ -33,19 +35,23 @@ const toDto = (a: ApplicationRow) => ({
   updatedAt: a.updatedAt,
 });
 
-/** Browsers send file names as latin1; this restores UTF-8 (Arabic) names. */
-function fixFilename(name: string): string {
-  return /[\u0080-ÿ]/.test(name) && !/[^\u0000-ÿ]/.test(name) ? Buffer.from(name, 'latin1').toString('utf8') : name;
-}
-
 // ───────── Public: apply ─────────
 
-export async function submitApplication(jobRef: string, input: ApplicationInput, file: Express.Multer.File | undefined) {
+export async function submitApplication(jobRef: string, input: ApplicationInput, file: Express.Multer.File | undefined, ip?: string) {
   if (!file) throw AppError.badRequest('A CV file is required', 'CV_REQUIRED');
 
   const detected = detectFile(file.buffer);
   if (!detected || !CV_TYPES.has(detected.mime)) throw AppError.badRequest('CV must be a PDF, DOC or DOCX file', 'INVALID_FILE_TYPE');
   if (file.size > env.MAX_CV_MB * 1024 * 1024) throw new AppError(413, 'FILE_TOO_LARGE', 'The CV is larger than the allowed size');
+  await assertFileClean(file.buffer, { where: 'cv upload', ip });
+
+  await enforceSubmissionQuota(
+    {
+      forEmailToday: () => prisma.jobApplication.count({ where: { email: input.email, createdAt: { gte: new Date(Date.now() - DAY_MS) } } }),
+      siteThisHour: () => prisma.jobApplication.count({ where: { createdAt: { gte: new Date(Date.now() - HOUR_MS) } } }),
+    },
+    { perEmailPerDay: 3, siteWidePerHour: 200 },
+  );
 
   let jobId: string | null = null;
   if (jobRef !== 'general') {
@@ -73,16 +79,25 @@ export async function submitApplication(jobRef: string, input: ApplicationInput,
         linkedin: input.linkedin || null,
         portfolio: input.portfolio || null,
         cvFile: stored,
-        cvOriginalName: fixFilename(file.originalname).slice(0, 200),
+        cvOriginalName: cleanOriginalName(file.originalname),
         cvMimeType: detected.mime,
         cvSize: file.size,
       },
     });
     await notifyAdmins({
       type: 'JOB_APPLICATION',
+      kind: 'application',
       title: 'طلب توظيف جديد',
       body: `${application.fullName} — ${application.position}`,
       refId: application.id,
+      replyTo: application.email,
+      details: [
+        { label: 'الاسم', value: application.fullName },
+        { label: 'الوظيفة', value: application.position },
+        { label: 'المدينة', value: application.city },
+        { label: 'الهاتف', value: application.phone },
+        { label: 'البريد', value: application.email },
+      ],
     });
     return application.id;
   } catch (error) {

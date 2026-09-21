@@ -39,3 +39,15 @@ export const noStore: RequestHandler = (_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
 };
+
+/** Browser features this site never needs are switched off (helmet does not send this header). */
+export const permissionsPolicy: RequestHandler = (_req, res, next) => {
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()');
+  next();
+};
+
+/** `%00` in a URL can only be an attack or a bug and PostgreSQL cannot store it. */
+export const rejectNulInUrl: RequestHandler = (req, _res, next) => {
+  if (/%00/i.test(req.url)) throw AppError.badRequest('Invalid characters in request', 'INVALID_CHARACTERS');
+  next();
+};

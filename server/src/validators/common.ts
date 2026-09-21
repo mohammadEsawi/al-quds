@@ -21,12 +21,12 @@ export const slugSchema = z
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use lowercase letters, digits and dashes')
   .max(100);
 
-/** A site-relative path (`/assets/...`, `/uploads/...`) or an absolute http(s) URL. Blocks `javascript:` and `//host`. */
+/** A site-relative path (`/assets/...`, `/uploads/...`) or an absolute https URL. Blocks `javascript:`, plain http and `//host`. */
 export const assetUrl = z
   .string()
   .trim()
   .max(500)
-  .refine((v) => /^(https?:\/\/|\/(?!\/))[^\s]*$/.test(v), 'Must be an http(s) URL or a /path');
+  .refine((v) => /^(https:\/\/|\/(?!\/))[^\s]*$/.test(v), 'Must be an https URL or a /path');
 
 export const optionalAssetUrl = assetUrl.nullish().transform((v) => v || null);
 

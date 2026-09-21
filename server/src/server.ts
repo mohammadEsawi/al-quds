@@ -2,6 +2,7 @@ import { env } from './config/env.js';
 import { createApp } from './app.js';
 import { getDatabaseEncoding, UTF8_HELP } from './lib/dbcheck.js';
 import { prisma } from './lib/prisma.js';
+import { pruneOldRecords } from './services/audit.service.js';
 
 // A copied-but-not-edited .env is the most common first-run mistake, so say so plainly.
 if (env.DATABASE_URL.includes('USER:PASSWORD')) {
@@ -21,6 +22,9 @@ if (encoding && encoding !== 'UTF8') {
 if (!encoding) console.warn('Could not reach the database yet — the API will start, but /api/health/ready reports "down".');
 
 const app = createApp();
+
+void pruneOldRecords();
+setInterval(() => void pruneOldRecords(), 24 * 60 * 60 * 1000).unref();
 
 const server = app.listen(env.PORT, () => {
   console.log(`Lamico API listening on http://localhost:${env.PORT} (${env.NODE_ENV})`);

@@ -2,6 +2,7 @@ import { env } from '../config/env.js';
 import type { Prisma } from '../generated/prisma/client.js';
 import { AppError } from '../lib/errors.js';
 import { pageArgs, type Page } from '../lib/pagination.js';
+import { DAY_MS, HOUR_MS, enforceSubmissionQuota } from '../lib/quota.js';
 import { prisma } from '../lib/prisma.js';
 import type { ContactInput } from '../validators/public.validators.js';
 import { notifyAdmins } from './notify.service.js';
@@ -31,6 +32,13 @@ const messageDto = (m: Prisma.ContactMessageGetPayload<object>) => ({
 });
 
 export async function createContactMessage(input: ContactInput) {
+  await enforceSubmissionQuota(
+    {
+      forEmailToday: () => prisma.contactMessage.count({ where: { email: input.email, createdAt: { gte: new Date(Date.now() - DAY_MS) } } }),
+      siteThisHour: () => prisma.contactMessage.count({ where: { createdAt: { gte: new Date(Date.now() - HOUR_MS) } } }),
+    },
+    { perEmailPerDay: 5, siteWidePerHour: 300 },
+  );
   const message = await prisma.contactMessage.create({
     data: {
       name: input.name,
@@ -42,9 +50,18 @@ export async function createContactMessage(input: ContactInput) {
   });
   await notifyAdmins({
     type: 'CONTACT_MESSAGE',
+    kind: 'contact',
     title: 'رسالة تواصل جديدة',
     body: `${message.name}${message.subject ? ` — ${message.subject}` : ''}`,
     refId: message.id,
+    replyTo: message.email,
+    details: [
+      { label: 'الاسم', value: message.name },
+      { label: 'البريد', value: message.email },
+      ...(message.phone ? [{ label: 'الهاتف', value: message.phone }] : []),
+      ...(message.subject ? [{ label: 'الموضوع', value: message.subject }] : []),
+      { label: 'الرسالة', value: message.message.slice(0, 600) },
+    ],
   });
   return message.id;
 }

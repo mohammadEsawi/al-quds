@@ -1,4 +1,5 @@
 import { rateLimit } from 'express-rate-limit';
+import { verifyMfaToken } from '../lib/jwt.js';
 
 const limitMessage = {
   error: { code: 'RATE_LIMITED', message: 'Too many requests, please try again later' },
@@ -58,6 +59,21 @@ export const passwordLimiter = rateLimit({
   message: limitMessage,
   validate: { keyGeneratorIpFallback: false },
   keyGenerator: (req) => `user:${req.user?.id ?? ''}`,
+});
+
+/** The 6-digit code step: few tries per account (the token identifies it) and per address. */
+export const twoFactorLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 8,
+  skipSuccessfulRequests: true,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: limitMessage,
+  validate: { keyGeneratorIpFallback: false },
+  keyGenerator: (req) => {
+    const sub = verifyMfaToken(String((req.body as { mfaToken?: unknown } | undefined)?.mfaToken ?? ''));
+    return sub ? `mfa:${sub}` : `ip:${req.ip ?? ''}`;
+  },
 });
 
 /** For public form submissions (contact, job applications). */

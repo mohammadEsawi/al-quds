@@ -7,6 +7,7 @@ declare global {
       email: string;
       name: string;
       role: UserRole;
+      twoFactorEnabled: boolean;
     }
 
     interface Request {

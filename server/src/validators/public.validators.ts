@@ -48,3 +48,19 @@ export const applicationSchema = z.object({
   website: z.string().max(0).optional(),
 });
 export type ApplicationInput = z.infer<typeof applicationSchema>;
+
+/** "Request a quote": companies asking for a price on a product and quantity. */
+export const quoteSchema = z.object({
+  productSlug: z.string().trim().max(120).optional(),
+  productName: z.string().trim().min(2).max(200),
+  company: z.string().trim().min(2).max(160),
+  name: z.string().trim().min(2).max(120),
+  email: z.string().trim().max(254).pipe(z.email()),
+  phone: z.string().trim().regex(/^\+?[\d\s\-()]{7,20}$/, 'Invalid phone number'),
+  quantity: z.string().trim().min(1).max(80),
+  city: z.string().trim().max(100).optional(),
+  message: z.string().trim().max(3000).optional(),
+  /** Honeypot: humans never fill it. */
+  website: z.string().max(0).optional(),
+});
+export type QuoteInput = z.infer<typeof quoteSchema>;

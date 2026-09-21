@@ -37,6 +37,7 @@ async function seedAdmin() {
   }
   await prisma.user.create({ data: { email, name: ADMIN_NAME, role: 'SUPER_ADMIN', passwordHash: await hashPassword(ADMIN_PASSWORD) } });
   console.log(`✓ Created SUPER_ADMIN ${email}`);
+  console.log('  ! Now delete ADMIN_PASSWORD from server/.env — the password is stored hashed in the database and must not stay in a file.');
 }
 
 async function seedCompany() {
@@ -164,6 +165,7 @@ async function seedSettings() {
     ['food.overview', content.foodOverview],
     ['legal.privacy', content.legal.privacy],
     ['legal.terms', content.legal.terms],
+    ['about.page', content.aboutPage],
     // Empty = "use the built-in homepage texts"; the dashboard fills it in.
     ['home.content', {}],
   ];
@@ -171,6 +173,38 @@ async function seedSettings() {
     await prisma.siteSetting.upsert({ where: { key }, update: {}, create: { key, value: json(value) } });
   }
   console.log('✓ Site settings');
+}
+
+async function seedTeam() {
+  // Adds people that are not in the table yet (matched by group + name, or by role for the chairman / general manager).
+  // Anyone already there — edited in the dashboard or not — is left exactly as it is.
+  let created = 0;
+  for (const m of content.team as any[]) {
+    const group = String(m.group).toUpperCase() as never;
+    const role = String(m.role).toUpperCase() as never;
+    const special = m.role !== 'member';
+    const exists = await prisma.teamMember.findFirst({ where: special ? { group, role } : { group, nameAr: m.name.ar } });
+    if (exists) continue;
+    const last = await prisma.teamMember.aggregate({ where: { group }, _max: { sortOrder: true } });
+    const department = opt(m.department);
+    const message = opt(m.message);
+    await prisma.teamMember.create({
+      data: {
+        group,
+        role,
+        nameAr: m.name.ar, nameEn: m.name.en,
+        titleAr: m.title.ar, titleEn: m.title.en,
+        departmentAr: department.ar, departmentEn: department.en,
+        bio: json(m.bio),
+        messageAr: message.ar, messageEn: message.en,
+        photoUrl: m.photo ?? null,
+        sortOrder: (last._max.sortOrder ?? -1) + 1,
+        isSample: Boolean(m.isPlaceholder),
+      },
+    });
+    created += 1;
+  }
+  console.log(created ? `✓ Team (+${created})` : '• Team: everyone is already there — unchanged');
 }
 
 async function seedRealEstate() {
@@ -227,6 +261,7 @@ async function main() {
   await seedProducts();
   await seedWaterLabels();
   await seedSettings();
+  await seedTeam();
   await seedRealEstate();
   await seedJobs();
   console.log('\nSeed finished.');

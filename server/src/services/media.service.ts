@@ -1,7 +1,9 @@
 import { env } from '../config/env.js';
 import type { MediaKind, Prisma } from '../generated/prisma/client.js';
 import { AppError } from '../lib/errors.js';
-import { detectFile, MEDIA_DIR, MEDIA_TYPES, removeFile, storeFile } from '../lib/files.js';
+import { cleanOriginalName, detectFile, MEDIA_DIR, MEDIA_TYPES, removeFile, storeFile } from '../lib/files.js';
+import { stripJpegMetadata } from '../lib/image.js';
+import { assertFileClean } from './scan.service.js';
 import { splitOpt } from '../lib/localized.js';
 import { pageArgs } from '../lib/pagination.js';
 import { prisma } from '../lib/prisma.js';
@@ -21,10 +23,6 @@ const toDto = (m: Media) => ({
   createdAt: m.createdAt,
 });
 
-function fixFilename(name: string): string {
-  return /[\u0080-ÿ]/.test(name) && !/[^\u0000-ÿ]/.test(name) ? Buffer.from(name, 'latin1').toString('utf8') : name;
-}
-
 /** Validates content, type and size for the media library. */
 function inspect(file: Express.Multer.File | undefined) {
   if (!file) throw AppError.badRequest('No file was uploaded (field name: "file")', 'FILE_REQUIRED');
@@ -37,18 +35,21 @@ function inspect(file: Express.Multer.File | undefined) {
   return detected;
 }
 
-export async function uploadMedia(file: Express.Multer.File | undefined) {
+export async function uploadMedia(file: Express.Multer.File | undefined, ip?: string) {
   const detected = inspect(file);
-  const filename = await storeFile(MEDIA_DIR, file!.buffer, detected.ext);
+  await assertFileClean(file!.buffer, { where: 'media upload', ip });
+  // Photos often carry GPS coordinates in EXIF; nothing on the public site needs them.
+  const bytes = detected.mime === 'image/jpeg' ? stripJpegMetadata(file!.buffer) : file!.buffer;
+  const filename = await storeFile(MEDIA_DIR, bytes, detected.ext);
   try {
     const row = await prisma.media.create({
       data: {
         kind: detected.kind,
         filename,
-        originalName: fixFilename(file!.originalname).slice(0, 200),
+        originalName: cleanOriginalName(file!.originalname),
         url: `${MEDIA_URL_PREFIX}/${filename}`,
         mimeType: detected.mime,
-        size: file!.size,
+        size: bytes.length,
       },
     });
     return toDto(row);
@@ -71,10 +72,11 @@ export async function replaceMedia(id: string, file: Express.Multer.File | undef
   }
   const { default: fs } = await import('node:fs/promises');
   const { default: path } = await import('node:path');
-  await fs.writeFile(path.join(MEDIA_DIR, path.basename(existing.filename)), file!.buffer);
+  const bytes = detected.mime === 'image/jpeg' ? stripJpegMetadata(file!.buffer) : file!.buffer;
+  await fs.writeFile(path.join(MEDIA_DIR, path.basename(existing.filename)), bytes);
   const row = await prisma.media.update({
     where: { id },
-    data: { size: file!.size, originalName: fixFilename(file!.originalname).slice(0, 200) },
+    data: { size: bytes.length, originalName: cleanOriginalName(file!.originalname) },
   });
   return toDto(row);
 }

@@ -234,7 +234,7 @@
       },
       {
         "key": "team",
-        "value": 500,
+        "value": 200,
         "suffix": "+"
       }
     ],
@@ -795,56 +795,223 @@
       "featured": false
     },
     {
-      "id": "preform-1",
-      "slug": "preform-sample-1",
+      "id": "preform-200ml",
+      "slug": "preform-200ml",
       "sector": "preforms",
       "name": {
-        "ar": "بريفورم — نموذج 1",
-        "en": "Preform — Sample 1"
+        "ar": "بريفورم 200 مل",
+        "en": "PET Preform 200 ml"
       },
       "category": {
         "ar": "بريفورم PET",
         "en": "PET preform"
       },
       "shortDescription": {
-        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
-        "en": "Placeholder text — to be replaced with the real product information."
+        "ar": "بريفورم PET لعبوات 200 مل، يُصنَّع على ماكينات الحقن لدينا.",
+        "en": "PET preform for 200 ml bottles, made on our own injection machines."
       },
       "description": {
-        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
-        "en": "Placeholder text — to be replaced with the real product information."
+        "ar": "بريفورم PET مخصص لنفخ عبوات بسعة 200 مل. يُصنَّع داخل الشركة على ماكينات الحقن الخاصة بنا وبأيدي عمّالنا، من مواد خام نستوردها بأنفسنا.",
+        "en": "PET preform for blowing 200 ml bottles. It is made in-house on our own injection machines by our own workers, from raw material we import ourselves."
       },
       "gallery": [],
-      "specs": [],
-      "features": [],
-      "featured": false,
-      "isPlaceholder": true
+      "size": {
+        "ar": "200 مل",
+        "en": "200 ml"
+      },
+      "specs": [
+        {
+          "label": {
+            "ar": "المادة",
+            "en": "Material"
+          },
+          "value": {
+            "ar": "PET",
+            "en": "PET"
+          }
+        },
+        {
+          "label": {
+            "ar": "حجم العبوة",
+            "en": "Bottle size"
+          },
+          "value": {
+            "ar": "200 مل",
+            "en": "200 ml"
+          }
+        },
+        {
+          "label": {
+            "ar": "طريقة التصنيع",
+            "en": "Manufacturing"
+          },
+          "value": {
+            "ar": "الحقن على ماكينات الشركة",
+            "en": "Injection on the company’s own machines"
+          }
+        }
+      ],
+      "features": [
+        {
+          "ar": "يُصنَّع على ماكينات الحقن لدينا",
+          "en": "Made on our own injection machines"
+        },
+        {
+          "ar": "مواد خام نستوردها بأنفسنا",
+          "en": "Raw material we import ourselves"
+        },
+        {
+          "ar": "إنتاج بأيدي عمّالنا",
+          "en": "Produced by our own workers"
+        }
+      ],
+      "featured": false
     },
     {
-      "id": "preform-2",
-      "slug": "preform-sample-2",
+      "id": "preform-500ml",
+      "slug": "preform-500ml",
       "sector": "preforms",
       "name": {
-        "ar": "بريفورم — نموذج 2",
-        "en": "Preform — Sample 2"
+        "ar": "بريفورم 0.5 لتر",
+        "en": "PET Preform 0.5 L"
       },
       "category": {
         "ar": "بريفورم PET",
         "en": "PET preform"
       },
       "shortDescription": {
-        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
-        "en": "Placeholder text — to be replaced with the real product information."
+        "ar": "بريفورم PET لعبوات 0.5 لتر، يُصنَّع على ماكينات الحقن لدينا.",
+        "en": "PET preform for 0.5 L bottles, made on our own injection machines."
       },
       "description": {
-        "ar": "نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.",
-        "en": "Placeholder text — to be replaced with the real product information."
+        "ar": "بريفورم PET مخصص لنفخ عبوات بسعة 0.5 لتر. يُصنَّع داخل الشركة على ماكينات الحقن الخاصة بنا وبأيدي عمّالنا، من مواد خام نستوردها بأنفسنا.",
+        "en": "PET preform for blowing 0.5 L bottles. It is made in-house on our own injection machines by our own workers, from raw material we import ourselves."
       },
       "gallery": [],
-      "specs": [],
-      "features": [],
-      "featured": false,
-      "isPlaceholder": true
+      "size": {
+        "ar": "0.5 لتر",
+        "en": "0.5 L"
+      },
+      "specs": [
+        {
+          "label": {
+            "ar": "المادة",
+            "en": "Material"
+          },
+          "value": {
+            "ar": "PET",
+            "en": "PET"
+          }
+        },
+        {
+          "label": {
+            "ar": "حجم العبوة",
+            "en": "Bottle size"
+          },
+          "value": {
+            "ar": "0.5 لتر",
+            "en": "0.5 L"
+          }
+        },
+        {
+          "label": {
+            "ar": "طريقة التصنيع",
+            "en": "Manufacturing"
+          },
+          "value": {
+            "ar": "الحقن على ماكينات الشركة",
+            "en": "Injection on the company’s own machines"
+          }
+        }
+      ],
+      "features": [
+        {
+          "ar": "يُصنَّع على ماكينات الحقن لدينا",
+          "en": "Made on our own injection machines"
+        },
+        {
+          "ar": "مواد خام نستوردها بأنفسنا",
+          "en": "Raw material we import ourselves"
+        },
+        {
+          "ar": "إنتاج بأيدي عمّالنا",
+          "en": "Produced by our own workers"
+        }
+      ],
+      "featured": false
+    },
+    {
+      "id": "preform-1-5l",
+      "slug": "preform-1-5l",
+      "sector": "preforms",
+      "name": {
+        "ar": "بريفورم 1.5 لتر",
+        "en": "PET Preform 1.5 L"
+      },
+      "category": {
+        "ar": "بريفورم PET",
+        "en": "PET preform"
+      },
+      "shortDescription": {
+        "ar": "بريفورم PET لعبوات 1.5 لتر، يُصنَّع على ماكينات الحقن لدينا.",
+        "en": "PET preform for 1.5 L bottles, made on our own injection machines."
+      },
+      "description": {
+        "ar": "بريفورم PET مخصص لنفخ عبوات بسعة 1.5 لتر. يُصنَّع داخل الشركة على ماكينات الحقن الخاصة بنا وبأيدي عمّالنا، من مواد خام نستوردها بأنفسنا.",
+        "en": "PET preform for blowing 1.5 L bottles. It is made in-house on our own injection machines by our own workers, from raw material we import ourselves."
+      },
+      "gallery": [],
+      "size": {
+        "ar": "1.5 لتر",
+        "en": "1.5 L"
+      },
+      "specs": [
+        {
+          "label": {
+            "ar": "المادة",
+            "en": "Material"
+          },
+          "value": {
+            "ar": "PET",
+            "en": "PET"
+          }
+        },
+        {
+          "label": {
+            "ar": "حجم العبوة",
+            "en": "Bottle size"
+          },
+          "value": {
+            "ar": "1.5 لتر",
+            "en": "1.5 L"
+          }
+        },
+        {
+          "label": {
+            "ar": "طريقة التصنيع",
+            "en": "Manufacturing"
+          },
+          "value": {
+            "ar": "الحقن على ماكينات الشركة",
+            "en": "Injection on the company’s own machines"
+          }
+        }
+      ],
+      "features": [
+        {
+          "ar": "يُصنَّع على ماكينات الحقن لدينا",
+          "en": "Made on our own injection machines"
+        },
+        {
+          "ar": "مواد خام نستوردها بأنفسنا",
+          "en": "Raw material we import ourselves"
+        },
+        {
+          "ar": "إنتاج بأيدي عمّالنا",
+          "en": "Produced by our own workers"
+        }
+      ],
+      "featured": false
     },
     {
       "id": "cap-1",
@@ -1236,6 +1403,381 @@
       "isPlaceholder": true
     }
   ],
+  "team": [
+    {
+      "id": "chairman",
+      "group": "board",
+      "role": "chairman",
+      "name": {
+        "ar": "رامي أسعد عيساوي",
+        "en": "Rami Asaad Esawi"
+      },
+      "title": {
+        "ar": "رئيس مجلس الإدارة",
+        "en": "Chairman of the Board"
+      },
+      "bio": [
+        {
+          "ar": "يشغل السيد رامي أسعد عيساوي منصب رئيس مجلس إدارة الشركة، حيث يتولى الإشراف على التوجهات العامة للشركة ومتابعة أعمال مجلس الإدارة، والمساهمة في وضع الخطط والاستراتيجيات التي تدعم نمو الشركة وتطوير استثماراتها.",
+          "en": "Mr. Rami Asaad Esawi serves as Chairman of the Board of Directors, overseeing the company’s general direction, following the work of the Board, and contributing to the plans and strategies that support the company’s growth and the development of its investments."
+        },
+        {
+          "ar": "يحمل السيد عيساوي درجة البكالوريوس في الإدارة، ودرجة الماجستير في إدارة الأعمال، كما يحمل مؤهل محاسب قانوني ومدقق حسابات.",
+          "en": "Mr. Esawi holds a Bachelor’s degree in Management and a Master’s degree in Business Administration, and is a certified public accountant and auditor."
+        },
+        {
+          "ar": "ويمتلك خبرة عملية تزيد عن 25 عامًا في مجالات المشتريات والاستثمار والإدارة، اكتسب خلالها خبرة واسعة في إدارة العمليات واتخاذ القرارات الإدارية والمالية وتطوير الأعمال والاستثمارات.",
+          "en": "He has more than 25 years of practical experience in procurement, investment and management, during which he gained broad experience in managing operations, making administrative and financial decisions, and developing businesses and investments."
+        }
+      ],
+      "message": {
+        "ar": "في لاميكو للاستثمار الصناعي والتوريدات، ننظر إلى الاستثمار بوصفه مسؤولية وفرصة لبناء قيمة مستدامة، ونؤمن بأن النجاح الحقيقي يقوم على وضوح الرؤية، وقوة الإدارة، والقدرة على مواكبة متغيرات الأسواق.\n\nنعمل على ترسيخ مكانة الشركة وتطوير استثماراتها، من خلال التوسع المدروس، وتعزيز الشراكات، والالتزام بأعلى مستويات المهنية والجودة، بما يحقق قيمة مستدامة لعملائنا وشركائنا ومساهمينا.\n\nوستواصل لاميكو مسيرتها نحو بناء منظومة استثمارية وصناعية متكاملة، تستند إلى الخبرة والكفاءة، وتواكب فرص النمو، وتسهم في دعم الاقتصاد الوطني.",
+        "en": "At Lamico for Industrial Investment and Supplies, we see investment as both a responsibility and an opportunity to build lasting value. We believe that real success rests on a clear vision, strong management, and the ability to keep pace with changing markets.\n\nWe work to strengthen the company’s standing and develop its investments through measured expansion, stronger partnerships, and a commitment to the highest levels of professionalism and quality, delivering lasting value for our customers, partners and shareholders.\n\nLamico will continue its journey toward building an integrated industrial and investment system, grounded in experience and competence, keeping pace with growth opportunities, and contributing to supporting the national economy."
+      }
+    },
+    {
+      "id": "general-manager",
+      "group": "executive",
+      "role": "general_manager",
+      "name": {
+        "ar": "لامي أسعد عيساوي",
+        "en": "Lami Asaad Esawi"
+      },
+      "title": {
+        "ar": "المدير العام",
+        "en": "General Manager"
+      },
+      "department": {
+        "ar": "الإدارة العامة",
+        "en": "General Management"
+      },
+      "bio": [
+        {
+          "ar": "يشغل السيد لامي أسعد عيساوي دورًا إداريًا في الشركة، حيث يتولى الإشراف العام على أعمال الشركة ومتابعة الشؤون المالية والإدارية، بما يساهم في تنظيم العمليات وتعزيز الأداء والتنسيق بين مختلف الأقسام.",
+          "en": "Mr. Lami Asaad Esawi holds an executive role at the company, where he oversees the company’s overall business and follows up on financial and administrative affairs, contributing to organizing operations and strengthening performance and coordination between the different departments."
+        },
+        {
+          "ar": "يحمل السيد عيساوي درجة البكالوريوس في المحاسبة من جامعة النجاح الوطنية، إلى جانب درجة الماجستير في إدارة الأعمال، ودرجة الماجستير في القانون والاقتصاد من جامعة بيرزيت.",
+          "en": "Mr. Esawi holds a Bachelor’s degree in Accounting from An-Najah National University, in addition to a Master’s degree in Business Administration and a Master’s degree in Law and Economics from Birzeit University."
+        },
+        {
+          "ar": "ويمتلك السيد عيساوي خبرة عملية تزيد عن 20 عامًا في مجال الإدارة، اكتسب خلالها خبرة واسعة في الإشراف الإداري والمالي، ومتابعة الأداء، والتنسيق بين مختلف أقسام الشركة.",
+          "en": "Mr. Esawi has more than 20 years of practical experience in management, during which he gained broad experience in administrative and financial supervision, performance follow-up, and coordination between the company’s departments."
+        }
+      ],
+      "message": {
+        "ar": "نؤمن في لاميكو للاستثمار الصناعي والتوريدات بأن التميز لا يتحقق بالنتائج وحدها، بل بمنظومة متكاملة من الكفاءة، والجودة، والابتكار، والالتزام.\n\nومن هذا المنطلق، نعمل على تطوير أعمال الشركة وتعزيز كفاءة عملياتها، وتوسيع نطاق استثماراتها، وبناء علاقات استراتيجية راسخة مع العملاء والشركاء والموردين.\n\nإن رؤيتنا للمستقبل تقوم على النمو المستدام، والتطوير المستمر، والاستثمار في الإنسان والموارد والإمكانات، بما يعزز قدرة لاميكو على المنافسة ويفتح آفاقًا جديدة للنمو والتوسع.",
+        "en": "At Lamico for Industrial Investment and Supplies, we believe that excellence is not achieved through results alone, but through an integrated system of efficiency, quality, innovation and commitment.\n\nFrom this standpoint, we work to develop the company’s business, improve the efficiency of its operations, expand the scope of its investments, and build strong strategic relationships with customers, partners and suppliers.\n\nOur vision for the future rests on sustainable growth, continuous development, and investing in people, resources and capabilities, strengthening Lamico’s ability to compete and opening new horizons for growth and expansion."
+      }
+    },
+    {
+      "id": "sales-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "السيد سعد مراد عيساوي",
+        "en": "Mr. Saad Murad Esawi"
+      },
+      "title": {
+        "ar": "مدير المبيعات",
+        "en": "Sales Manager"
+      },
+      "bio": [
+        {
+          "ar": "يتولى السيد سعد مراد عيساوي الإشراف على قسم المبيعات، وإدارة ومتابعة أداء فريق المبيعات، والعمل على تحقيق الأهداف البيعية وتعزيز كفاءة العمليات البيعية.",
+          "en": "Mr. Saad Murad Esawi oversees the sales department, manages and follows up on the sales team’s performance, and works to achieve sales targets and improve the efficiency of sales operations."
+        },
+        {
+          "ar": "كما يعمل على تطوير قاعدة العملاء، وبناء علاقات مستدامة معهم، ومتابعة احتياجات الأسواق، بما يسهم في تعزيز حضور الشركة وتوسيع انتشار منتجاتها في الأسواق.",
+          "en": "He also works on developing the customer base, building lasting relationships with customers, and following market needs, contributing to strengthening the company’s presence and expanding the reach of its products in the markets."
+        },
+        {
+          "ar": "يحمل السيد عيساوي درجة البكالوريوس في التسويق من جامعة القدس المفتوحة، ويتمتع بخبرة في مجال المبيعات والتسويق، وإدارة ومتابعة فرق المبيعات وتطوير علاقات العملاء.",
+          "en": "Mr. Esawi holds a Bachelor’s degree in Marketing from Al-Quds Open University and has experience in sales and marketing, managing and following up sales teams, and developing customer relationships."
+        }
+      ]
+    },
+    {
+      "id": "pr-hr-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "المهندسة هلا هشام عيساوي",
+        "en": "Ms. Hala Hisham Esawi"
+      },
+      "title": {
+        "ar": "مديرة العلاقات العامة والموارد البشرية",
+        "en": "Public Relations and Human Resources Manager"
+      },
+      "bio": [
+        {
+          "ar": "تتولى المهندسة هلا هشام عيساوي إدارة العلاقات العامة وشؤون الموارد البشرية في الشركة، حيث تعمل على تنظيم ومتابعة شؤون الموظفين، وتعزيز بيئة العمل والتواصل الداخلي، إلى جانب الإشراف على أنشطة العلاقات العامة والتواصل مع مختلف الجهات ذات العلاقة.",
+          "en": "Eng. Hala Hisham Esawi manages public relations and human resources at the company, organizing and following up on employee affairs, strengthening the work environment and internal communication, and supervising public relations activities and communication with the various relevant parties."
+        },
+        {
+          "ar": "تحمل السيدة عيساوي درجة البكالوريوس في هندسة الاتصالات من جامعة النجاح الوطنية، وتساهم من خلال مهامها الإدارية في دعم العمليات التنظيمية وتعزيز التواصل والتنسيق داخل الشركة.",
+          "en": "Ms. Esawi holds a Bachelor’s degree in Communications Engineering from An-Najah National University, and through her administrative duties contributes to supporting organizational processes and strengthening communication and coordination within the company."
+        }
+      ]
+    },
+    {
+      "id": "operations-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "المهندس وسيم عثمان شنابلي",
+        "en": "Mr. Waseem Othman Shnabli"
+      },
+      "title": {
+        "ar": "مدير العمليات",
+        "en": "Operations Manager"
+      },
+      "bio": [
+        {
+          "ar": "يتولى المهندس وسيم عثمان شنابلي إدارة العمليات التشغيلية في الشركة، حيث يشرف على سير الأعمال ومتابعة الأداء العام للعمليات، والعمل على ضمان كفاءة وانتظام سير العمل بين مختلف الأقسام.",
+          "en": "Eng. Waseem Othman Shnabli manages the company’s operations, overseeing the flow of work and the overall performance of operations, and working to ensure the efficiency and regularity of work across the different departments."
+        },
+        {
+          "ar": "كما يعمل على متابعة العمليات اليومية والتنسيق بين الفرق والأقسام ذات العلاقة، بما يسهم في تحسين الأداء التشغيلي ودعم أهداف الشركة.",
+          "en": "He also follows up on daily operations and coordinates between the relevant teams and departments, contributing to improving operational performance and supporting the company’s goals."
+        },
+        {
+          "ar": "يحمل السيد شنابلي درجة البكالوريوس في هندسة الكهرباء من جامعة النجاح الوطنية.",
+          "en": "Mr. Shnabli holds a Bachelor’s degree in Electrical Engineering from An-Najah National University."
+        }
+      ]
+    },
+    {
+      "id": "development-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "الدكتور عمر رامي عيساوي",
+        "en": "Dr. Omar Rami Esawi"
+      },
+      "title": {
+        "ar": "مدير التطوير",
+        "en": "Development Manager"
+      },
+      "bio": [
+        {
+          "ar": "يتولى الدكتور عمر رامي عيساوي مهام التطوير في الشركة، حيث يعمل على متابعة فرص النمو والتوسع، ودراسة المبادرات والمجالات التي من شأنها دعم تطور أعمال الشركة وتعزيز حضورها في الأسواق.",
+          "en": "Dr. Omar Rami Esawi handles development at the company, following up on growth and expansion opportunities and studying initiatives and areas that would support the development of the company’s business and strengthen its presence in the markets."
+        },
+        {
+          "ar": "كما يساهم في متابعة مشاريع التطوير والتنسيق بشأن المبادرات المستقبلية، بما يدعم توجهات الشركة وخططها للنمو والتوسع.",
+          "en": "He also contributes to following up on development projects and coordinating future initiatives, supporting the company’s directions and its plans for growth and expansion."
+        },
+        {
+          "ar": "يحمل الدكتور عيساوي درجة البكالوريوس في الطب البشري من جامعة النجاح الوطنية.",
+          "en": "Dr. Esawi holds a Bachelor’s degree in Human Medicine from An-Najah National University."
+        }
+      ]
+    },
+    {
+      "id": "supply-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "المهندس محمد مراد عيساوي",
+        "en": "Mr. Mohammad Murad Esawi"
+      },
+      "title": {
+        "ar": "مدير التوريدات",
+        "en": "Supply Manager"
+      },
+      "bio": [
+        {
+          "ar": "يتولى المهندس محمد مراد عيساوي إدارة ومتابعة عمليات التوريدات في الشركة، والعمل على تنسيق ومتابعة احتياجات الشركة من المواد والمستلزمات، بما يساهم في ضمان استمرارية العمليات وكفاءة سير العمل.",
+          "en": "Eng. Mohammad Murad Esawi manages and follows up on the company’s supply operations, coordinating and following up on the company’s needs for materials and supplies, contributing to ensuring the continuity of operations and the efficiency of work."
+        },
+        {
+          "ar": "كما يعمل على متابعة عمليات الشراء والتوريد والتنسيق مع الجهات والموردين ذوي العلاقة، بما يدعم احتياجات مختلف أقسام الشركة.",
+          "en": "He also follows up on purchasing and supply processes and coordinates with the relevant parties and suppliers, supporting the needs of the company’s various departments."
+        },
+        {
+          "ar": "يحمل السيد عيساوي درجة البكالوريوس في هندسة الحاسوب من جامعة النجاح الوطنية.",
+          "en": "Mr. Esawi holds a Bachelor’s degree in Computer Engineering from An-Najah National University."
+        }
+      ]
+    },
+    {
+      "id": "quality-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "المهندسة هيا هشام عيساوي",
+        "en": "Eng. Haya Hisham Esawi"
+      },
+      "title": {
+        "ar": "مديرة دائرة الجودة",
+        "en": "Quality Department Manager"
+      },
+      "bio": [
+        {
+          "ar": "تتولى المهندسة هيا هشام عيساوي إدارة دائرة الجودة، والإشراف على تطبيق معايير الجودة ومتابعة الالتزام بالمتطلبات والمعايير المعتمدة في عمليات الشركة.",
+          "en": "Eng. Haya Hisham Esawi manages the Quality Department, overseeing the application of quality standards and following up on compliance with the approved requirements and standards in the company’s operations."
+        },
+        {
+          "ar": "تحمل درجة البكالوريوس في الهندسة الكيميائية من جامعة النجاح الوطنية.",
+          "en": "She holds a Bachelor’s degree in Chemical Engineering from An-Najah National University."
+        }
+      ]
+    },
+    {
+      "id": "accounts-manager",
+      "group": "executive",
+      "role": "member",
+      "name": {
+        "ar": "السيد أمير عباس عيساوي",
+        "en": "Mr. Amir Abbas Esawi"
+      },
+      "title": {
+        "ar": "مدير الحسابات",
+        "en": "Accounts Manager"
+      },
+      "bio": [
+        {
+          "ar": "يتولى السيد أمير عباس عيساوي إدارة الحسابات والإشراف على الأعمال المحاسبية والمالية، ومتابعة العمليات المالية بما يضمن دقة وسلامة الإجراءات المحاسبية في الشركة.",
+          "en": "Mr. Amir Abbas Esawi manages the accounts and oversees the accounting and financial work, following up on financial operations to ensure the accuracy and soundness of the company’s accounting procedures."
+        },
+        {
+          "ar": "يحمل درجة البكالوريوس في المحاسبة من جامعة النجاح الوطنية، ودرجة الماجستير في المحاسبة.",
+          "en": "He holds a Bachelor’s degree in Accounting from An-Najah National University and a Master’s degree in Accounting."
+        }
+      ]
+    }
+  ],
+  "aboutPage": {
+    "companyName": {
+      "ar": "لاميكو للاستثمار الصناعي والتوريدات",
+      "en": "Lamico for Industrial Investment and Supplies"
+    },
+    "intro": [
+      {
+        "ar": "تعد شركة لاميكو للاستثمار الصناعي والتوريدات من الشركات الفلسطينية العاملة في مجالات الاستثمار الصناعي والتوريدات، وتسعى إلى تطوير أعمالها وتوسيع نطاق نشاطها من خلال الاستثمار في القطاعات الصناعية والإنتاجية المختلفة.",
+        "en": "Lamico for Industrial Investment and Supplies is a Palestinian company operating in industrial investment and supplies. It seeks to develop its business and expand its activity by investing in various industrial and productive sectors."
+      },
+      {
+        "ar": "تعمل الشركة على تطوير مجموعة من الأنشطة والقطاعات الصناعية والتجارية، من خلال توظيف الخبرات والإمكانات المحلية، وبناء شراكات وعلاقات استراتيجية مع الموردين والعملاء، بما يساهم في تعزيز حضورها في السوق الفلسطيني ويدعم استمرارية نمو أعمالها.",
+        "en": "The company develops a range of industrial and commercial activities and sectors by drawing on local expertise and capabilities and building strategic partnerships and relationships with suppliers and customers, which strengthens its presence in the Palestinian market and supports the continued growth of its business."
+      },
+      {
+        "ar": "وتشمل أعمال الشركة عددًا من المجالات والقطاعات، من بينها الصناعات البلاستيكية، وقطاع المياه، والمنتجات الغذائية، والتوريدات، مع التركيز على توفير منتجات ذات جودة مناسبة وتلبية احتياجات الأسواق والقطاعات المختلفة.",
+        "en": "The company’s work covers a number of fields and sectors, including plastic industries, the water sector, food products, and supplies, with a focus on providing products of suitable quality and meeting the needs of different markets and sectors."
+      },
+      {
+        "ar": "وتسعى لاميكو إلى بناء منظومة متكاملة تجمع بين الاستثمار الصناعي والإنتاج والتوريدات والتطوير، بما يمكنها من الاستجابة لمتطلبات السوق والاستفادة من الفرص الاستثمارية المتاحة، مع العمل المستمر على تطوير منتجاتها وعملياتها.",
+        "en": "Lamico seeks to build an integrated system that combines industrial investment, production, supplies and development, enabling it to respond to market requirements and benefit from the available investment opportunities, while continuously developing its products and operations."
+      },
+      {
+        "ar": "ومن خلال خبراتها وعلاقاتها مع مختلف الجهات والموردين، تعمل الشركة على تعزيز كفاءة عملياتها التشغيلية وسلاسل التوريد، وتوفير احتياجات قطاعاتها الإنتاجية والتجارية، بما يساهم في تحقيق النمو المستدام وتوسيع نطاق أعمالها.",
+        "en": "Through its expertise and its relationships with various parties and suppliers, the company works to improve the efficiency of its operations and supply chains and to provide for the needs of its productive and commercial sectors, contributing to sustainable growth and the expansion of its business."
+      }
+    ],
+    "vision": {
+      "title": {
+        "ar": "أن نكون شركة فلسطينية رائدة في الاستثمار الصناعي والتوريدات",
+        "en": "To be a leading Palestinian company in industrial investment and supplies"
+      },
+      "text": {
+        "ar": "نسعى إلى بناء شركة صناعية واستثمارية متكاملة، تتمتع بحضور قوي في السوق الفلسطيني، وتستند إلى الجودة والابتكار والكفاءة والاستثمار المستدام.",
+        "en": "We seek to build an integrated industrial and investment company with a strong presence in the Palestinian market, grounded in quality, innovation, efficiency and sustainable investment."
+      }
+    },
+    "mission": {
+      "title": {
+        "ar": "بناء أعمال صناعية واستثمارية مستدامة تلبي احتياجات السوق",
+        "en": "To build sustainable industrial and investment businesses that meet market needs"
+      },
+      "text": {
+        "ar": "تسعى شركة لاميكو إلى تطوير وتنمية استثماراتها الصناعية والتجارية، وتقديم منتجات وحلول موثوقة تلبي احتياجات الأسواق المختلفة، من خلال الالتزام بالجودة، وتطوير العمليات، وبناء علاقات طويلة الأمد مع العملاء والموردين والشركاء.",
+        "en": "Lamico seeks to develop and grow its industrial and commercial investments and to offer reliable products and solutions that meet the needs of different markets, through commitment to quality, developing its operations, and building long-term relationships with customers, suppliers and partners."
+      }
+    },
+    "goals": [
+      {
+        "title": {
+          "ar": "التوسع",
+          "en": "Expansion"
+        },
+        "text": {
+          "ar": "توسيع نطاق الاستثمارات والأنشطة الصناعية والتجارية والدخول في مجالات جديدة تلبي احتياجات السوق وتوفر فرصًا للنمو.",
+          "en": "Expanding the scope of investments and industrial and commercial activities and entering new fields that meet market needs and offer growth opportunities."
+        }
+      },
+      {
+        "title": {
+          "ar": "التطوير",
+          "en": "Development"
+        },
+        "text": {
+          "ar": "تطوير المنتجات والعمليات التشغيلية والاستثمار في التقنيات الحديثة والخبرات التي ترفع كفاءة الإنتاج وتحسن جودة المنتجات والخدمات.",
+          "en": "Developing products and operations and investing in modern technologies and expertise that raise production efficiency and improve the quality of products and services."
+        }
+      },
+      {
+        "title": {
+          "ar": "الجودة",
+          "en": "Quality"
+        },
+        "text": {
+          "ar": "تقديم منتجات ذات جودة موثوقة تلبي احتياجات العملاء وتتماشى مع المتطلبات والمعايير المعتمدة في القطاعات التي تعمل بها الشركة.",
+          "en": "Delivering reliable-quality products that meet customers’ needs and comply with the requirements and standards adopted in the sectors in which the company operates."
+        }
+      },
+      {
+        "title": {
+          "ar": "التكامل",
+          "en": "Integration"
+        },
+        "text": {
+          "ar": "بناء منظومة متكاملة بين الإنتاج والتوريدات والتوزيع بما يعزز كفاءة سلسلة الإمداد ويدعم استمرارية الأعمال.",
+          "en": "Building an integrated system across production, supplies and distribution that improves supply chain efficiency and supports business continuity."
+        }
+      },
+      {
+        "title": {
+          "ar": "الشراكات",
+          "en": "Partnerships"
+        },
+        "text": {
+          "ar": "تطوير علاقات استراتيجية مع الموردين والعملاء والشركاء محليًا وإقليميًا، بما يساهم في توسيع شبكة أعمال الشركة وفتح آفاق جديدة للاستثمار.",
+          "en": "Developing strategic relationships with suppliers, customers and partners locally and regionally, expanding the company’s business network and opening new horizons for investment."
+        }
+      },
+      {
+        "title": {
+          "ar": "الاستثمار",
+          "en": "Investment"
+        },
+        "text": {
+          "ar": "استكشاف الفرص الاستثمارية الواعدة وتطوير مشاريع صناعية وإنتاجية تساهم في نمو الشركة وتعزيز قدرتها التنافسية.",
+          "en": "Exploring promising investment opportunities and developing industrial and productive projects that contribute to the company’s growth and strengthen its competitiveness."
+        }
+      },
+      {
+        "title": {
+          "ar": "المسؤولية الوطنية",
+          "en": "National responsibility"
+        },
+        "text": {
+          "ar": "المساهمة في دعم الاقتصاد الفلسطيني من خلال تطوير الاستثمارات المحلية، ودعم المنتجات الوطنية، وخلق فرص العمل وتعزيز النشاط الصناعي والإنتاجي.",
+          "en": "Contributing to supporting the Palestinian economy by developing local investments, supporting national products, creating jobs and strengthening industrial and productive activity."
+        }
+      },
+      {
+        "title": {
+          "ar": "الاستدامة",
+          "en": "Sustainability"
+        },
+        "text": {
+          "ar": "بناء نمو مستدام وطويل الأمد من خلال الاستخدام الفعال للموارد، وتحسين كفاءة العمليات، وتبني ممارسات مسؤولة في مختلف أنشطة الشركة.",
+          "en": "Building sustainable, long-term growth through the efficient use of resources, improving operational efficiency, and adopting responsible practices across the company’s activities."
+        }
+      }
+    ]
+  },
   "legal": {
     "privacy": {
       "updated": {

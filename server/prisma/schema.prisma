@@ -67,6 +67,15 @@ enum NotificationType {
   CONTACT_MESSAGE
   JOB_APPLICATION
   PRODUCT_INQUIRY
+  QUOTE_REQUEST
+}
+
+enum QuoteStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  WON
+  LOST
 }
 
 enum MediaKind {
@@ -87,6 +96,14 @@ model User {
   lastLoginAt  DateTime?
   /// Sessions issued before this moment are rejected (set on every password change).
   passwordChangedAt DateTime?
+  /// Authenticator secret, encrypted (AES-256-GCM). Null until the user starts two-factor setup.
+  totpSecretEnc     String?
+  /// Set when the user confirmed a code; from then on every login asks for one.
+  totpEnabledAt     DateTime?
+  /// Last 30-second step that was accepted, so a code cannot be used twice.
+  totpLastStep      Int?
+  /// JSON array of SHA-256 hashes of the unused recovery codes.
+  recoveryCodes     String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 }
@@ -374,4 +391,88 @@ model Notification {
   createdAt DateTime         @default(now())
 
   @@index([isRead, createdAt])
+}
+
+/// Session tokens that were signed out before they expired (logout). Rows are deleted once the token would have expired anyway.
+model RevokedToken {
+  jti       String   @id
+  expiresAt DateTime
+
+  @@index([expiresAt])
+}
+
+/// Who did what in the dashboard (no request bodies and no personal content are stored).
+model AuditLog {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  actorId    String?
+  actorEmail String?
+  action     String
+  targetId   String?
+  status     Int?
+  ip         String?
+  detail     String?
+
+  @@index([createdAt])
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
+}
+
+/// "Request a quote" submissions from companies (product pages, preforms, caps).
+model QuoteRequest {
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  /// Kept as plain text: the product may be renamed or deleted later.
+  productSlug String?
+  productName String
+  company     String
+  name        String
+  email       String
+  phone       String
+  quantity    String
+  city        String?
+  message     String?
+  status      QuoteStatus @default(NEW)
+  notes       String?
+  isRead      Boolean     @default(false)
+
+  @@index([status, createdAt])
+  @@index([isRead, createdAt])
+}
+
+enum TeamGroup {
+  BOARD
+  EXECUTIVE
+}
+
+enum TeamRole {
+  CHAIRMAN
+  GENERAL_MANAGER
+  MEMBER
+}
+
+/// Board of directors and executive management (photos are uploaded from the dashboard).
+model TeamMember {
+  id           String    @id @default(cuid())
+  group        TeamGroup
+  /// The chairman and the general manager also give the messages shown on the homepage.
+  role         TeamRole  @default(MEMBER)
+  nameAr       String    @default("")
+  nameEn       String    @default("")
+  titleAr      String
+  titleEn      String
+  departmentAr String?
+  departmentEn String?
+  /// [{ ar, en }] — one entry per paragraph
+  bio          Json      @default("[]")
+  messageAr    String?
+  messageEn    String?
+  photoUrl     String?
+  sortOrder    Int       @default(0)
+  published    Boolean   @default(true)
+  isSample     Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([group, sortOrder])
 }

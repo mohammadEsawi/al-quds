@@ -1,5 +1,6 @@
 import type {
   CompanyInfo,
+  TeamMember,
   EmploymentType,
   Job,
   Prisma,
@@ -82,6 +83,25 @@ export function toSector(s: Sector) {
     image: s.imageUrl ?? undefined,
     active: s.isActive,
     sortOrder: s.sortOrder,
+  };
+}
+
+// ───────── Company leadership ─────────
+
+export function toTeamMember(m: TeamMember) {
+  return {
+    id: m.id,
+    group: m.group.toLowerCase(),
+    role: m.role.toLowerCase(),
+    name: loc(m.nameAr, m.nameEn),
+    title: loc(m.titleAr, m.titleEn),
+    department: locOpt(m.departmentAr, m.departmentEn),
+    bio: list<Localized>(m.bio),
+    message: locOpt(m.messageAr, m.messageEn),
+    photo: m.photoUrl ?? undefined,
+    published: m.published,
+    sortOrder: m.sortOrder,
+    isPlaceholder: m.isSample,
   };
 }
 

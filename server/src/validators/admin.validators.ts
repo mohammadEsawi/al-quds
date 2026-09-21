@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { paginationQuery } from '../lib/pagination.js';
+import { weakPasswordReason } from '../lib/passwordPolicy.js';
 import {
   assetUrl,
   localizedList,
@@ -138,6 +139,24 @@ export const adminJobsQuery = paginationQuery.extend({
   q: z.string().trim().max(100).optional(),
 });
 
+// ───────── Company leadership ─────────
+
+const teamShape = {
+  group: z.enum(['board', 'executive']),
+  role: z.enum(['chairman', 'general_manager', 'member']),
+  name: localizedOptional,
+  title: localizedRequired,
+  department: localizedOptional,
+  bio: localizedList,
+  message: localizedOptional,
+  photo: optionalAssetUrl,
+  published: z.boolean(),
+  sortOrder,
+  isPlaceholder: z.boolean(),
+};
+export const createTeamMemberSchema = z.object(teamShape).partial().required({ group: true, title: true });
+export const updateTeamMemberSchema = z.object(teamShape).partial();
+
 // ───────── Applications, messages, notifications ─────────
 
 export const applicationStatuses = ['new', 'reviewed', 'shortlisted', 'interview', 'rejected', 'accepted'] as const;
@@ -233,14 +252,37 @@ export const updateWhatsAppSchema = z.object({
 });
 
 export const settingKeyParams = z.object({ key: z.string().regex(/^[a-z0-9][a-z0-9.-]{0,59}$/) });
+export const quoteStatuses = ['new', 'contacted', 'quoted', 'won', 'lost'] as const;
+
+export const adminQuotesQuery = paginationQuery.extend({
+  status: z.enum(quoteStatuses).optional(),
+  unread: bool.optional(),
+  q: z.string().trim().max(100).optional(),
+});
+
+export const updateQuoteSchema = z
+  .object({ status: z.enum(quoteStatuses), notes: z.string().trim().max(4000).nullable(), isRead: z.boolean() })
+  .partial();
+
+export const auditQuery = paginationQuery.extend({
+  q: z.string().trim().max(100).optional(),
+});
+
 export const updateSettingSchema = z.object({ value: z.json() });
 
 /** Setting keys that the public website may read. Everything else stays admin-only. */
-export const PUBLIC_SETTING_KEYS = ['water.overview', 'food.overview', 'home.content', 'legal.privacy', 'legal.terms'] as const;
+export const PUBLIC_SETTING_KEYS = ['water.overview', 'food.overview', 'home.content', 'about.page', 'legal.privacy', 'legal.terms'] as const;
 
 // ───────── Users ─────────
 
-const password = z.string().min(12, 'At least 12 characters').max(200);
+const password = z
+  .string()
+  .min(12, 'At least 12 characters')
+  .max(200)
+  .superRefine((value, ctx) => {
+    const reason = weakPasswordReason(value);
+    if (reason) ctx.addIssue({ code: 'custom', message: reason });
+  });
 const role = z.enum(['SUPER_ADMIN', 'ADMIN', 'EDITOR']);
 
 export const createUserSchema = z.object({
@@ -250,6 +292,6 @@ export const createUserSchema = z.object({
   role,
 });
 export const updateUserSchema = z
-  .object({ name: z.string().trim().min(2).max(120), role, isActive: z.boolean(), password })
+  .object({ name: z.string().trim().min(2).max(120), role, isActive: z.boolean(), password, resetTwoFactor: z.literal(true) })
   .partial();
 export const changePasswordSchema = z.object({ currentPassword: z.string().min(1).max(200), newPassword: password });
