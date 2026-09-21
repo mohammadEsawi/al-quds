@@ -32,14 +32,14 @@ export function PageHero({ title, text, trail = [], current, children, backdrop,
     >
       {backdrop}
       <div className="container-x relative z-10 text-center">
-        <nav aria-label={t.nav.breadcrumb} className="mb-6 flex items-center justify-center gap-2 text-sm text-gray-400">
-          <LocalizedLink to="/" className="hover:text-white">
+        <nav aria-label={t.nav.breadcrumb} className="mb-4 flex items-center justify-center gap-1 text-sm text-gray-400">
+          <LocalizedLink to="/" className="inline-flex min-h-10 items-center px-1 hover:text-white">
             {t.nav.home}
           </LocalizedLink>
           {trail.map((item) => (
             <span key={item.to} className="flex items-center gap-2">
               <span className="text-gray-600">/</span>
-              <LocalizedLink to={item.to} className="hover:text-white">
+              <LocalizedLink to={item.to} className="inline-flex min-h-10 items-center px-1 hover:text-white">
                 {item.label}
               </LocalizedLink>
             </span>

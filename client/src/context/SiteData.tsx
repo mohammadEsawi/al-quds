@@ -1,6 +1,7 @@
 import { createContext, useContext, type ReactNode } from 'react';
 import type { CompanyInfo, HomeContent, Sector } from '@/content/types';
 import { useAsync } from '@/hooks/useAsync';
+import { SplashHold } from '@/lib/splash';
 import { getCompany, getHomeContent, getSectors } from '@/services/content.service';
 
 interface SiteData {
@@ -18,7 +19,8 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
     return { company, sectors, home };
   });
 
-  if (!data) return null;
+  // Until the company profile is here there is nothing to show: the first-load splash covers the wait.
+  if (!data) return <SplashHold />;
   return <SiteDataContext.Provider value={data}>{children}</SiteDataContext.Provider>;
 }
 

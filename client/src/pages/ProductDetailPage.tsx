@@ -148,7 +148,10 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ButtonLink to={`/quote?product=${encodeURIComponent(product.slug)}`} size="lg" arrow>
+                {t.quote.cta}
+              </ButtonLink>
               <ButtonAnchor
                 href={whatsappLink(company.whatsapp.general.number, message)}
                 variant="whatsapp"

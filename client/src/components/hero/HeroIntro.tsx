@@ -47,7 +47,7 @@ export function HeroIntro() {
   const timeline = useRef<gsap.core.Timeline | null>(null);
   const [playing, setPlaying] = useState(!reduced);
 
-  const stat = (key: 'years' | 'cities' | 'bottles') => company.stats.find((s) => s.key === key);
+  const stat = (key: 'years' | 'cities' | 'bottles' | 'team') => company.stats.find((s) => s.key === key);
 
   useGSAP(
     () => {
@@ -188,9 +188,15 @@ export function HeroIntro() {
       if (readSeen()) tl.timeScale(2.2);
 
       // Dev only: `?introAt=4.5` freezes the intro at that second (used for visual checks).
-      if (import.meta.env.DEV) {
-        const at = new URLSearchParams(window.location.search).get('introAt');
-        if (at !== null) tl.pause(Number(at));
+      const frozenAt = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('introAt') : null;
+      if (frozenAt !== null) {
+        tl.pause(Number(frozenAt));
+      } else if (document.getElementById('splash') && !document.getElementById('splash')?.classList.contains('is-done')) {
+        // The first-load splash is still covering the page: start the drive-by as it fades away, not behind it.
+        tl.pause(0);
+        const play = () => tl.play();
+        window.addEventListener('lamico:splash-done', play, { once: true });
+        return () => window.removeEventListener('lamico:splash-done', play);
       }
     },
     { scope: root, dependencies: [reduced] },
@@ -204,6 +210,7 @@ export function HeroIntro() {
     { data: stat('years'), label: t.hero.trustYears },
     { data: stat('cities'), label: t.hero.trustCities },
     { data: stat('bottles'), label: t.hero.trustBottles },
+    { data: stat('team'), label: t.hero.trustTeam },
   ];
 
   return (
@@ -308,7 +315,7 @@ export function HeroIntro() {
 
           <dl
             data-h="text-item"
-            className="mt-10 flex justify-center gap-8 border-t border-gray-200 pt-7 lg:justify-start"
+            className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200 pt-7 text-center sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-5 sm:text-start lg:justify-start"
           >
             {trust.map(({ data, label }) =>
               data ? (

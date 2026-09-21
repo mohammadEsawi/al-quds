@@ -9,8 +9,11 @@ export function Footer() {
   const { company, sectors } = useSiteData();
 
   const companyLinks = [
-    { to: '/about', label: t.nav.about },
+    { to: '/about', label: t.aboutNav.company },
+    { to: '/about/board', label: t.aboutNav.board },
+    { to: '/about/executive', label: t.aboutNav.executive },
     { to: '/products', label: t.nav.products },
+    { to: '/quote', label: t.quote.pageTitle },
     { to: '/real-estate', label: t.nav.realEstate },
     { to: '/careers', label: t.nav.careers },
     { to: '/contact', label: t.nav.contact },
@@ -23,7 +26,7 @@ export function Footer() {
   ].filter((s) => s.href);
 
   return (
-    <footer className="bg-linear-to-br from-gray-900 to-gray-800 pt-20 text-gray-300">
+    <footer className="overflow-x-clip bg-linear-to-br from-gray-900 to-gray-800 pt-20 text-gray-300">
       <div className="container-x">
         <div className="grid gap-12 border-b border-white/10 pb-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div className="max-w-sm sm:col-span-2 lg:col-span-1">
@@ -52,10 +55,10 @@ export function Footer() {
 
           <div>
             <h3 className="text-overline mb-6 text-white">{t.footer.company}</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="text-sm">
               {companyLinks.map((l) => (
                 <li key={l.to}>
-                  <LocalizedLink to={l.to} className="text-gray-400 transition-all hover:ps-2 hover:text-white">
+                  <LocalizedLink to={l.to} className="inline-flex min-h-10 items-center text-gray-400 transition-all hover:ps-2 hover:text-white">
                     {l.label}
                   </LocalizedLink>
                 </li>
@@ -65,10 +68,10 @@ export function Footer() {
 
           <div>
             <h3 className="text-overline mb-6 text-white">{t.footer.sectors}</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="text-sm">
               {sectors.map((s) => (
                 <li key={s.key}>
-                  <LocalizedLink to={s.path} className="text-gray-400 transition-all hover:ps-2 hover:text-white">
+                  <LocalizedLink to={s.path} className="inline-flex min-h-10 items-center text-gray-400 transition-all hover:ps-2 hover:text-white">
                     {pick(s.name)}
                   </LocalizedLink>
                 </li>
@@ -78,20 +81,20 @@ export function Footer() {
 
           <div>
             <h3 className="text-overline mb-6 text-white">{t.footer.contact}</h3>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-1 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin aria-hidden className="mt-0.5 size-[18px] shrink-0 text-secondary-light" />
                 <span>{pick(company.address)}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone aria-hidden className="mt-0.5 size-[18px] shrink-0 text-secondary-light" />
-                <a href={`tel:${company.phone}`} dir="ltr" className="hover:text-white">
+                <a href={`tel:${company.phone}`} dir="ltr" className="inline-flex min-h-10 items-center hover:text-white">
                   {company.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail aria-hidden className="mt-0.5 size-[18px] shrink-0 text-secondary-light" />
-                <a href={`mailto:${company.email}`} dir="ltr" className="hover:text-white">
+                <a href={`mailto:${company.email}`} dir="ltr" className="inline-flex min-h-10 items-center hover:text-white">
                   {company.email}
                 </a>
               </li>
@@ -104,10 +107,10 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {pick(company.name)}. {t.footer.rights}
           </p>
           <div className="flex gap-6">
-            <LocalizedLink to="/privacy" className="hover:text-gray-300">
+            <LocalizedLink to="/privacy" className="inline-flex min-h-10 items-center hover:text-gray-300">
               {t.footer.privacy}
             </LocalizedLink>
-            <LocalizedLink to="/terms" className="hover:text-gray-300">
+            <LocalizedLink to="/terms" className="inline-flex min-h-10 items-center hover:text-gray-300">
               {t.footer.terms}
             </LocalizedLink>
           </div>

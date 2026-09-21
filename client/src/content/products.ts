@@ -202,20 +202,40 @@ export const products: Product[] = [
     featured: false,
   },
 
-  // ───────── Preforms (placeholders until real images / data are provided) ─────────
-  ...[1, 2].map<Product>((n) => ({
-    id: `preform-${n}`,
-    slug: `preform-sample-${n}`,
+  // ───────── Preforms (real sizes; product photos are uploaded from the dashboard) ─────────
+  ...(
+    [
+      { id: '200ml', slug: 'preform-200ml', ar: '200 مل', en: '200 ml' },
+      { id: '500ml', slug: 'preform-500ml', ar: '0.5 لتر', en: '0.5 L' },
+      { id: '1-5l', slug: 'preform-1-5l', ar: '1.5 لتر', en: '1.5 L' },
+    ] as const
+  ).map<Product>((size) => ({
+    id: `preform-${size.id}`,
+    slug: size.slug,
     sector: 'preforms',
-    name: L(`بريفورم — نموذج ${n}`, `Preform — Sample ${n}`),
+    name: L(`بريفورم ${size.ar}`, `PET Preform ${size.en}`),
     category: L('بريفورم PET', 'PET preform'),
-    shortDescription: L('نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.', 'Placeholder text — to be replaced with the real product information.'),
-    description: L('نص تجريبي — سيتم استبداله بمعلومات المنتج الفعلية.', 'Placeholder text — to be replaced with the real product information.'),
+    shortDescription: L(
+      `بريفورم PET لعبوات ${size.ar}، يُصنَّع على ماكينات الحقن لدينا.`,
+      `PET preform for ${size.en} bottles, made on our own injection machines.`,
+    ),
+    description: L(
+      `بريفورم PET مخصص لنفخ عبوات بسعة ${size.ar}. يُصنَّع داخل الشركة على ماكينات الحقن الخاصة بنا وبأيدي عمّالنا، من مواد خام نستوردها بأنفسنا.`,
+      `PET preform for blowing ${size.en} bottles. It is made in-house on our own injection machines by our own workers, from raw material we import ourselves.`,
+    ),
     gallery: [],
-    specs: [],
-    features: [],
+    size: L(size.ar, size.en),
+    specs: [
+      { label: L('المادة', 'Material'), value: L('PET', 'PET') },
+      { label: L('حجم العبوة', 'Bottle size'), value: L(size.ar, size.en) },
+      { label: L('طريقة التصنيع', 'Manufacturing'), value: L('الحقن على ماكينات الشركة', 'Injection on the company’s own machines') },
+    ],
+    features: [
+      L('يُصنَّع على ماكينات الحقن لدينا', 'Made on our own injection machines'),
+      L('مواد خام نستوردها بأنفسنا', 'Raw material we import ourselves'),
+      L('إنتاج بأيدي عمّالنا', 'Produced by our own workers'),
+    ],
     featured: false,
-    isPlaceholder: true,
   })),
 
   // ───────── Caps (unlimited types, admin-managed) ─────────

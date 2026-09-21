@@ -12,10 +12,23 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="/assets/branding/lamico-logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="/splash.css" />
     <title>شركة لاميكو الاستثمارية</title>
   </head>
   <body>
+    <!-- First-load splash: styled by /splash.css, driven by /splash.js, removed once the app is ready -->
+    <div id="splash" aria-hidden="true">
+      <div class="splash-logo">
+        <img class="splash-base" src="/assets/branding/lamico-logo.webp" width="900" height="335" alt="" />
+        <div class="splash-rise">
+          <div class="splash-water"></div>
+          <img class="splash-color" src="/assets/branding/lamico-logo.webp" width="900" height="335" alt="" />
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
+    <script src="/splash.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

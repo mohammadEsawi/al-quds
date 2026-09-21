@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
   Bell,
+  BellRing,
+  BookOpenText,
   Briefcase,
   Building2,
   ExternalLink,
@@ -15,10 +17,13 @@ import {
   Menu,
   MessageCircle,
   Package,
+  Receipt,
   Settings,
   Shapes,
   Tag,
+  ScrollText,
   Users,
+  UsersRound,
   X,
   type LucideIcon,
 } from 'lucide-react';
@@ -61,6 +66,8 @@ const NAV: { title: string; items: NavItem[] }[] = [
       { to: '/admin/sectors', label: 'القطاعات', icon: Shapes },
       { to: '/admin/real-estate', label: 'العقار', icon: Building2 },
       { to: '/admin/jobs', label: 'الوظائف', icon: Briefcase },
+      { to: '/admin/team', label: 'الإدارة (مجلس + تنفيذية)', icon: UsersRound },
+      { to: '/admin/about', label: 'صفحة عن الشركة', icon: BookOpenText, roles: ADMINS },
       { to: '/admin/home', label: 'الصفحة الرئيسية', icon: Home, roles: ADMINS },
     ],
   },
@@ -68,7 +75,9 @@ const NAV: { title: string; items: NavItem[] }[] = [
     title: 'التواصل',
     items: [
       { to: '/admin/applications', label: 'طلبات التوظيف', icon: FileText, roles: ADMINS, badge: 'newApplications' },
+      { to: '/admin/quotes', label: 'طلبات عروض الأسعار', icon: Receipt, roles: ADMINS, badge: 'newQuotes' },
       { to: '/admin/messages', label: 'الرسائل', icon: Mail, roles: ADMINS, badge: 'unreadMessages' },
+      { to: '/admin/notification-settings', label: 'الإشعارات', icon: BellRing, roles: ADMINS },
     ],
   },
   {
@@ -84,6 +93,7 @@ const NAV: { title: string; items: NavItem[] }[] = [
     title: 'النظام',
     items: [
       { to: '/admin/users', label: 'المستخدمون', icon: Users, roles: ['SUPER_ADMIN'] },
+      { to: '/admin/audit', label: 'سجل النشاط', icon: ScrollText, roles: ['SUPER_ADMIN'] },
       { to: '/admin/account', label: 'حسابي', icon: KeyRound },
     ],
   },
@@ -141,7 +151,8 @@ export function AdminLayout() {
     setBell(false);
     await adminApi.notifications.markRead(n.id).catch(() => undefined);
     void refresh();
-    navigate(n.type === 'job_application' ? `/admin/applications?open=${n.refId ?? ''}` : `/admin/messages?open=${n.refId ?? ''}`);
+    const section = n.type === 'job_application' ? 'applications' : n.type === 'quote_request' ? 'quotes' : 'messages';
+    navigate(`/admin/${section}?open=${n.refId ?? ''}`);
   };
 
   const markAll = async () => {

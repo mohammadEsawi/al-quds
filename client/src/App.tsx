@@ -3,10 +3,14 @@ import { Navigate, Route, Routes, useLocation } from 'react-router';
 import { LangLayout } from '@/components/layout/LangLayout';
 import { LOCALE_STORAGE_KEY } from '@/i18n/I18nProvider';
 import { DEFAULT_LOCALE, isLocale } from '@/i18n/types';
+import { SplashHold, useSplashMounted } from '@/lib/splash';
 
 // Every page is code-split so heavy animation code only loads where it is used.
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const BoardPage = lazy(() => import('@/pages/BoardPage'));
+const ExecutivePage = lazy(() => import('@/pages/ExecutivePage'));
+const MessagePage = lazy(() => import('@/pages/MessagePage'));
 const SectorsPage = lazy(() => import('@/pages/SectorsPage'));
 const WaterPage = lazy(() => import('@/pages/WaterPage'));
 const SectorPage = lazy(() => import('@/pages/SectorPage'));
@@ -18,6 +22,7 @@ const RealEstateDetailPage = lazy(() => import('@/pages/RealEstateDetailPage'));
 const CareersPage = lazy(() => import('@/pages/CareersPage'));
 const JobDetailPage = lazy(() => import('@/pages/JobDetailPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
+const QuotePage = lazy(() => import('@/pages/QuotePage'));
 const LegalPage = lazy(() => import('@/pages/LegalPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 const AdminApp = lazy(() => import('@/admin/AdminApp'));
@@ -45,6 +50,10 @@ const pageRoutes = (
   <>
     <Route index element={<HomePage />} />
     <Route path="about" element={<AboutPage />} />
+    <Route path="about/board" element={<BoardPage />} />
+    <Route path="about/executive" element={<ExecutivePage />} />
+    <Route path="about/chairman-message" element={<MessagePage leader="chairman" />} />
+    <Route path="about/gm-message" element={<MessagePage leader="general-manager" />} />
     <Route path="sectors" element={<SectorsPage />} />
     <Route path="water" element={<WaterPage />} />
     <Route path="plastic" element={<SectorPage sector="plastic" />} />
@@ -58,6 +67,7 @@ const pageRoutes = (
     <Route path="careers" element={<CareersPage />} />
     <Route path="careers/:slug" element={<JobDetailPage />} />
     <Route path="contact" element={<ContactPage />} />
+    <Route path="quote" element={<QuotePage />} />
     <Route path="privacy" element={<LegalPage kind="privacy" />} />
     <Route path="terms" element={<LegalPage kind="terms" />} />
     <Route path="*" element={<NotFoundPage />} />
@@ -65,13 +75,20 @@ const pageRoutes = (
 );
 
 export default function App() {
+  useSplashMounted();
   return (
     <Routes>
       <Route path="/" element={<RootRedirect />} />
       <Route
         path="/admin/*"
         element={
-          <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+          <Suspense
+            fallback={
+              <div className="min-h-screen bg-gray-50">
+                <SplashHold />
+              </div>
+            }
+          >
             <AdminApp />
           </Suspense>
         }

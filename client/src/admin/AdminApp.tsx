@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 import { AuthProvider, RequireAuth, RequireRole } from './auth';
 import { ConfirmProvider, ToastProvider } from './components/ui';
@@ -5,13 +6,18 @@ import { AdminLayout } from './layout/AdminLayout';
 import { CategoriesPage, SectorsPage, WaterLabelsPage } from './pages/CatalogPages';
 import DashboardPage from './pages/DashboardPage';
 import { ApplicationsPage, MessagesPage } from './pages/InboxPages';
+import NotificationSettingsPage from './pages/NotificationSettingsPage';
+import QuotesPage from './pages/QuotesPage';
 import { JobEditPage, JobsListPage } from './pages/JobsPages';
 import LoginPage from './pages/LoginPage';
 import MediaPage from './pages/MediaPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductsPage from './pages/ProductsPage';
 import { RealEstateEditPage, RealEstateListPage } from './pages/RealEstatePages';
+import AboutContentPage from './pages/AboutContentPage';
+import AuditPage from './pages/AuditPage';
 import { CompanyPage, HomeContentPage, SettingsPage, WhatsAppPage } from './pages/SitePages';
+import TeamPage from './pages/TeamPage';
 import { AccountPage, UsersPage } from './pages/UsersPages';
 
 /**
@@ -19,6 +25,18 @@ import { AccountPage, UsersPage } from './pages/UsersPages';
  * never download it. Access is enforced twice: here by role guards, and again by the API.
  */
 export default function AdminApp() {
+  // The dashboard must never appear in search results, even if a public page set "index" earlier in the session.
+  useEffect(() => {
+    let robots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement('meta');
+      robots.name = 'robots';
+      document.head.appendChild(robots);
+    }
+    robots.content = 'noindex, nofollow';
+    document.title = 'لوحة التحكم | لاميكو';
+  }, []);
+
   return (
     <ToastProvider>
       <ConfirmProvider>
@@ -40,6 +58,7 @@ export default function AdminApp() {
                 <Route path="real-estate/:id" element={<RealEstateEditPage />} />
                 <Route path="jobs" element={<JobsListPage />} />
                 <Route path="jobs/:id" element={<JobEditPage />} />
+                <Route path="team" element={<TeamPage />} />
                 <Route path="media" element={<MediaPage />} />
                 <Route path="account" element={<AccountPage />} />
 
@@ -47,7 +66,10 @@ export default function AdminApp() {
                 <Route element={<RequireRole roles={['SUPER_ADMIN', 'ADMIN']} />}>
                   <Route path="applications" element={<ApplicationsPage />} />
                   <Route path="messages" element={<MessagesPage />} />
+                  <Route path="quotes" element={<QuotesPage />} />
+                  <Route path="notification-settings" element={<NotificationSettingsPage />} />
                   <Route path="home" element={<HomeContentPage />} />
+                  <Route path="about" element={<AboutContentPage />} />
                   <Route path="company" element={<CompanyPage />} />
                   <Route path="whatsapp" element={<WhatsAppPage />} />
                   <Route path="settings" element={<SettingsPage />} />
@@ -56,6 +78,7 @@ export default function AdminApp() {
                 {/* user management: super admin */}
                 <Route element={<RequireRole roles={['SUPER_ADMIN']} />}>
                   <Route path="users" element={<UsersPage />} />
+                  <Route path="audit" element={<AuditPage />} />
                 </Route>
 
                 <Route path="*" element={<Navigate to="/admin" replace />} />

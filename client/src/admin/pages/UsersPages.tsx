@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, ShieldOff, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useAsync } from '@/hooks/useAsync';
 import { adminApi, describeError } from '../api';
@@ -7,6 +7,7 @@ import { useAuth } from '../auth';
 import { DataTable, type Column } from '../components/DataTable';
 import { ProblemList, SelectField, TextField, Toggle } from '../components/Fields';
 import { Badge, Card, Modal, PageHeader, useConfirm, useToast } from '../components/ui';
+import { TwoFactorCard } from '../components/TwoFactorCard';
 import { formatDate, roleLabels } from '../labels';
 import type { AdminUser, Role } from '../types';
 
@@ -61,17 +62,30 @@ export function UsersPage() {
     }
   };
 
+  const resetTwoFactor = async (u: AdminUser) => {
+    if (!(await confirm({ title: 'إعادة تعيين التحقق بخطوتين؟', text: `سيُزال التحقق بخطوتين من حساب ${u.name} ويُسجَّل خروجه من كل الأجهزة. يفعّله من جديد بعد الدخول.`, confirmLabel: 'إعادة تعيين', danger: true }))) return;
+    try {
+      await adminApi.users.update(u.id, { resetTwoFactor: true });
+      toast.success('تمت إعادة التعيين');
+      query.reload();
+    } catch (error) {
+      toast.error(describeError(error).message);
+    }
+  };
+
   const columns: Column<AdminUser>[] = [
     { key: 'name', header: 'المستخدم', cell: (u) => <div><p className="font-semibold">{u.name}{u.id === me?.id && <span className="ms-2 text-xs text-gray-400">(أنت)</span>}</p><p dir="ltr" className="text-start text-xs text-gray-400">{u.email}</p></div> },
     { key: 'role', header: 'الصلاحية', cell: (u) => <Badge tone={u.role === 'SUPER_ADMIN' ? 'purple' : u.role === 'ADMIN' ? 'blue' : 'gray'}>{roleLabels[u.role]}</Badge> },
     { key: 'status', header: 'الحالة', cell: (u) => <Badge tone={u.isActive ? 'green' : 'red'}>{u.isActive ? 'فعّال' : 'معطّل'}</Badge> },
+    { key: 'mfa', header: 'خطوتان', cell: (u) => (u.twoFactorEnabled ? <Badge tone="green">مفعّل</Badge> : <Badge tone="gray">لا</Badge>) },
     { key: 'login', header: 'آخر دخول', cell: (u) => <span className="text-gray-500">{formatDate(u.lastLoginAt, true)}</span> },
     {
       key: 'actions',
       header: '',
-      className: 'w-28 text-end',
+      className: 'w-36 text-end',
       cell: (u) => (
         <div className="flex justify-end gap-0.5">
+          {u.twoFactorEnabled && u.id !== me?.id && <button type="button" onClick={() => void resetTwoFactor(u)} aria-label="إعادة تعيين التحقق بخطوتين" title="إعادة تعيين التحقق بخطوتين (لمن فقد هاتفه)" className="rounded-md p-2 text-gray-400 hover:bg-amber-50 hover:text-amber-600"><ShieldOff aria-hidden className="size-[18px]" /></button>}
           <button type="button" onClick={() => { setProblems([]); setEditing({ id: u.id, form: { email: u.email, name: u.name, role: u.role, password: '', isActive: u.isActive ?? true } }); }} aria-label="تعديل" className="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-primary"><Pencil aria-hidden className="size-[18px]" /></button>
           {u.id !== me?.id && <button type="button" onClick={() => void remove(u)} aria-label="حذف" className="rounded-md p-2 text-gray-400 hover:bg-red-50 hover:text-error"><Trash2 aria-hidden className="size-[18px]" /></button>}
         </div>
@@ -137,6 +151,7 @@ export function AccountPage() {
             <div><dt className="text-xs text-gray-400">الصلاحية</dt><dd className="mt-0.5">{user && <Badge tone="blue">{roleLabels[user.role]}</Badge>}</dd></div>
           </dl>
         </Card>
+        <TwoFactorCard />
         <Card className="p-6">
           <h2 className="mb-4 font-display text-lg font-bold">تغيير كلمة السر</h2>
           <form onSubmit={submit} className="max-w-sm space-y-4">

@@ -9,17 +9,24 @@ interface InquiryCtaProps {
   text: string;
   whatsappNumber: string;
   whatsappMessage: string;
+  /** When set, a "request a quote" button leads to this path (e.g. `/quote?product=...`). */
+  quoteTo?: string;
 }
 
 /** "Ask us" block with a WhatsApp button (number and message come from settings) and a contact link. */
-export function InquiryCta({ title, text, whatsappNumber, whatsappMessage }: InquiryCtaProps) {
+export function InquiryCta({ title, text, whatsappNumber, whatsappMessage, quoteTo }: InquiryCtaProps) {
   const { t } = useI18n();
 
   return (
     <Reveal direction="scale" className="mx-auto max-w-3xl rounded-3xl bg-linear-to-br from-primary to-primary-light p-8 text-center text-white shadow-primary sm:p-12">
       <h2 className="font-display text-2xl font-bold sm:text-4xl">{title}</h2>
       <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-white/85">{text}</p>
-      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+        {quoteTo && (
+          <ButtonLink to={quoteTo} variant="secondary" size="lg" arrow>
+            {t.quote.cta}
+          </ButtonLink>
+        )}
         <ButtonAnchor href={whatsappLink(whatsappNumber, whatsappMessage)} variant="whatsapp" size="lg">
           <WhatsAppIcon className="size-5" />
           {t.common.whatsapp}

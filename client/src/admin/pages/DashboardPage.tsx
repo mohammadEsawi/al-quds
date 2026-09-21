@@ -1,4 +1,4 @@
-import { Briefcase, Building2, Droplets, FileText, Mail, Package, Plus, Wheat, Factory, type LucideIcon } from 'lucide-react';
+import { Briefcase, Building2, Droplets, FileText, Mail, Package, Plus, Receipt, Wheat, Factory, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { Button } from '@/components/ui/Button';
 import { useAsync } from '@/hooks/useAsync';
@@ -6,6 +6,7 @@ import { adminApi } from '../api';
 import { useAuth } from '../auth';
 import { ActivityChart, BarList } from '../components/Charts';
 import { Badge, Card, ErrorBlock, PageHeader, Spinner } from '../components/ui';
+import { ReadinessCard } from '../components/ReadinessCard';
 import { applicationStatusLabels, formatDate } from '../labels';
 
 function Stat({ icon: Icon, label, value, to, tone }: { icon: LucideIcon; label: string; value: number; to?: string; tone: string }) {
@@ -65,7 +66,10 @@ export default function DashboardPage() {
             <Stat icon={Briefcase} label="وظائف مفتوحة" value={d.totals.activeJobs} to="/admin/jobs" tone="bg-rose-50 text-rose-600" />
             {admins && <Stat icon={FileText} label={`طلبات التوظيف (${d.totals.newApplications} جديد)`} value={d.totals.applications} to="/admin/applications" tone="bg-indigo-50 text-indigo-600" />}
             {admins && <Stat icon={Mail} label="رسائل غير مقروءة" value={d.totals.unreadMessages} to="/admin/messages" tone="bg-pink-50 text-pink-600" />}
+            {admins && <Stat icon={Receipt} label="طلبات عروض أسعار جديدة" value={d.totals.newQuotes} to="/admin/quotes" tone="bg-teal-50 text-teal-600" />}
           </div>
+
+          {admins && <ReadinessCard />}
 
           {admins && (
             <div className="grid gap-6 lg:grid-cols-3">
@@ -96,25 +100,25 @@ export default function DashboardPage() {
                 {admins && d.recent.application && (
                   <li className="flex items-center justify-between gap-3 py-3">
                     <span><span className="font-semibold">{d.recent.application.fullName}</span> تقدّم لوظيفة {d.recent.application.position}</span>
-                    <Link to={`/admin/applications?open=${d.recent.application.id}`} className="shrink-0 text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.application.createdAt, true)}</Link>
+                    <Link to={`/admin/applications?open=${d.recent.application.id}`} className="inline-flex min-h-9 shrink-0 items-center text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.application.createdAt, true)}</Link>
                   </li>
                 )}
                 {admins && d.recent.message && (
                   <li className="flex items-center justify-between gap-3 py-3">
                     <span>رسالة من <span className="font-semibold">{d.recent.message.name}</span>{d.recent.message.subject ? ` — ${d.recent.message.subject}` : ''} {!d.recent.message.isRead && <Badge tone="red">جديدة</Badge>}</span>
-                    <Link to={`/admin/messages?open=${d.recent.message.id}`} className="shrink-0 text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.message.createdAt, true)}</Link>
+                    <Link to={`/admin/messages?open=${d.recent.message.id}`} className="inline-flex min-h-9 shrink-0 items-center text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.message.createdAt, true)}</Link>
                   </li>
                 )}
                 {d.recent.product && (
                   <li className="flex items-center justify-between gap-3 py-3">
                     <span>آخر منتج: <span className="font-semibold">{d.recent.product.name.ar}</span></span>
-                    <Link to={`/admin/products/${d.recent.product.id}`} className="shrink-0 text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.product.createdAt)}</Link>
+                    <Link to={`/admin/products/${d.recent.product.id}`} className="inline-flex min-h-9 shrink-0 items-center text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.product.createdAt)}</Link>
                   </li>
                 )}
                 {d.recent.job && (
                   <li className="flex items-center justify-between gap-3 py-3">
                     <span>آخر وظيفة: <span className="font-semibold">{d.recent.job.title.ar}</span></span>
-                    <Link to={`/admin/jobs/${d.recent.job.id}`} className="shrink-0 text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.job.createdAt)}</Link>
+                    <Link to={`/admin/jobs/${d.recent.job.id}`} className="inline-flex min-h-9 shrink-0 items-center text-xs font-semibold text-primary hover:underline">{formatDate(d.recent.job.createdAt)}</Link>
                   </li>
                 )}
               </ul>

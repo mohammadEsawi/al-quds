@@ -54,3 +54,19 @@ export const applicationSchema = (e: Errors) =>
   });
 
 export type ApplicationValues = z.infer<ReturnType<typeof applicationSchema>>;
+
+export const quoteSchema = (e: Errors) =>
+  z.object({
+    productSlug: z.string(),
+    company: z.string().trim().min(2, e.required),
+    name: z.string().trim().min(2, e.required),
+    email: z.string().trim().pipe(z.email(e.email)),
+    phone: z.string().trim().regex(PHONE, e.phone),
+    quantity: z.string().trim().min(1, e.required).max(80),
+    city: z.string().trim(),
+    message: z.string().trim(),
+    // Honeypot: real visitors never fill it.
+    website: z.string().max(0),
+  });
+
+export type QuoteValues = z.infer<ReturnType<typeof quoteSchema>>;

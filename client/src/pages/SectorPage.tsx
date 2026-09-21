@@ -6,6 +6,7 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { GranuleField } from '@/components/sections/GranuleField';
 import { GranuleName } from '@/components/sections/GranuleName';
 import { InquiryCta } from '@/components/sections/InquiryCta';
+import { PlasticOverview } from '@/components/sections/PlasticOverview';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
 import { ProductGrid } from '@/components/sections/ProductGrid';
 import { useSiteData } from '@/context/SiteData';
@@ -42,12 +43,12 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
         text={copy.heroText}
         current={t.nav[sector]}
         trail={[{ label: t.nav.sectors, to: '/sectors' }]}
-        // Plastic: granules and pigments assemble into the company name. Other sectors keep the wave.
+        // Plastic: granules and pigments assemble into the logo and the company name. Other sectors keep the wave.
         hideTitle={sector === 'plastic'}
-        titleSlot={sector === 'plastic' ? <div ref={nameAnchor} className="mx-auto h-36 w-full max-w-5xl sm:h-52" /> : undefined}
+        titleSlot={sector === 'plastic' ? <div ref={nameAnchor} className="mx-auto h-[22rem] w-full max-w-6xl sm:h-[28rem]" /> : undefined}
         backdrop={
           <>
-            {sector === 'plastic' ? <GranuleName text={copy.heroTitle} anchorRef={nameAnchor} /> : <GranuleField />}
+            {sector === 'plastic' ? <GranuleName lines={t.sectorPage.plastic.granuleLines} compactLines={t.sectorPage.plastic.granuleLinesCompact} logoSrc={company.logo} anchorRef={nameAnchor} /> : <GranuleField />}
             <div aria-hidden className="absolute inset-0 bg-linear-to-t from-gray-900/70 via-transparent to-gray-900/40" />
           </>
         }
@@ -75,6 +76,8 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
         )}
       </Section>
 
+      {sector === 'plastic' && <PlasticOverview />}
+
       <Section muted id="process">
         <SectionHeader overline={t.sectorPage.processOverline} title={copy.processTitle} />
         <ProcessSteps steps={steps} />
@@ -93,6 +96,7 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
           text={t.sectorPage.inquiryText}
           whatsappNumber={(channel ?? company.whatsapp.general).number}
           whatsappMessage={channel ? pick(channel.message) : copy.whatsappMessage}
+          quoteTo={sector === 'plastic' ? '/quote' : `/quote?sector=${sector}`}
         />
       </Section>
     </>

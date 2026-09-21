@@ -164,3 +164,37 @@ export interface LegalDocument {
   updated: LocalizedText;
   sections: LegalSection[];
 }
+
+// ───────── Company leadership ─────────
+
+export type TeamGroup = 'board' | 'executive';
+export type TeamRole = 'chairman' | 'general_manager' | 'member';
+
+export interface TeamMember {
+  id: string;
+  group: TeamGroup;
+  /** The chairman and the general manager are the two people whose message is shown on the homepage. */
+  role: TeamRole;
+  /** May be empty for a placeholder that still waits for the real name. */
+  name: LocalizedText;
+  /** Job title, e.g. "General Manager". */
+  title: LocalizedText;
+  /** Optional line under the name, e.g. "General Management". */
+  department?: LocalizedText;
+  /** Experience / biography, one entry per paragraph. */
+  bio: LocalizedText[];
+  /** The person's message (homepage + their page). */
+  message?: LocalizedText;
+  /** Uploaded from the dashboard. */
+  photo?: string;
+  /** Shown with a "sample" hint until the real details are entered. */
+  isPlaceholder?: boolean;
+}
+
+export interface AboutPageContent {
+  companyName: LocalizedText;
+  intro: LocalizedText[];
+  vision: { title: LocalizedText; text: LocalizedText };
+  mission: { title: LocalizedText; text: LocalizedText };
+  goals: { title: LocalizedText; text: LocalizedText }[];
+}

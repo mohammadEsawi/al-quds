@@ -112,7 +112,7 @@ export const company: CompanyInfo = {
     { key: 'years', value: 21, suffix: '+' },
     { key: 'cities', value: 22, suffix: '' },
     { key: 'bottles', value: 50, suffix: 'M+' },
-    { key: 'team', value: 500, suffix: '+' },
+    { key: 'team', value: 200, suffix: '+' },
   ],
   cities: [
     L('نابلس', 'Nablus'), L('رام الله', 'Ramallah'), L('القدس', 'Jerusalem'), L('الخليل', 'Hebron'),

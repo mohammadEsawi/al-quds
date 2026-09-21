@@ -1,92 +1,111 @@
 import { Eye, Target } from 'lucide-react';
-import { FeatureCard } from '@/components/ui/FeatureCard';
-import { featureIcons } from '@/components/ui/icons';
+import { AboutTabs } from '@/components/about/AboutTabs';
+import { ButtonLink } from '@/components/ui/Button';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section, SectionHeader } from '@/components/ui/Section';
-import { useSiteData } from '@/context/SiteData';
+import { CardGridSkeleton, ErrorState } from '@/components/ui/States';
+import { useAsync } from '@/hooks/useAsync';
 import { useSeo } from '@/hooks/useSeo';
 import { useI18n } from '@/i18n/I18nProvider';
+import { getAboutPage } from '@/services/content.service';
 
+/** "About Lamico for Industrial Investment and Supplies": who we are, vision, mission and the strategic goals. */
 export default function AboutPage() {
   const { t, pick } = useI18n();
-  const { company } = useSiteData();
-  useSeo({ title: t.nav.about, description: t.about.metaDescription });
+  const query = useAsync(() => getAboutPage(), []);
+  const about = query.data;
+  useSeo({ title: t.aboutNav.company, description: t.aboutNav.metaCompany });
 
   return (
     <>
-      <PageHero title={t.about.heroTitle} text={t.about.heroText} current={t.nav.about} />
+      <PageHero title={t.aboutNav.company} text={t.aboutNav.companyHeroText} current={t.nav.about} />
 
-      <Section id="story">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal direction="right">
-            <img
-              src="/assets/water/water-lake-bottle.webp"
-              alt={t.hero.productAlt}
-              width={560}
-              height={448}
-              loading="lazy"
-              className="w-full rounded-3xl object-cover shadow-lift"
-            />
-          </Reveal>
-          <Reveal direction="left">
-            <span className="text-overline text-primary">{t.about.storyOverline}</span>
-            <h2 className="mt-2 font-display text-3xl leading-snug font-semibold sm:text-4xl">{t.about.storyTitle}</h2>
-            <span aria-hidden className="mt-4 block h-1 w-12 rounded-full bg-primary" />
-            <div className="mt-6 space-y-5 text-lg leading-relaxed text-gray-600">
-              {company.about.map((paragraph) => (
-                <p key={paragraph.en}>{pick(paragraph)}</p>
-              ))}
+      <div className="-mt-7 px-4">
+        <AboutTabs className="relative z-10" />
+      </div>
+
+      {query.loading && (
+        <Section>
+          <CardGridSkeleton count={3} />
+        </Section>
+      )}
+      {query.error && (
+        <Section>
+          <ErrorState onRetry={query.reload} />
+        </Section>
+      )}
+
+      {about && (
+        <>
+          <Section id="company">
+            <div className="mx-auto max-w-3xl">
+              <Reveal>
+                <span className="text-overline text-primary">{t.aboutNav.whoWeAre}</span>
+                <h2 className="mt-2 font-display text-3xl leading-snug font-bold sm:text-4xl">{pick(about.companyName)}</h2>
+                <span aria-hidden className="mt-4 block h-1 w-12 rounded-full bg-primary" />
+              </Reveal>
+              <div className="mt-8 space-y-6 border-primary/15 text-lg leading-loose text-gray-600 ps-6 md:border-s-2 md:ps-8">
+                {about.intro.map((paragraph, index) => (
+                  <Reveal key={paragraph.en || paragraph.ar} delay={Math.min(index * 0.05, 0.2)}>
+                    <p className={index === 0 ? 'text-xl font-light text-gray-800' : undefined}>{pick(paragraph)}</p>
+                  </Reveal>
+                ))}
+              </div>
             </div>
-          </Reveal>
-        </div>
-      </Section>
+          </Section>
 
-      <Section id="mission-vision">
-        <SectionHeader overline={t.about.goalOverline} title={t.about.goalTitle} />
-        <div className="grid gap-8 md:grid-cols-2">
-          <Reveal delay={0.05} className="rounded-3xl bg-linear-to-br from-primary to-primary-light p-10 text-white">
-            <Target aria-hidden className="mb-6 size-12 opacity-80" strokeWidth={1.5} />
-            <h3 className="font-display text-2xl font-bold">{t.about.mission}</h3>
-            <p className="mt-4 leading-relaxed text-white/90">{pick(company.mission)}</p>
-          </Reveal>
-          <Reveal delay={0.12} className="rounded-3xl border border-gray-100 bg-white p-10">
-            <Eye aria-hidden className="mb-6 size-12 text-primary opacity-80" strokeWidth={1.5} />
-            <h3 className="font-display text-2xl font-bold">{t.about.vision}</h3>
-            <p className="mt-4 leading-relaxed text-gray-600">{pick(company.vision)}</p>
-          </Reveal>
-        </div>
-      </Section>
+          <Section muted id="vision-mission">
+            <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+              <Reveal direction="right" className="rounded-3xl border border-gray-100 bg-white p-8 shadow-card sm:p-10">
+                <Eye aria-hidden className="size-10 text-primary" strokeWidth={1.5} />
+                <span className="text-overline mt-5 block text-primary">{t.aboutNav.vision}</span>
+                <h3 className="mt-2 font-display text-2xl leading-snug font-bold">{pick(about.vision.title)}</h3>
+                <p className="mt-4 leading-loose text-gray-600">{pick(about.vision.text)}</p>
+              </Reveal>
+              <Reveal direction="left" className="rounded-3xl bg-linear-to-br from-primary to-primary-light p-8 text-white shadow-primary sm:p-10">
+                <Target aria-hidden className="size-10 text-white/80" strokeWidth={1.5} />
+                <span className="text-overline mt-5 block text-white/70">{t.aboutNav.mission}</span>
+                <h3 className="mt-2 font-display text-2xl leading-snug font-bold">{pick(about.mission.title)}</h3>
+                <p className="mt-4 leading-loose text-white/90">{pick(about.mission.text)}</p>
+              </Reveal>
+            </div>
+          </Section>
 
-      <Section muted id="values">
-        <SectionHeader overline={t.about.valuesOverline} title={t.about.valuesTitle} />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {company.values.map((value, index) => (
-            <Reveal key={value.title.en} delay={(index % 3) * 0.08}>
-              <FeatureCard icon={featureIcons[value.icon]} title={pick(value.title)} text={pick(value.text)} />
+          <Section id="goals">
+            <SectionHeader overline={t.aboutNav.goalsOverline} title={t.aboutNav.goalsTitle} />
+            <ol className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {about.goals.map((goal, index) => (
+                <Reveal as="li" key={goal.title.en || goal.title.ar} delay={(index % 4) * 0.07}>
+                  <div className="group h-full rounded-2xl border border-gray-100 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
+                    <span dir="ltr" className="font-display text-3xl font-bold text-primary/25 transition-colors group-hover:text-primary">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-3 font-display text-lg font-semibold text-gray-900">{pick(goal.title)}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">{pick(goal.text)}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </Section>
+
+          <Section muted>
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <h2 className="font-display text-2xl font-bold sm:text-3xl">{t.aboutNav.nextTitle}</h2>
+              <p className="mt-3 text-gray-600">{t.aboutNav.nextText}</p>
+              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+                <ButtonLink to="/about/board" variant="secondary">
+                  {t.aboutNav.board}
+                </ButtonLink>
+                <ButtonLink to="/about/executive" arrow>
+                  {t.aboutNav.executive}
+                </ButtonLink>
+              </div>
             </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="journey">
-        <SectionHeader overline={t.about.journeyOverline} title={t.about.journeyTitle} />
-        <ol className="relative mx-auto max-w-2xl ps-12 before:absolute before:inset-y-0 before:start-[15px] before:w-0.5 before:bg-linear-to-b before:from-primary before:via-secondary before:to-accent">
-          {company.milestones.map((milestone) => (
-            <Reveal as="li" key={milestone.year} className="group relative pb-12 last:pb-0">
-              <span
-                aria-hidden
-                className="absolute -start-12 top-1 size-5 translate-x-[6px] rounded-full border-[3px] border-primary bg-white transition group-hover:scale-125 group-hover:bg-primary rtl:-translate-x-[6px]"
-              />
-              <span dir="ltr" className="block text-sm font-semibold tracking-wider text-primary">
-                {milestone.year}
-              </span>
-              <h3 className="mt-1 font-display text-xl font-semibold">{pick(milestone.title)}</h3>
-              <p className="mt-2 max-w-lg text-sm leading-relaxed text-gray-600">{pick(milestone.text)}</p>
-            </Reveal>
-          ))}
-        </ol>
-      </Section>
+          </Section>
+        </>
+      )}
     </>
   );
 }
+

@@ -4,6 +4,7 @@ import { CheckCircle2, Send } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Button, ButtonAnchor } from '@/components/ui/Button';
 import { Field, inputClass } from '@/components/ui/FormField';
+import { useCaptcha } from '@/components/ui/Turnstile';
 import { useSiteData } from '@/context/SiteData';
 import { useI18n } from '@/i18n/I18nProvider';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -15,7 +16,8 @@ export function ContactForm() {
   const { t, pick } = useI18n();
   const { company } = useSiteData();
   const schema = useMemo(() => contactSchema(t.forms.errors), [t]);
-  const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sent' | 'error' | 'captcha'>('idle');
+  const captcha = useCaptcha();
 
   const {
     register,
@@ -32,12 +34,15 @@ export function ContactForm() {
 
   const onSubmit = handleSubmit(async ({ website, ...values }) => {
     if (website) return setStatus('sent'); // honeypot filled: silently drop
+    if (captcha.enabled && !captcha.token) return setStatus('captcha');
     try {
-      await submitContact({ ...values, phone: values.phone || undefined, subject: values.subject || undefined });
+      await submitContact({ ...values, phone: values.phone || undefined, subject: values.subject || undefined }, captcha.token);
       reset();
       setStatus('sent');
     } catch {
       setStatus('error');
+    } finally {
+      captcha.reset();
     }
   });
 
@@ -122,6 +127,13 @@ export function ContactForm() {
           />
         </Field>
 
+        {captcha.element}
+
+        {status === 'captcha' && (
+          <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-error">
+            {t.forms.errors.captcha}
+          </p>
+        )}
         {status === 'error' && (
           <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-error">
             {t.forms.errors.server}

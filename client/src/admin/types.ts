@@ -22,6 +22,85 @@ export interface AdminUser {
   isActive?: boolean;
   lastLoginAt?: string | null;
   createdAt?: string;
+  /** Two-factor login is on for this user. */
+  twoFactorEnabled?: boolean;
+  /** The server requires this user to set up two-factor login before using the dashboard. */
+  twoFactorRequired?: boolean;
+}
+
+export type LoginResult = { user: AdminUser } | { mfaRequired: true; mfaToken: string };
+
+export type QuoteStatusKey = 'new' | 'contacted' | 'quoted' | 'won' | 'lost';
+
+export interface QuoteDTO {
+  id: string;
+  createdAt: string;
+  productSlug?: string;
+  productName: string;
+  company: string;
+  name: string;
+  email: string;
+  phone: string;
+  quantity: string;
+  city?: string;
+  message?: string;
+  status: QuoteStatusKey;
+  notes?: string;
+  isRead: boolean;
+  whatsappUrl: string | null;
+}
+
+export interface AlertChannelConfig {
+  enabled: boolean;
+  events: { contact: boolean; application: boolean; quote: boolean };
+}
+export interface NotificationSettingsDTO {
+  config: {
+    email: AlertChannelConfig & { recipients: string[] };
+    whatsapp: AlertChannelConfig & { number: string };
+  };
+  /** Whether the server has the credentials for each channel (set in server/.env). */
+  channels: { email: boolean; whatsapp: boolean };
+}
+
+export interface ReadinessItemDTO {
+  id: string;
+  group: 'content' | 'notifications' | 'security' | 'operations';
+  status: 'ok' | 'todo' | 'warn';
+  count?: number;
+  link?: string;
+}
+
+export interface TwoFactorSetupDTO {
+  secret: string;
+  otpauthUrl: string;
+  qrDataUrl: string;
+}
+
+export interface AuditEntryDTO {
+  id: string;
+  createdAt: string;
+  actorId: string | null;
+  actorEmail: string | null;
+  action: string;
+  targetId: string | null;
+  status: number | null;
+  ip: string | null;
+}
+
+export interface TeamMemberDTO {
+  id: string;
+  group: 'board' | 'executive';
+  role: 'chairman' | 'general_manager' | 'member';
+  name: Loc;
+  title: Loc;
+  department?: Loc;
+  bio: Loc[];
+  message?: Loc;
+  photo?: string;
+  published: boolean;
+  sortOrder: number;
+  isPlaceholder: boolean;
 }
 
 export type ProductSectorKey = 'water' | 'plastic' | 'preforms' | 'caps' | 'food';
@@ -164,7 +243,7 @@ export interface MessageDTO {
 
 export interface NotificationDTO {
   id: string;
-  type: 'contact_message' | 'job_application' | 'product_inquiry';
+  type: 'contact_message' | 'job_application' | 'product_inquiry' | 'quote_request';
   title: string;
   body?: string | null;
   refId?: string | null;
@@ -237,6 +316,7 @@ export interface DashboardDTO {
     applications: number;
     newApplications: number;
     unreadMessages: number;
+    newQuotes: number;
     unreadNotifications: number;
   };
   applicationsByStatus: { status: ApplicationStatusKey; count: number }[];

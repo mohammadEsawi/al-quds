@@ -3,6 +3,14 @@ import { api, getErrorCode, type ApiErrorBody } from '@/api/client';
 import { errorMessages } from './labels';
 import type {
   AdminUser,
+  AuditEntryDTO,
+  LoginResult,
+  NotificationSettingsDTO,
+  QuoteDTO,
+  TeamMemberDTO,
+  QuoteStatusKey,
+  ReadinessItemDTO,
+  TwoFactorSetupDTO,
   ApplicationDTO,
   ApplicationStatusKey,
   CategoryDTO,
@@ -41,7 +49,13 @@ const clean = (params?: Params) => Object.fromEntries(Object.entries(params ?? {
 /** Typed wrappers around `/api/admin/*`. Every call sends the session cookie. */
 export const adminApi = {
   auth: {
-    login: (email: string, password: string) => data<{ user: AdminUser }>(api.post('/auth/login', { email, password })),
+    login: (email: string, password: string) => data<LoginResult>(api.post('/auth/login', { email, password })),
+    loginTwoFactor: (mfaToken: string, code: string) => data<{ user: AdminUser }>(api.post('/auth/login/2fa', { mfaToken, code })),
+    twoFactor: {
+      setup: () => data<TwoFactorSetupDTO>(api.post('/auth/2fa/setup')),
+      enable: (code: string) => data<{ recoveryCodes: string[] }>(api.post('/auth/2fa/enable', { code })),
+      disable: (password: string, code: string) => none(api.post('/auth/2fa/disable', { password, code })),
+    },
     logout: () => none(api.post('/auth/logout')),
     me: () => data<{ user: AdminUser }>(api.get('/auth/me')),
     changePassword: (currentPassword: string, newPassword: string) => none(api.post('/auth/change-password', { currentPassword, newPassword })),
@@ -130,6 +144,27 @@ export const adminApi = {
   settings: {
     list: () => data<SettingDTO[]>(api.get('/admin/settings')),
     save: (key: string, value: unknown) => data<SettingDTO>(api.put(`/admin/settings/${encodeURIComponent(key)}`, { value })),
+  },
+  team: {
+    list: () => data<TeamMemberDTO[]>(api.get('/admin/team')),
+    create: (body: unknown) => data<TeamMemberDTO>(api.post('/admin/team', body)),
+    update: (id: string, body: unknown) => data<TeamMemberDTO>(api.put(`/admin/team/${id}`, body)),
+    remove: (id: string) => none(api.delete(`/admin/team/${id}`)),
+    reorder: (items: { id: string; sortOrder: number }[]) => none(api.post('/admin/team/reorder', { items })),
+  },
+  quotes: {
+    list: (params?: Params) => data<Paged<QuoteDTO>>(api.get('/admin/quotes', { params: clean(params) })),
+    update: (id: string, body: { status?: QuoteStatusKey; notes?: string | null; isRead?: boolean }) => data<QuoteDTO>(api.patch(`/admin/quotes/${id}`, body)),
+    remove: (id: string) => none(api.delete(`/admin/quotes/${id}`)),
+  },
+  notificationSettings: {
+    get: () => data<NotificationSettingsDTO>(api.get('/admin/notification-settings')),
+    save: (config: NotificationSettingsDTO['config']) => data<NotificationSettingsDTO>(api.put('/admin/notification-settings', config)),
+    test: () => data<Record<'email' | 'whatsapp', { ok: boolean; message: string }>>(api.post('/admin/notification-settings/test')),
+  },
+  readiness: () => data<ReadinessItemDTO[]>(api.get('/admin/readiness')),
+  audit: {
+    list: (params?: Params) => data<Paged<AuditEntryDTO>>(api.get('/admin/audit', { params: clean(params) })),
   },
   users: {
     list: () => data<AdminUser[]>(api.get('/admin/users')),

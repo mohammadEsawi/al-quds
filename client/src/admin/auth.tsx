@@ -2,13 +2,18 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { api } from '@/api/client';
 import { adminApi } from './api';
+import { SplashHold } from '@/lib/splash';
 import { Spinner } from './components/ui';
 import type { AdminUser, Role } from './types';
 
 interface AuthValue {
   user: AdminUser | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  /** Resolves with `mfaToken` when a second step (authenticator code) is still needed. */
+  login: (email: string, password: string) => Promise<{ mfaToken: string } | null>;
+  loginWithCode: (mfaToken: string, code: string) => Promise<void>;
+  /** Re-reads the signed-in user (after two-factor setup changes). */
+  refresh: () => Promise<void>;
   logout: () => Promise<void>;
   can: (...roles: Role[]) => boolean;
 }
@@ -41,7 +46,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, password: string) => {
     const result = await adminApi.auth.login(email, password);
+    if ('mfaRequired' in result) return { mfaToken: result.mfaToken };
     setUser(result.user);
+    return null;
+  }, []);
+
+  const loginWithCode = useCallback(async (mfaToken: string, code: string) => {
+    const result = await adminApi.auth.loginTwoFactor(mfaToken, code);
+    setUser(result.user);
+  }, []);
+
+  const refresh = useCallback(async () => {
+    const result = await adminApi.auth.me().catch(() => null);
+    if (result) setUser(result.user);
   }, []);
 
   const logout = useCallback(async () => {
@@ -50,8 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<AuthValue>(
-    () => ({ user, loading, login, logout, can: (...roles) => !!user && roles.includes(user.role) }),
-    [user, loading, login, logout],
+    () => ({ user, loading, login, loginWithCode, refresh, logout, can: (...roles) => !!user && roles.includes(user.role) }),
+    [user, loading, login, loginWithCode, refresh, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -70,11 +87,14 @@ export function RequireAuth() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
+        <SplashHold />
         <Spinner />
       </div>
     );
   }
   if (!user) return <Navigate to="/admin/login" state={{ from: location.pathname + location.search }} replace />;
+  // When the server requires two-factor login, the only page that works until it is set up is the account page.
+  if (user.twoFactorRequired && location.pathname !== '/admin/account') return <Navigate to="/admin/account" replace />;
   return <Outlet />;
 }
 

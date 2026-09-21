@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed:export": "tsx --tsconfig tsconfig.json scripts/export-seed.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -30,6 +31,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "tsx": "^4.23.13"
   }
 }

@@ -4,6 +4,7 @@ import { CheckCircle2, Send } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/Button';
 import { Field, inputClass } from '@/components/ui/FormField';
+import { useCaptcha } from '@/components/ui/Turnstile';
 import { useI18n } from '@/i18n/I18nProvider';
 import { applicationSchema, CV_MAX_MB, type ApplicationValues } from '@/lib/schemas';
 import { submitApplication } from '@/services/forms.service';
@@ -23,7 +24,8 @@ const SUCCESS = {
 export function JobApplicationForm({ jobId, position = '' }: JobApplicationFormProps) {
   const { t, locale, format } = useI18n();
   const schema = useMemo(() => applicationSchema(t.forms.errors), [t]);
-  const [status, setStatus] = useState<'idle' | 'sent' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sent' | 'error' | 'captcha'>('idle');
+  const captcha = useCaptcha();
 
   const {
     register,
@@ -48,15 +50,18 @@ export function JobApplicationForm({ jobId, position = '' }: JobApplicationFormP
 
   const onSubmit = handleSubmit(async ({ cv, website, ...values }) => {
     if (website) return setStatus('sent'); // honeypot
+    if (captcha.enabled && !captcha.token) return setStatus('captcha');
     const body = new FormData();
     Object.entries(values).forEach(([key, value]) => body.append(key, String(value ?? '')));
     const file = cv[0];
     if (file) body.append('cv', file);
     try {
-      await submitApplication(jobId, body);
+      await submitApplication(jobId, body, captcha.token);
       setStatus('sent');
     } catch {
       setStatus('error');
+    } finally {
+      captcha.reset();
     }
   });
 
@@ -140,6 +145,13 @@ export function JobApplicationForm({ jobId, position = '' }: JobApplicationFormP
         />
       </Field>
 
+      {captcha.element}
+
+      {status === 'captcha' && (
+        <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-error">
+          {t.forms.errors.captcha}
+        </p>
+      )}
       {status === 'error' && (
         <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-error">
           {t.forms.errors.server}

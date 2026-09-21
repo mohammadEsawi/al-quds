@@ -5,8 +5,12 @@ import { jobs as seedJobs } from '@/content/jobs';
 import { privacyPolicy, termsOfUse } from '@/content/legal';
 import { products as seedProducts, waterLabels as seedLabels, waterOverview, foodOverview } from '@/content/products';
 import { realEstateProjects as seedProjects } from '@/content/realEstate';
+import { aboutPage as seedAboutPage } from '@/content/aboutPage';
 import { sectors as seedSectors } from '@/content/sectors';
+import { team as seedTeam } from '@/content/team';
 import type {
+  AboutPageContent,
+  TeamMember,
   CompanyInfo,
   HomeContent,
   Job,
@@ -94,5 +98,26 @@ export async function getHomeContent(): Promise<HomeContent> {
     return await load<HomeContent>('/settings/home.content', () => ({}));
   } catch {
     return {};
+  }
+}
+
+export interface TeamData {
+  board: TeamMember[];
+  executive: TeamMember[];
+}
+
+/** Board of directors and executive management (photos and texts are edited in the dashboard). */
+export const getTeam = (): Promise<TeamData> =>
+  load<TeamData>('/team', () => ({
+    board: seedTeam.filter((m) => m.group === 'board'),
+    executive: seedTeam.filter((m) => m.group === 'executive'),
+  }));
+
+/** Text of the "About the company" page. No setting saved yet (404) or an unreachable API both mean "use the built-in text". */
+export async function getAboutPage(): Promise<AboutPageContent> {
+  try {
+    return await load<AboutPageContent>('/settings/about.page', () => seedAboutPage);
+  } catch {
+    return seedAboutPage;
   }
 }

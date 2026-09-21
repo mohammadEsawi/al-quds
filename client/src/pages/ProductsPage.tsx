@@ -22,7 +22,7 @@ export default function ProductsPage() {
 
   const tabs: { key: ProductSector | undefined; label: string }[] = [
     { key: undefined, label: t.common.all },
-    ...SECTORS.map((key) => ({ key, label: t.nav[key] })),
+    ...SECTORS.filter((key) => key !== 'plastic').map((key) => ({ key, label: t.nav[key] })),
   ];
 
   return (

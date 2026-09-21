@@ -27,7 +27,7 @@ const statKeys = [
   { value: 'team', label: 'أعضاء الفريق' },
 ];
 
-function SaveBar({ onSave, saving, label = 'حفظ التعديلات' }: { onSave: () => void; saving: boolean; label?: string }) {
+export function SaveBar({ onSave, saving, label = 'حفظ التعديلات' }: { onSave: () => void; saving: boolean; label?: string }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-100 bg-white/95 backdrop-blur lg:ps-64">
       <div className="mx-auto flex max-w-7xl items-center px-4 py-3 sm:px-6">
@@ -107,7 +107,7 @@ export function CompanyPage() {
 
   return (
     <>
-      <PageHeader title="معلومات الشركة" description="بيانات الشركة التي تظهر في الموقع: الشعار، الاتصال، من نحن، الأرقام والمدن." />
+      <PageHeader title="معلومات الشركة" description="بيانات الشركة التي تظهر في الموقع: الشعار، الاتصال، الأرقام والمدن." />
       <div className="space-y-6 pb-28">
         <ProblemList problems={problems} />
 
@@ -139,7 +139,7 @@ export function CompanyPage() {
           </div>
         </FormSection>
 
-        <FormSection title="من نحن">
+        <FormSection title="من نحن (قديم)" description="هذا القسم لم يعد يظهر في الموقع. نص صفحة «عن الشركة» (المقدمة، الرؤية، الرسالة، الأهداف) يُعدَّل من «صفحة عن الشركة» في القائمة الجانبية.">
           <div>
             <p className="mb-2 text-sm font-medium">قصة الشركة (فقرات)</p>
             <ListEditor items={form.about} onChange={(v) => set('about', v)} newItem={emptyLoc} addLabel="إضافة فقرة" renderItem={(p, update) => <LocalizedField label="الفقرة" multiline rows={3} value={p} onChange={update} />} />
