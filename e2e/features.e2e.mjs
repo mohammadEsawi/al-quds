@@ -43,10 +43,19 @@ await withPage(SITE, async (h) => {
 }).then((errors) => ok('Arabic quote page: no console errors', errors.length === 0, errors.join(' | ')));
 
 await withPage(SITE, async (h) => {
-  await h.goto('/ar/preforms', 2500);
-  ok('the preforms page offers a quote button', (await h.text()).includes('اطلب عرض سعر'));
   await h.goto('/ar/plastic', 2500);
   ok('the plastic page offers a quote button', (await h.text()).includes('اطلب عرض سعر'));
+  ok('…and shows cards leading to the preforms and caps pages', (await h.text()).includes('البريفورم') && (await h.text()).includes('الأغطية'));
+
+  await h.goto('/ar/preforms', 2500);
+  const preforms = await h.text();
+  ok('/preforms is its own page — the manufacturing story is there', preforms.includes('الدقة البُعدية') && preforms.includes('ثبات الوزن'));
+  ok('…and offers a quote button too', preforms.includes('اطلب عرض سعر'));
+
+  await h.goto('/ar/caps', 2500);
+  const caps = await h.text();
+  ok('/caps is its own page — the manufacturing story is there', caps.includes('من تصنيعنا الخاص بالكامل') && caps.includes('HDPE') && caps.includes('LDPE'));
+  ok('…and offers a quote button too', caps.includes('اطلب عرض سعر'));
 });
 
 console.log('── Dashboard: quotes, alerts, checklist');
