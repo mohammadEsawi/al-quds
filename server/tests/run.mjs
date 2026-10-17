@@ -54,6 +54,8 @@ const suites = [
   { file: '06-production-mode.test.mjs', title: 'Production mode (Secure cookie, origins)', env: { NODE_ENV: 'production', CLIENT_URL: 'https://lamico.test', TRUST_PROXY: 'true' }, testEnv: { TEST_ORIGIN: 'https://lamico.test' } },
   { file: '07-require-2fa.test.mjs', title: 'REQUIRE_2FA=true', env: { REQUIRE_2FA: 'true' } },
   { file: '08-team.test.mjs', title: 'Board, executive management and the About page content' },
+  { file: '09-analytics.test.mjs', title: 'Visits/countries widget (page-view tracking)', env: { TRUST_PROXY: 'true' } },
+  { file: '10-news.test.mjs', title: 'Homepage latest news' },
 ].filter((s) => !only || s.file.includes(only));
 
 const baseEnv = {

@@ -3,6 +3,7 @@ import type {
   TeamMember,
   EmploymentType,
   Job,
+  NewsItem,
   Prisma,
   RealEstateProject,
   RealEstateStatus,
@@ -102,6 +103,21 @@ export function toTeamMember(m: TeamMember) {
     published: m.published,
     sortOrder: m.sortOrder,
     isPlaceholder: m.isSample,
+  };
+}
+
+// ───────── Homepage news ─────────
+
+export function toNewsItem(n: NewsItem) {
+  return {
+    id: n.id,
+    title: loc(n.titleAr, n.titleEn),
+    text: loc(n.textAr, n.textEn),
+    image: n.imageUrl ?? undefined,
+    link: n.linkUrl ?? undefined,
+    publishedAt: n.publishedAt.toISOString(),
+    published: n.published,
+    sortOrder: n.sortOrder,
   };
 }
 

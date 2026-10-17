@@ -476,3 +476,39 @@ model TeamMember {
 
   @@index([group, sortOrder])
 }
+
+/// Anonymous page-view counter for the dashboard's visitor widget. No IP address, cookie or other
+/// personal identifier is stored — only the country and a same-day rotating hash — so a person
+/// cannot be identified or tracked across days from this table (see analytics.service.ts).
+model PageView {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  path        String
+  /// ISO 3166-1 alpha-2 country code (e.g. "PS", "JO"); null when it cannot be determined.
+  country     String?
+  /// sha256(secret + day + ip + user-agent). The same visitor gets the same hash only within one
+  /// calendar day, which is enough to estimate daily visits without tracking anyone across days.
+  visitorHash String
+
+  @@index([createdAt])
+  @@index([country, createdAt])
+}
+
+/// Short homepage updates ("latest news"): a title, a short text, an optional photo and an optional
+/// link. Simpler than Product/Job on purpose — no categories, no gallery, just what the homepage shows.
+model NewsItem {
+  id          String   @id @default(cuid())
+  titleAr     String
+  titleEn     String
+  textAr      String
+  textEn      String
+  imageUrl    String?
+  linkUrl     String?
+  publishedAt DateTime @default(now())
+  published   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, publishedAt])
+}

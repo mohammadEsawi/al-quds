@@ -64,3 +64,9 @@ export const quoteSchema = z.object({
   website: z.string().max(0).optional(),
 });
 export type QuoteInput = z.infer<typeof quoteSchema>;
+
+/** One page view, for the dashboard's anonymous visits/countries widget. */
+export const trackSchema = z.object({
+  path: z.string().trim().min(1).max(300),
+});
+export type TrackInput = z.infer<typeof trackSchema>;

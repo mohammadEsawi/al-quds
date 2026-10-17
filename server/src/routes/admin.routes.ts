@@ -8,12 +8,14 @@ import { auditAdmin } from '../middleware/audit.js';
 import { enforceTwoFactor, requireAuth, requireRole } from '../middleware/auth.js';
 import { mediaUpload } from '../middleware/upload.js';
 import { validate } from '../middleware/validate.js';
+import { getVisitStats } from '../services/analytics.service.js';
 import { deleteApplication, getApplication, getCvFile, listApplications, updateApplication } from '../services/applications.service.js';
 import { getCompany, listSettings, listWhatsAppChannels, saveSetting, saveWhatsAppChannels, updateCompany } from '../services/company.service.js';
 import { listAudit } from '../services/audit.service.js';
 import { getNotificationConfig, notificationConfigSchema, saveNotificationConfig } from '../services/notificationConfig.service.js';
 import { sendTestNotification } from '../services/notify.service.js';
 import { deleteQuote, getQuote, listQuotes, updateQuote } from '../services/quotes.service.js';
+import { createNewsItem, deleteNewsItem, getAdminNewsItem, listAdminNews, reorderNews, updateNewsItem } from '../services/news.service.js';
 import { createTeamMember, deleteTeamMember, getAdminTeamMember, listAdminTeam, reorderTeam, updateTeamMember } from '../services/team.service.js';
 import { getReadiness } from '../services/readiness.service.js';
 import { getDashboard } from '../services/dashboard.service.js';
@@ -58,6 +60,7 @@ import {
   adminProductsQuery,
   categorySchema,
   createJobSchema,
+  createNewsItemSchema,
   createProductSchema,
   createRealEstateSchema,
   createTeamMemberSchema,
@@ -72,6 +75,7 @@ import {
   updateJobSchema,
   updateMediaSchema,
   updateMessageSchema,
+  updateNewsItemSchema,
   updateProductSchema,
   updateQuoteSchema,
   updateRealEstateSchema,
@@ -79,6 +83,7 @@ import {
   updateSettingSchema,
   updateUserSchema,
   updateWhatsAppSchema,
+  visitStatsQuery,
   waterLabelSchema,
 } from '../validators/admin.validators.js';
 
@@ -98,6 +103,12 @@ const id = (req: { params: Record<string, string | string[] | undefined> }) => r
 // ───────── Dashboard ─────────
 adminRoutes.get('/dashboard', anyStaff, async (_req, res) => {
   res.json(await getDashboard());
+});
+
+// Anonymous visit counter (page views, unique visitors, top countries and pages) — see analytics.service.ts.
+adminRoutes.get('/analytics', anyStaff, validate(visitStatsQuery, 'query'), async (req, res) => {
+  const { days } = req.query as never as { days: number };
+  res.json(await getVisitStats(days));
 });
 
 // ───────── Products ─────────
@@ -197,6 +208,28 @@ adminRoutes.put('/team/:id', anyStaff, validate(idParams, 'params'), validate(up
 });
 adminRoutes.delete('/team/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
   await deleteTeamMember(id(req));
+  res.status(204).end();
+});
+
+// ───────── Homepage news ─────────
+adminRoutes.get('/news', anyStaff, async (_req, res) => {
+  res.json(await listAdminNews());
+});
+adminRoutes.post('/news/reorder', anyStaff, validate(reorderSchema), async (req, res) => {
+  await reorderNews(req.body.items);
+  res.status(204).end();
+});
+adminRoutes.get('/news/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  res.json(await getAdminNewsItem(id(req)));
+});
+adminRoutes.post('/news', anyStaff, validate(createNewsItemSchema), async (req, res) => {
+  res.status(201).json(await createNewsItem(req.body));
+});
+adminRoutes.put('/news/:id', anyStaff, validate(idParams, 'params'), validate(updateNewsItemSchema), async (req, res) => {
+  res.json(await updateNewsItem(id(req), req.body));
+});
+adminRoutes.delete('/news/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  await deleteNewsItem(id(req));
   res.status(204).end();
 });
 

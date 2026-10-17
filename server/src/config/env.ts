@@ -17,6 +17,8 @@ const schema = z.object({
   SITE_URL: z.string().url().optional(),
   /** How long dashboard activity is kept. */
   AUDIT_RETENTION_DAYS: z.coerce.number().int().min(30).max(3650).default(365),
+  /** How long the anonymous page-view counter (dashboard visits/countries widget) is kept. */
+  PAGEVIEW_RETENTION_DAYS: z.coerce.number().int().min(30).max(3650).default(400),
   /** Extra browser origins allowed to call the API with cookies (comma separated), besides CLIENT_URL. */
   ALLOWED_ORIGINS: z.string().optional(),
   TRUST_PROXY: booleanString,

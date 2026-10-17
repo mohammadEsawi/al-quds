@@ -390,37 +390,9 @@
       }
     },
     {
-      "key": "preforms",
-      "path": "/preforms",
-      "number": "03",
-      "icon": "flask",
-      "name": {
-        "ar": "البريفورم",
-        "en": "Preforms"
-      },
-      "description": {
-        "ar": "بريفورم مصنّع بدقة ليكون البداية المثالية لعبوات PET.",
-        "en": "Precisely manufactured preforms — the ideal starting point for PET bottles."
-      }
-    },
-    {
-      "key": "caps",
-      "path": "/caps",
-      "number": "04",
-      "icon": "circle-dot",
-      "name": {
-        "ar": "الأغطية",
-        "en": "Caps"
-      },
-      "description": {
-        "ar": "أغطية بلاستيكية بأنواع متعددة تناسب احتياجات التعبئة.",
-        "en": "Plastic caps in multiple types to suit every filling need."
-      }
-    },
-    {
       "key": "food",
       "path": "/food",
-      "number": "05",
+      "number": "03",
       "icon": "wheat",
       "name": {
         "ar": "المنتجات الغذائية",
@@ -435,7 +407,7 @@
     {
       "key": "real-estate",
       "path": "/real-estate",
-      "number": "06",
+      "number": "04",
       "icon": "building",
       "name": {
         "ar": "العقار",
@@ -446,20 +418,6 @@
         "en": "Distinguished residential projects, starting with Academy House in Nablus."
       },
       "image": "/assets/real-estate/academy-house.webp"
-    },
-    {
-      "key": "investment",
-      "path": "/about",
-      "number": "07",
-      "icon": "trending-up",
-      "name": {
-        "ar": "الاستثمار والتطوير",
-        "en": "Investment & Development"
-      },
-      "description": {
-        "ar": "استثمار متنوع وتطوير مستمر لقطاعات جديدة داخل فلسطين.",
-        "en": "Diversified investment and continuous development of new sectors in Palestine."
-      }
     }
   ],
   "products": [

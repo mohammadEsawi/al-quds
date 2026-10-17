@@ -1,3 +1,4 @@
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
@@ -17,6 +18,10 @@ export function createApp() {
   if (env.TRUST_PROXY) app.set('trust proxy', 1);
 
   app.use(helmet());
+  // gzip the API's JSON, sitemap.xml and robots.txt. Defense in depth: the recommended nginx setup
+  // already gzips these, but a deploy without it (or a direct API call) is compressed either way.
+  // The default filter skips already-compressed types (images, video), so /uploads/media is untouched.
+  app.use(compression());
   app.use(permissionsPolicy);
   app.use(rejectNulInUrl);
   app.use(cors({ origin: allowedOrigins, credentials: true }));

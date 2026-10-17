@@ -2,6 +2,7 @@ import { env } from './config/env.js';
 import { createApp } from './app.js';
 import { getDatabaseEncoding, UTF8_HELP } from './lib/dbcheck.js';
 import { prisma } from './lib/prisma.js';
+import { prunePageViews } from './services/analytics.service.js';
 import { pruneOldRecords } from './services/audit.service.js';
 
 // A copied-but-not-edited .env is the most common first-run mistake, so say so plainly.
@@ -23,8 +24,12 @@ if (!encoding) console.warn('Could not reach the database yet — the API will s
 
 const app = createApp();
 
-void pruneOldRecords();
-setInterval(() => void pruneOldRecords(), 24 * 60 * 60 * 1000).unref();
+const housekeeping = () => {
+  void pruneOldRecords();
+  void prunePageViews();
+};
+housekeeping();
+setInterval(housekeeping, 24 * 60 * 60 * 1000).unref();
 
 const server = app.listen(env.PORT, () => {
   console.log(`Lamico API listening on http://localhost:${env.PORT} (${env.NODE_ENV})`);

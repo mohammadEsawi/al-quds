@@ -36,7 +36,7 @@ r = await call('GET', '/api/company');
 ok('company: bilingual + whatsapp channels', r.data.name?.ar === 'شركة لاميكو الاستثمارية' && r.data.whatsapp?.water?.number && r.data.whatsapp?.realEstate && r.data.stats?.length === 4 && r.data.cities?.length === 22, JSON.stringify(Object.keys(r.data.whatsapp ?? {})));
 ok('company: legacy logo path kept', r.data.logo === '/assets/branding/lamico-logo.webp');
 r = await call('GET', '/api/sectors');
-ok('sectors: 7 ordered', r.data.length === 7 && r.data[0].key === 'water' && r.data[6].key === 'investment');
+ok('sectors: 4 ordered (preforms/caps live inside plastic now; investment only ever linked to /about)', r.data.length === 4 && r.data[0].key === 'water' && r.data[3].key === 'real-estate');
 r = await call('GET', '/api/products');
 const all = r.data;
 ok('products: 17', all.length === 17);

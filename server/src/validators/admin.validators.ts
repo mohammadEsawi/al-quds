@@ -98,7 +98,9 @@ const realEstateShape = {
   description: localizedList,
   location: localizedRequired,
   featuredImage: assetUrl,
-  gallery: z.array(z.object({ src: assetUrl, caption: localizedOptional })).max(60),
+  gallery: z
+    .array(z.object({ src: assetUrl, caption: localizedOptional, kind: z.enum(['image', 'video']).optional(), poster: assetUrl.optional() }))
+    .max(60),
   features: localizedList,
   contactPhone: phone,
   whatsappNumber: waNumber,
@@ -156,6 +158,20 @@ const teamShape = {
 };
 export const createTeamMemberSchema = z.object(teamShape).partial().required({ group: true, title: true });
 export const updateTeamMemberSchema = z.object(teamShape).partial();
+
+// ───────── Homepage news ─────────
+
+const newsShape = {
+  title: localizedRequired,
+  text: localizedRequired,
+  image: optionalAssetUrl,
+  link: optionalAssetUrl,
+  publishedAt: z.coerce.date(),
+  published: z.boolean(),
+  sortOrder,
+};
+export const createNewsItemSchema = z.object(newsShape).partial().required({ title: true, text: true });
+export const updateNewsItemSchema = z.object(newsShape).partial();
 
 // ───────── Applications, messages, notifications ─────────
 
@@ -295,3 +311,5 @@ export const updateUserSchema = z
   .object({ name: z.string().trim().min(2).max(120), role, isActive: z.boolean(), password, resetTwoFactor: z.literal(true) })
   .partial();
 export const changePasswordSchema = z.object({ currentPassword: z.string().min(1).max(200), newPassword: password });
+
+export const visitStatsQuery = z.object({ days: z.coerce.number().int().min(1).max(400).default(30) });

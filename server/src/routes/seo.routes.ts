@@ -7,6 +7,7 @@ export const seoRoutes = Router();
 
 const site = (env.SITE_URL ?? env.CLIENT_URL).replace(/\/+$/, '');
 const LOCALES = ['ar', 'en'] as const;
+// /preforms and /caps are their own pages again (see PreformsPage.tsx and CapsPage.tsx).
 const STATIC_PAGES = ['', '/about', '/about/board', '/about/executive', '/about/chairman-message', '/about/gm-message', '/sectors', '/water', '/plastic', '/preforms', '/caps', '/products', '/food', '/real-estate', '/careers', '/contact', '/quote', '/privacy', '/terms'];
 
 const xml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

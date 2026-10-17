@@ -4,16 +4,18 @@ import { captchaEnabled, requireCaptcha } from '../middleware/captcha.js';
 import { formLimiter } from '../middleware/rateLimit.js';
 import { cvUpload } from '../middleware/upload.js';
 import { validate } from '../middleware/validate.js';
+import { recordPageView } from '../services/analytics.service.js';
 import { submitApplication } from '../services/applications.service.js';
 import { getCompany, getPublicSetting } from '../services/company.service.js';
 import { createContactMessage } from '../services/inbox.service.js';
 import { getPublicJob, listPublicJobs } from '../services/jobs.service.js';
+import { listPublicNews } from '../services/news.service.js';
 import { getPublicProduct, listPublicProducts, listPublicSectors, listPublicWaterLabels } from '../services/products.service.js';
 import { createQuoteRequest } from '../services/quotes.service.js';
 import { listPublicTeam } from '../services/team.service.js';
 import { getPublicProject, listPublicProjects } from '../services/realEstate.service.js';
 import { productSectors, settingKeyParams } from '../validators/admin.validators.js';
-import { applicationSchema, contactSchema, publicProductsQuery, quoteSchema, slugParams, type ApplicationInput, type ContactInput, type QuoteInput } from '../validators/public.validators.js';
+import { applicationSchema, contactSchema, publicProductsQuery, quoteSchema, slugParams, trackSchema, type ApplicationInput, type ContactInput, type QuoteInput, type TrackInput } from '../validators/public.validators.js';
 
 /** Everything the public website reads or submits. No authentication required. */
 export const publicRoutes = Router();
@@ -61,6 +63,11 @@ publicRoutes.get('/team', async (_req, res) => {
   res.json(await listPublicTeam());
 });
 
+// Homepage "latest news"
+publicRoutes.get('/news', async (_req, res) => {
+  res.json(await listPublicNews());
+});
+
 // Careers
 publicRoutes.get('/jobs', async (_req, res) => {
   res.json(await listPublicJobs());
@@ -91,6 +98,19 @@ publicRoutes.get('/settings/:key', validate(settingKeyParams, 'params'), async (
 publicRoutes.post('/quotes', formLimiter, requireCaptcha, validate(quoteSchema), async (req, res) => {
   await createQuoteRequest(req.body as QuoteInput);
   res.status(201).json({ ok: true });
+});
+
+// Anonymous page-view counter for the dashboard's visits/countries widget. No IP address is stored
+// (see analytics.service.ts) — one call per page the visitor opens, fired from the client on route
+// change. Always answers 204 so a slow or failed write never affects navigation.
+publicRoutes.post('/track', validate(trackSchema), (req, res) => {
+  const { path } = req.body as TrackInput;
+  if (!path.startsWith('/admin') && req.headers['dnt'] !== '1') {
+    recordPageView(path, req.ip ?? '', String(req.headers['user-agent'] ?? '')).catch(() => {
+      // best-effort: a lost page view is never worth surfacing to the visitor
+    });
+  }
+  res.status(204).end();
 });
 
 /** Settings the website needs at run time (public keys and the analytics snippet) — nothing secret. */

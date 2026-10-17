@@ -62,10 +62,16 @@ Then point `DATABASE_URL` in `server/.env` at `lamico_app`. (Optionally keep a s
 - **Uploads**: identified by content (Word files must really be Word), size limited, never executed (`Content-Security-Policy: sandbox`), JPEG metadata (GPS/EXIF) removed, CVs are private and admin-only; optional ClamAV scan of every CV and media upload.
 - **Spam control**: per-IP limits, plus per-email (3 applications / 5 messages a day) and site-wide hourly ceilings that do not depend on IP addresses.
 - **Activity log**: every dashboard change and every view of an application, message or CV is recorded with who did it (Dashboard → سجل النشاط, super admin only). Request bodies are never stored. Kept `AUDIT_RETENTION_DAYS` (default 365).
+- **Visits widget** (Dashboard → home): page views, approximate unique visitors and top countries, built in — no third-party analytics account needed. No cookie and no IP address are ever stored: only the country and a hash of `secret + today's date + IP + user agent`, which rotates every day and so cannot identify anyone or be used to follow one visitor across days. This — together with the optional Plausible/Umami snippet, which is cookie-free by the same design — is why the site needs no cookie-consent banner. Kept `PAGEVIEW_RETENTION_DAYS` (default 400).
 - **Data exposure**: no password hashes or secrets in any response; public pages read only published content; `/sitemap.xml` and `/robots.txt` never list drafts or the dashboard.
 - `npm audit` reports issues that come only through the **Prisma CLI** (`prisma` → `mysql2`). The CLI is a dev/deploy tool (`devDependencies`); the running API uses the PostgreSQL adapter and never loads it. The suggested "fix" is a breaking downgrade to Prisma 6, so it is intentionally not applied; update Prisma when a fixed 7.x is released.
+- `npm audit` also reports two advisories in `ip-address`, a dependency of `geoip-country` (used only for the visits widget's country lookup): an XSS in its HTML-emitting `Address6` methods, which this code never calls, and an octal/decimal parsing ambiguity meant for SSRF-prone uses (parsing an address before using it to make a request) — this code only feeds it the server's own resolved visitor IP for an offline country lookup, never renders its output as HTML and never makes a request with it, so neither applies here. `geoip-country` itself is unmaintained (its author now recommends `ip-location-api`, which is clean but needs outbound internet on first run to build its database); this trade-off — a fully offline package with a documented-but-inapplicable advisory — was chosen deliberately. Revisit if a maintained, fully offline alternative appears.
 
 ## Production
+
+Deploying to a fresh Hetzner Cloud server from scratch (server setup, systemd service, nginx + HTTPS,
+GitHub deploy key, ongoing deploys)? See **[deploy/HETZNER_SETUP.md](deploy/HETZNER_SETUP.md)** — it
+walks through every step in order. The manual summary:
 
 ```bash
 npm ci
