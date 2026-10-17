@@ -86,7 +86,8 @@ export default function ProductDetailPage() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal direction="right">
-            <div className="aspect-square overflow-hidden rounded-3xl bg-gray-50 shadow-card">
+            {/* Caps are shot as wide two-view photos; a square crop cuts most of them off. */}
+            <div className={cn('overflow-hidden rounded-3xl bg-gray-50 shadow-card', product.sector === 'caps' ? 'aspect-3/2' : 'aspect-square')}>
               {images[active] ? (
                 <img src={images[active]} alt={name} className="size-full object-cover" />
               ) : (

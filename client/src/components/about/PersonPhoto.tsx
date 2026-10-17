@@ -13,6 +13,11 @@ interface PersonPhotoProps {
 /**
  * A portrait frame. Until a photo is uploaded from the dashboard it shows a calm silhouette,
  * so the page looks finished and nothing is invented.
+ *
+ * `small` (the homepage message cards) sizes the photo up and pins it to the top instead of a
+ * plain `object-cover`, so the face reads clearly at that tiny size instead of showing the whole
+ * body far away. Done with the image's own (larger) layout size rather than a CSS `transform:
+ * scale`, which Chrome rasterizes onto a low-resolution layer at small sizes and renders blurry.
  */
 export function PersonPhoto({ photo, name, size = 'large', className }: PersonPhotoProps) {
   return (
@@ -24,7 +29,11 @@ export function PersonPhoto({ photo, name, size = 'large', className }: PersonPh
       )}
     >
       {photo ? (
-        <img src={photo} alt={name} loading="lazy" className="size-full object-cover" />
+        size === 'small' ? (
+          <img src={photo} alt={name} loading="lazy" className="absolute left-1/2 top-0 h-[190%] w-auto -translate-x-1/2" />
+        ) : (
+          <img src={photo} alt={name} loading="lazy" className="size-full object-cover" />
+        )
       ) : (
         <div role="img" aria-label={name} className="flex size-full items-end justify-center">
           <UserRound aria-hidden strokeWidth={1} className="size-4/5 translate-y-[8%] text-gray-300" />

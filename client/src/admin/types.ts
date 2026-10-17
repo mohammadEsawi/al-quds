@@ -103,6 +103,17 @@ export interface TeamMemberDTO {
   isPlaceholder: boolean;
 }
 
+export interface NewsItemDTO {
+  id: string;
+  title: Loc;
+  text: Loc;
+  image?: string;
+  link?: string;
+  publishedAt: string;
+  published: boolean;
+  sortOrder: number;
+}
+
 export type ProductSectorKey = 'water' | 'plastic' | 'preforms' | 'caps' | 'food';
 export type ContentStatus = 'draft' | 'published' | 'hidden';
 
@@ -177,7 +188,7 @@ export interface RealEstateDTO {
   description: Loc[];
   location: Loc;
   featuredImage: string;
-  gallery: { src: string; caption: Loc }[];
+  gallery: { src: string; caption: Loc; kind?: 'image' | 'video'; poster?: string }[];
   features: Loc[];
   contactPhone: string;
   whatsappNumber: string;
@@ -330,6 +341,16 @@ export interface DashboardDTO {
     product: ProductDTO | null;
     job: JobDTO | null;
   };
+}
+
+export interface VisitStatsDTO {
+  days: number;
+  totalViews: number;
+  uniqueVisitors: number;
+  daily: { date: string; views: number; visitors: number }[];
+  /** `country` is an ISO 3166-1 alpha-2 code (e.g. "PS"); shown as a name with `Intl.DisplayNames`. */
+  topCountries: { country: string; visitors: number }[];
+  topPages: { path: string; views: number }[];
 }
 
 export type { HomeContent as HomeContentDTO } from '@/content/types';

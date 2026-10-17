@@ -1,39 +1,30 @@
 import { useRef } from 'react';
-import { CheckCircle2 } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section, SectionHeader } from '@/components/ui/Section';
-import { GranuleField } from '@/components/sections/GranuleField';
 import { GranuleName } from '@/components/sections/GranuleName';
 import { InquiryCta } from '@/components/sections/InquiryCta';
 import { PlasticOverview } from '@/components/sections/PlasticOverview';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
-import { ProductGrid } from '@/components/sections/ProductGrid';
 import { useSiteData } from '@/context/SiteData';
 import { useSeo } from '@/hooks/useSeo';
 import { useI18n } from '@/i18n/I18nProvider';
 
-type ManufacturingSector = 'plastic' | 'preforms' | 'caps';
-
 /**
- * Shared page for the manufacturing sectors (plastic, preforms, caps): granule hero, intro,
- * scroll-driven process, optional product list, and an inquiry block. Copy comes from the
- * dictionary; products come from the data layer.
+ * The plastic page: granule hero, intro, in-house manufacturing story and process — with cards leading
+ * to the preforms and caps pages, which each have their own hero and content (see PreformsPage.tsx and
+ * CapsPage.tsx). Preforms and caps used to be merged into this page; both are their own pages again,
+ * reachable from the cards in PlasticOverview and directly at `/preforms` and `/caps`.
  */
-export default function SectorPage({ sector }: { sector: ManufacturingSector }) {
+export default function SectorPage() {
   const { t, pick } = useI18n();
   const { company } = useSiteData();
-  const channel = company.whatsapp[sector];
+  const channel = company.whatsapp.plastic;
   const nameAnchor = useRef<HTMLDivElement>(null);
-  const copy = t.sectorPage[sector];
-  const stages = t.process[sector] as Record<string, { title: string; text: string }>;
-  const steps = Object.values(stages);
+  const copy = t.sectorPage.plastic;
+  const steps = Object.values(t.process.plastic);
 
   useSeo({ title: copy.heroTitle, description: copy.metaDescription });
-
-  const features = sector === 'preforms' ? t.sectorPage.preforms.features : [];
-  const showProducts = sector !== 'plastic';
-  const typesTitle = sector === 'caps' ? t.sectorPage.caps.typesTitle : t.sectorPage.productsOverline;
 
   return (
     <>
@@ -41,14 +32,14 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
         tall
         title={copy.heroTitle}
         text={copy.heroText}
-        current={t.nav[sector]}
+        current={t.nav.plastic}
         trail={[{ label: t.nav.sectors, to: '/sectors' }]}
-        // Plastic: granules and pigments assemble into the logo and the company name. Other sectors keep the wave.
-        hideTitle={sector === 'plastic'}
-        titleSlot={sector === 'plastic' ? <div ref={nameAnchor} className="mx-auto h-[22rem] w-full max-w-6xl sm:h-[28rem]" /> : undefined}
+        // Granules and pigments assemble into the logo and the company name instead of a plain title.
+        hideTitle
+        titleSlot={<div ref={nameAnchor} className="mx-auto h-[22rem] w-full max-w-6xl sm:h-[28rem]" />}
         backdrop={
           <>
-            {sector === 'plastic' ? <GranuleName lines={t.sectorPage.plastic.granuleLines} compactLines={t.sectorPage.plastic.granuleLinesCompact} logoSrc={company.logo} anchorRef={nameAnchor} /> : <GranuleField />}
+            <GranuleName lines={copy.granuleLines} compactLines={copy.granuleLinesCompact} logoSrc={company.logo} anchorRef={nameAnchor} />
             <div aria-hidden className="absolute inset-0 bg-linear-to-t from-gray-900/70 via-transparent to-gray-900/40" />
           </>
         }
@@ -62,41 +53,22 @@ export default function SectorPage({ sector }: { sector: ManufacturingSector }) 
             <p className="mt-6 text-xl leading-relaxed font-light text-gray-600">{copy.introText}</p>
           </Reveal>
         </div>
-        {features.length > 0 && (
-          <ul className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <Reveal as="li" key={feature} delay={index * 0.06}>
-                <div className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-card">
-                  <CheckCircle2 aria-hidden className="size-5 shrink-0 text-primary" />
-                  <span className="font-medium">{feature}</span>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
-        )}
       </Section>
 
-      {sector === 'plastic' && <PlasticOverview />}
+      <PlasticOverview />
 
       <Section muted id="process">
         <SectionHeader overline={t.sectorPage.processOverline} title={copy.processTitle} />
         <ProcessSteps steps={steps} />
       </Section>
 
-      {showProducts && (
-        <Section id="products">
-          <SectionHeader overline={t.sectorPage.productsOverline} title={typesTitle} />
-          <ProductGrid sector={sector as 'preforms' | 'caps'} />
-        </Section>
-      )}
-
-      <Section muted={!showProducts}>
+      <Section>
         <InquiryCta
           title={t.sectorPage.inquiryTitle}
           text={t.sectorPage.inquiryText}
           whatsappNumber={(channel ?? company.whatsapp.general).number}
           whatsappMessage={channel ? pick(channel.message) : copy.whatsappMessage}
-          quoteTo={sector === 'plastic' ? '/quote' : `/quote?sector=${sector}`}
+          quoteTo="/quote"
         />
       </Section>
     </>

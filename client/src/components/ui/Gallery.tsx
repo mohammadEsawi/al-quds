@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, X, ZoomIn } from 'lucide-react';
 import type { GalleryImage } from '@/content/types';
 import { useI18n } from '@/i18n/I18nProvider';
 import { cn } from '@/lib/cn';
 import { Reveal } from './Reveal';
 
-/** Image grid that opens a keyboard-accessible lightbox. */
-export function Gallery({ images, className }: { images: GalleryImage[]; className?: string }) {
+/** Image grid that opens a keyboard-accessible lightbox. `tileAspect` (default 3/4) also sets the grid columns for portrait video reels. */
+export function Gallery({ images, className, tileAspect = '3/4', columns = 'grid-cols-2 lg:grid-cols-3' }: { images: GalleryImage[]; className?: string; tileAspect?: string; columns?: string }) {
   const { t, pick } = useI18n();
   const [active, setActive] = useState<number | null>(null);
   const opener = useRef<HTMLElement | null>(null);
@@ -42,7 +42,7 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
 
   return (
     <>
-      <div className={cn('grid grid-cols-2 gap-4 lg:grid-cols-3', className)}>
+      <div className={cn('grid gap-4', columns, className)}>
         {images.map((image, index) => (
           <Reveal key={image.src} direction="scale" delay={(index % 3) * 0.08}>
             <button
@@ -51,15 +51,23 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
                 opener.current = e.currentTarget;
                 setActive(index);
               }}
-              aria-label={`${t.realEstate.viewImage}: ${pick(image.caption)}`}
-              className="group relative block aspect-[3/4] w-full overflow-hidden rounded-xl"
+              aria-label={`${image.kind === 'video' ? t.realEstate.playVideo : t.realEstate.viewImage}: ${pick(image.caption)}`}
+              style={{ aspectRatio: tileAspect }}
+              className="group relative block w-full overflow-hidden rounded-xl"
             >
               <img
-                src={image.src}
+                src={image.kind === 'video' ? (image.poster ?? image.src) : image.src}
                 alt={pick(image.caption)}
                 loading="lazy"
                 className="size-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
+              {image.kind === 'video' && (
+                <span aria-hidden className="absolute inset-0 flex items-center justify-center bg-gray-900/25">
+                  <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-primary shadow-lift transition-transform group-hover:scale-110">
+                    <Play aria-hidden className="size-6 translate-x-0.5 fill-current rtl:-translate-x-0.5 rtl:-scale-x-100" />
+                  </span>
+                </span>
+              )}
               <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-primary/60 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                 <ZoomIn aria-hidden className="size-9" />
                 <span className="text-sm font-medium">{pick(image.caption)}</span>
@@ -123,7 +131,22 @@ export function Gallery({ images, className }: { images: GalleryImage[]; classNa
               animate={{ scale: 1, opacity: 1 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={current.src} alt={pick(current.caption)} className="max-h-[80vh] rounded-xl object-contain" />
+              {current.kind === 'video' ? (
+                // autoPlay: the whole point of opening it is to watch it right away.
+                <video
+                  key={current.src}
+                  src={current.src}
+                  poster={current.poster}
+                  autoPlay
+                  controls
+                  playsInline
+                  className="max-h-[80vh] max-w-full rounded-xl"
+                >
+                  <track kind="captions" />
+                </video>
+              ) : (
+                <img src={current.src} alt={pick(current.caption)} className="max-h-[80vh] rounded-xl object-contain" />
+              )}
               <figcaption className="mt-3 text-center text-sm text-gray-300">{pick(current.caption)}</figcaption>
             </motion.figure>
           </motion.div>

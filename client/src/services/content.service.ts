@@ -15,6 +15,7 @@ import type {
   HomeContent,
   Job,
   LegalDocument,
+  NewsItem,
   Product,
   ProductSector,
   RealEstateProject,
@@ -112,6 +113,9 @@ export const getTeam = (): Promise<TeamData> =>
     board: seedTeam.filter((m) => m.group === 'board'),
     executive: seedTeam.filter((m) => m.group === 'executive'),
   }));
+
+/** Homepage "latest news" cards, most recently arranged first. Empty until the admin adds any. */
+export const getNews = (): Promise<NewsItem[]> => load<NewsItem[]>('/news', () => []);
 
 /** Text of the "About the company" page. No setting saved yet (404) or an unreachable API both mean "use the built-in text". */
 export async function getAboutPage(): Promise<AboutPageContent> {

@@ -11,6 +11,7 @@ import QuotesPage from './pages/QuotesPage';
 import { JobEditPage, JobsListPage } from './pages/JobsPages';
 import LoginPage from './pages/LoginPage';
 import MediaPage from './pages/MediaPage';
+import NewsPage from './pages/NewsPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductsPage from './pages/ProductsPage';
 import { RealEstateEditPage, RealEstateListPage } from './pages/RealEstatePages';
@@ -59,6 +60,7 @@ export default function AdminApp() {
                 <Route path="jobs" element={<JobsListPage />} />
                 <Route path="jobs/:id" element={<JobEditPage />} />
                 <Route path="team" element={<TeamPage />} />
+                <Route path="news" element={<NewsPage />} />
                 <Route path="media" element={<MediaPage />} />
                 <Route path="account" element={<AccountPage />} />
 

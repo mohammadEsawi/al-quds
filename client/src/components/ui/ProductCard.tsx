@@ -14,7 +14,16 @@ const placeholderLabel: Record<Product['sector'], string> = {
 };
 
 /** Product tile used on every product listing (water, food, preforms, caps, all products). */
-export function ProductCard({ product, className }: { product: Product; className?: string }) {
+export function ProductCard({
+  product,
+  className,
+  imageAspect = 'square',
+}: {
+  product: Product;
+  className?: string;
+  /** 'square' fits upright bottle/food shots; 'wide' fits landscape product photos (e.g. caps) without cropping them tight. */
+  imageAspect?: 'square' | 'wide';
+}) {
   const { t, pick } = useI18n();
   const name = pick(product.name);
 
@@ -26,7 +35,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
         className,
       )}
     >
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
+      <div className={cn('relative overflow-hidden bg-gray-50', imageAspect === 'wide' ? 'aspect-3/2' : 'aspect-square')}>
         {product.image ? (
           <img
             src={product.image}

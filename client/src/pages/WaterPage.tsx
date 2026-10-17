@@ -6,13 +6,13 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { CardGridSkeleton, ErrorState } from '@/components/ui/States';
 import { DistributionTruck } from '@/components/sections/DistributionTruck';
 import { InquiryCta } from '@/components/sections/InquiryCta';
-import { LabelSelector } from '@/components/sections/LabelSelector';
 import { WaterSizeCard } from '@/components/sections/WaterSizeCard';
+import { WaterWaves } from '@/components/sections/WaterWaves';
 import { useSiteData } from '@/context/SiteData';
 import { useAsync } from '@/hooks/useAsync';
 import { useSeo } from '@/hooks/useSeo';
 import { useI18n } from '@/i18n/I18nProvider';
-import { getProducts, getWaterLabels, getWaterOverview } from '@/services/content.service';
+import { getProducts, getWaterOverview } from '@/services/content.service';
 
 export default function WaterPage() {
   const { t, pick } = useI18n();
@@ -21,12 +21,22 @@ export default function WaterPage() {
 
   const overview = useAsync(getWaterOverview);
   const products = useAsync(() => getProducts({ sector: 'water' }));
-  const labels = useAsync(getWaterLabels);
   const info = overview.data;
 
   return (
     <>
-      <PageHero title={t.water.heroTitle} text={t.water.heroText} current={t.nav.water} />
+      <PageHero
+        tall
+        title={t.water.heroTitle}
+        text={t.water.heroText}
+        current={t.nav.water}
+        backdrop={
+          <>
+            <WaterWaves />
+            <div aria-hidden className="absolute inset-0 bg-linear-to-t from-gray-900/40 via-transparent to-gray-900/50" />
+          </>
+        }
+      />
 
       {/* Featured product */}
       {info && (
@@ -76,14 +86,6 @@ export default function WaterPage() {
           </ul>
         )}
       </Section>
-
-      {/* Labels */}
-      {labels.data && labels.data.length > 0 && (
-        <Section id="labels">
-          <SectionHeader overline={t.water.labelsOverline} title={t.water.labelsTitle} />
-          <LabelSelector labels={labels.data} />
-        </Section>
-      )}
 
       <DistributionTruck
         overline={t.home.distributionOverline}

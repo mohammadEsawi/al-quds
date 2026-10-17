@@ -5,6 +5,7 @@ import { Section, SectionHeader } from '@/components/ui/Section';
 import { AboutHome } from '@/components/sections/AboutHome';
 import { DistributionTruck } from '@/components/sections/DistributionTruck';
 import { CitiesBand, CtaBanner, StatsBand } from '@/components/sections/HomeBands';
+import { NewsSection } from '@/components/sections/NewsSection';
 import { ProductGrid } from '@/components/sections/ProductGrid';
 import { RealEstateTeaser } from '@/components/sections/RealEstateTeaser';
 import { SectorsGrid } from '@/components/sections/SectorsGrid';
@@ -58,6 +59,7 @@ export default function HomePage() {
       </Section>
 
       <RealEstateTeaser />
+      <NewsSection />
       <StatsBand />
       <CitiesBand />
 

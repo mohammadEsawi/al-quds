@@ -118,6 +118,9 @@ export interface HomeContent {
 export interface GalleryImage {
   src: string;
   caption: LocalizedText;
+  /** Defaults to 'image'. A 'video' item shows `poster` in the grid and plays `src` on open. */
+  kind?: 'image' | 'video';
+  poster?: string;
 }
 
 export interface RealEstateProject {
@@ -189,6 +192,18 @@ export interface TeamMember {
   photo?: string;
   /** Shown with a "sample" hint until the real details are entered. */
   isPlaceholder?: boolean;
+}
+
+/** A short homepage update: title + short text, an optional photo and an optional link. */
+export interface NewsItem {
+  id: string;
+  title: LocalizedText;
+  text: LocalizedText;
+  /** Uploaded from the dashboard. */
+  image?: string;
+  /** Where the card goes when clicked — an internal page or an external https URL. */
+  link?: string;
+  publishedAt: string;
 }
 
 export interface AboutPageContent {

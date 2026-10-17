@@ -16,9 +16,11 @@ import type {
   CategoryDTO,
   CompanyDTO,
   DashboardDTO,
+  VisitStatsDTO,
   JobDTO,
   MediaDTO,
   MessageDTO,
+  NewsItemDTO,
   NotificationDTO,
   Paged,
   ProductDTO,
@@ -61,6 +63,7 @@ export const adminApi = {
     changePassword: (currentPassword: string, newPassword: string) => none(api.post('/auth/change-password', { currentPassword, newPassword })),
   },
   dashboard: () => data<DashboardDTO>(api.get('/admin/dashboard')),
+  analytics: (days = 30) => data<VisitStatsDTO>(api.get('/admin/analytics', { params: { days } })),
 
   products: {
     list: (params?: Params) => data<Paged<ProductDTO>>(api.get('/admin/products', { params: clean(params) })),
@@ -151,6 +154,13 @@ export const adminApi = {
     update: (id: string, body: unknown) => data<TeamMemberDTO>(api.put(`/admin/team/${id}`, body)),
     remove: (id: string) => none(api.delete(`/admin/team/${id}`)),
     reorder: (items: { id: string; sortOrder: number }[]) => none(api.post('/admin/team/reorder', { items })),
+  },
+  news: {
+    list: () => data<NewsItemDTO[]>(api.get('/admin/news')),
+    create: (body: unknown) => data<NewsItemDTO>(api.post('/admin/news', body)),
+    update: (id: string, body: unknown) => data<NewsItemDTO>(api.put(`/admin/news/${id}`, body)),
+    remove: (id: string) => none(api.delete(`/admin/news/${id}`)),
+    reorder: (items: { id: string; sortOrder: number }[]) => none(api.post('/admin/news/reorder', { items })),
   },
   quotes: {
     list: (params?: Params) => data<Paged<QuoteDTO>>(api.get('/admin/quotes', { params: clean(params) })),

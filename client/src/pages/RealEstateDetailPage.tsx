@@ -53,6 +53,8 @@ export default function RealEstateDetailPage() {
   }
 
   const name = pick(project.name);
+  const videos = project.gallery.filter((g) => g.kind === 'video');
+  const photos = project.gallery.filter((g) => g.kind !== 'video');
 
   return (
     <>
@@ -113,10 +115,17 @@ export default function RealEstateDetailPage() {
         </div>
       </Section>
 
-      {project.gallery.length > 0 && (
+      {videos.length > 0 && (
+        <Section id="videos">
+          <SectionHeader overline={t.realEstate.videosOverline} title={t.realEstate.videosTitle} />
+          <Gallery images={videos} tileAspect="9/16" columns={`mx-auto max-w-3xl grid-cols-1 ${videos.length > 1 ? 'sm:grid-cols-2' : ''} ${videos.length > 2 ? 'lg:grid-cols-3' : ''}`} />
+        </Section>
+      )}
+
+      {photos.length > 0 && (
         <Section muted id="gallery">
           <SectionHeader overline={t.realEstate.galleryOverline} title={t.realEstate.gallery} />
-          <Gallery images={project.gallery} />
+          <Gallery images={photos} />
         </Section>
       )}
 

@@ -1,4 +1,4 @@
-import { Briefcase, Building2, Droplets, FileText, Mail, Package, Plus, Receipt, Wheat, Factory, type LucideIcon } from 'lucide-react';
+import { Briefcase, Building2, Droplets, Eye, FileText, Globe2, Mail, Package, Plus, Receipt, Users, Wheat, Factory, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { Button } from '@/components/ui/Button';
 import { useAsync } from '@/hooks/useAsync';
@@ -28,10 +28,22 @@ function Stat({ icon: Icon, label, value, to, tone }: { icon: LucideIcon; label:
   );
 }
 
+const countryNames = new Intl.DisplayNames(['ar'], { type: 'region' });
+/** "PS" → "فلسطين"; falls back to the code itself for anything `Intl` does not recognize. */
+function countryName(code: string): string {
+  try {
+    return countryNames.of(code) ?? code;
+  } catch {
+    return code;
+  }
+}
+
 export default function DashboardPage() {
   const { user, can } = useAuth();
   const query = useAsync(() => adminApi.dashboard());
+  const visits = useAsync(() => adminApi.analytics(30));
   const d = query.data;
+  const v = visits.data;
   const admins = can('SUPER_ADMIN', 'ADMIN');
 
   return (
@@ -70,6 +82,38 @@ export default function DashboardPage() {
           </div>
 
           {admins && <ReadinessCard />}
+
+          {v && (
+            <div className="grid gap-6 lg:grid-cols-3">
+              <Card className="p-5 lg:col-span-2">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="font-display text-lg font-bold">زوّار الموقع خلال آخر {v.days} يوماً</h2>
+                  <div className="flex gap-5 text-sm">
+                    <span className="inline-flex items-center gap-1.5 text-gray-600"><Eye aria-hidden className="size-4 text-primary" />{v.totalViews} مشاهدة</span>
+                    <span className="inline-flex items-center gap-1.5 text-gray-600"><Users aria-hidden className="size-4 text-quds" />{v.uniqueVisitors} زائر تقريباً</span>
+                  </div>
+                </div>
+                {v.daily.length ? (
+                  <ActivityChart
+                    series={[
+                      { label: 'مشاهدات الصفحات', color: '#0a6bb5', data: v.daily.map((x) => ({ date: x.date, count: x.views })) },
+                      { label: 'زوّار (تقريبي)', color: '#ad1355', data: v.daily.map((x) => ({ date: x.date, count: x.visitors })) },
+                    ]}
+                  />
+                ) : (
+                  <p className="py-8 text-center text-sm text-gray-400">لا زيارات مسجّلة بعد</p>
+                )}
+              </Card>
+              <Card className="p-5">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold"><Globe2 aria-hidden className="size-5 text-primary" />أكثر الدول زيارة</h2>
+                {v.topCountries.length ? (
+                  <BarList items={v.topCountries.map((c) => ({ label: countryName(c.country), value: c.visitors }))} />
+                ) : (
+                  <p className="py-8 text-center text-sm text-gray-400">لا توجد بيانات دول بعد</p>
+                )}
+              </Card>
+            </div>
+          )}
 
           {admins && (
             <div className="grid gap-6 lg:grid-cols-3">

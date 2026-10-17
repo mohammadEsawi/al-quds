@@ -15,7 +15,7 @@ const owned: { key: 'import' | 'machines' | 'workers'; icon: LucideIcon }[] = [
 ];
 
 /**
- * Plastic page body: what the company makes (preform + cap cards that lead to their pages) and the
+ * Plastic page body: what the company makes (preform + cap cards that lead to their own pages) and the
  * in-house manufacturing story (own imports, own machines, own workers).
  */
 export function PlasticOverview() {
@@ -35,12 +35,10 @@ export function PlasticOverview() {
       <Section muted id="products">
         <SectionHeader overline={copy.productsOverline} title={copy.productsTitle} />
         <ul className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
-          {cards.map(({ to, icon: Icon, title, text, chips, chipsLabel, badge }, index) => (
-            <Reveal as="li" key={to} delay={index * 0.1}>
-              <LocalizedLink
-                to={to}
-                className="group relative flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-transparent hover:shadow-lift"
-              >
+          {cards.map(({ to, icon: Icon, title, text, chips, chipsLabel, badge }, index) => {
+            const className = 'group relative flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-transparent hover:shadow-lift';
+            const body = (
+              <>
                 {badge && (
                   <span className="absolute end-6 top-6 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">{badge}</span>
                 )}
@@ -65,9 +63,16 @@ export function PlasticOverview() {
                   {t.common.learnMore}
                   <ArrowRight aria-hidden className="size-4 rtl:rotate-180" />
                 </span>
-              </LocalizedLink>
-            </Reveal>
-          ))}
+              </>
+            );
+            return (
+              <Reveal as="li" key={to} delay={index * 0.1}>
+                <LocalizedLink to={to} className={className}>
+                  {body}
+                </LocalizedLink>
+              </Reveal>
+            );
+          })}
         </ul>
       </Section>
 

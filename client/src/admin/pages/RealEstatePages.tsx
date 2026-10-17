@@ -71,7 +71,7 @@ interface Form {
   description: Loc[];
   location: Loc;
   featuredImage: string;
-  gallery: { src: string; caption: Loc }[];
+  gallery: { src: string; caption: Loc; kind: 'image' | 'video'; poster: string }[];
   features: Loc[];
   contactPhone: string;
   whatsappNumber: string;
@@ -109,7 +109,22 @@ export function RealEstateEditPage() {
 
   useEffect(() => {
     const p = query.data;
-    if (p) setForm({ slug: p.slug, name: p.name, tagline: p.tagline ?? emptyLoc(), description: p.description, location: p.location, featuredImage: p.featuredImage, gallery: p.gallery, features: p.features, contactPhone: p.contactPhone, whatsappNumber: p.whatsappNumber, status: p.status, published: p.published, sortOrder: String(p.sortOrder) });
+    if (p)
+      setForm({
+        slug: p.slug,
+        name: p.name,
+        tagline: p.tagline ?? emptyLoc(),
+        description: p.description,
+        location: p.location,
+        featuredImage: p.featuredImage,
+        gallery: p.gallery.map((g) => ({ src: g.src, caption: g.caption, kind: g.kind ?? 'image', poster: g.poster ?? '' })),
+        features: p.features,
+        contactPhone: p.contactPhone,
+        whatsappNumber: p.whatsappNumber,
+        status: p.status,
+        published: p.published,
+        sortOrder: String(p.sortOrder),
+      });
   }, [query.data]);
 
   if (query.error) return <ErrorBlock onRetry={query.reload} />;
@@ -128,7 +143,9 @@ export function RealEstateEditPage() {
       description: form.description.filter(filled),
       location: form.location,
       featuredImage: form.featuredImage.trim(),
-      gallery: form.gallery.filter((g) => g.src.trim()).map((g) => ({ src: g.src.trim(), caption: g.caption })),
+      gallery: form.gallery
+        .filter((g) => g.src.trim())
+        .map((g) => ({ src: g.src.trim(), caption: g.caption, kind: g.kind, ...(g.kind === 'video' && g.poster.trim() && { poster: g.poster.trim() }) })),
       features: form.features.filter(filled),
       contactPhone: form.contactPhone.trim(),
       whatsappNumber: form.whatsappNumber.replace(/\D/g, ''),
@@ -186,12 +203,24 @@ export function RealEstateEditPage() {
             <ListEditor
               items={form.gallery}
               onChange={(v) => set('gallery', v)}
-              newItem={() => ({ src: '', caption: emptyLoc() })}
+              newItem={(): Form['gallery'][number] => ({ src: '', caption: emptyLoc(), kind: 'image', poster: '' })}
               addLabel="إضافة صورة"
               emptyText="لا توجد صور في المعرض"
               renderItem={(g, update) => (
                 <div className="space-y-3">
-                  <ImageField label="الصورة" compact value={g.src} onChange={(src) => update({ ...g, src })} />
+                  <SelectField
+                    label="النوع"
+                    value={g.kind}
+                    onChange={(kind) => update({ ...g, kind: kind as 'image' | 'video' })}
+                    options={[
+                      { value: 'image', label: 'صورة' },
+                      { value: 'video', label: 'فيديو' },
+                    ]}
+                  />
+                  <ImageField label={g.kind === 'video' ? 'ملف الفيديو' : 'الصورة'} compact kind={g.kind} value={g.src} onChange={(src) => update({ ...g, src })} />
+                  {g.kind === 'video' && (
+                    <ImageField label="صورة الغلاف (تظهر بالمعرض قبل التشغيل)" compact value={g.poster} onChange={(poster) => update({ ...g, poster })} />
+                  )}
                   <LocalizedField label="التعليق" value={g.caption} onChange={(caption) => update({ ...g, caption })} />
                 </div>
               )}

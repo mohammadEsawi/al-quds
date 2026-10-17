@@ -14,6 +14,8 @@ const MessagePage = lazy(() => import('@/pages/MessagePage'));
 const SectorsPage = lazy(() => import('@/pages/SectorsPage'));
 const WaterPage = lazy(() => import('@/pages/WaterPage'));
 const SectorPage = lazy(() => import('@/pages/SectorPage'));
+const PreformsPage = lazy(() => import('@/pages/PreformsPage'));
+const CapsPage = lazy(() => import('@/pages/CapsPage'));
 const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 const FoodPage = lazy(() => import('@/pages/FoodPage'));
@@ -56,9 +58,10 @@ const pageRoutes = (
     <Route path="about/gm-message" element={<MessagePage leader="general-manager" />} />
     <Route path="sectors" element={<SectorsPage />} />
     <Route path="water" element={<WaterPage />} />
-    <Route path="plastic" element={<SectorPage sector="plastic" />} />
-    <Route path="preforms" element={<SectorPage sector="preforms" />} />
-    <Route path="caps" element={<SectorPage sector="caps" />} />
+    <Route path="plastic" element={<SectorPage />} />
+    {/* Preforms and caps each have their own page, reachable from cards on the plastic page — neither is in the sectors menu. */}
+    <Route path="preforms" element={<PreformsPage />} />
+    <Route path="caps" element={<CapsPage />} />
     <Route path="products" element={<ProductsPage />} />
     <Route path="products/:slug" element={<ProductDetailPage />} />
     <Route path="food" element={<FoodPage />} />

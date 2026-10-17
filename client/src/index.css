@@ -119,3 +119,15 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* The water page hero: two wave layers drift sideways forever (see WaterWaves.tsx). Each layer's SVG
+   is twice the width of its box and draws the same wave tile twice, so sliding by exactly half its own
+   width (= one tile) loops seamlessly at any screen size. */
+@keyframes water-wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
