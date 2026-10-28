@@ -1,6 +1,6 @@
 const BASE = process.env.E2E_SITE ?? 'http://localhost:4173'; const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));
 // /preforms and /caps are their own pages again.
-const routes=['','/about','/about/board','/about/executive','/about/chairman-message','/about/gm-message','/sectors','/water','/plastic','/preforms','/caps','/products','/products/al-quds-water-1-5l','/products/preform-200ml','/food','/real-estate','/real-estate/academy-house','/careers','/careers/accountant','/contact','/privacy','/terms'];
+const routes=['','/about','/about/board','/about/executive','/about/chairman-message','/about/gm-message','/sectors','/water','/plastic','/preforms','/caps','/products','/products/al-quds-water-1-5l','/products/preform-200ml','/food','/real-estate','/real-estate/academy-house','/lands','/careers','/careers/accountant','/contact','/privacy','/terms'];
 let bad=0, total=0;
 for (const lang of ['ar','en']) for (const r of routes) {
   const t=await (await fetch('http://127.0.0.1:9222/json/new?about:blank',{method:'PUT'})).json();

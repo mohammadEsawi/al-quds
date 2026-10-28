@@ -15,6 +15,7 @@ import NewsPage from './pages/NewsPage';
 import ProductEditPage from './pages/ProductEditPage';
 import ProductsPage from './pages/ProductsPage';
 import { RealEstateEditPage, RealEstateListPage } from './pages/RealEstatePages';
+import { LandEditPage, LandsListPage } from './pages/LandsPages';
 import AboutContentPage from './pages/AboutContentPage';
 import AuditPage from './pages/AuditPage';
 import { CompanyPage, HomeContentPage, SettingsPage, WhatsAppPage } from './pages/SitePages';
@@ -57,6 +58,8 @@ export default function AdminApp() {
                 <Route path="sectors" element={<SectorsPage />} />
                 <Route path="real-estate" element={<RealEstateListPage />} />
                 <Route path="real-estate/:id" element={<RealEstateEditPage />} />
+                <Route path="lands" element={<LandsListPage />} />
+                <Route path="lands/:id" element={<LandEditPage />} />
                 <Route path="jobs" element={<JobsListPage />} />
                 <Route path="jobs/:id" element={<JobEditPage />} />
                 <Route path="team" element={<TeamPage />} />

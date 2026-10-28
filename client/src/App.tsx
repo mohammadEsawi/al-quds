@@ -21,6 +21,8 @@ const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 const FoodPage = lazy(() => import('@/pages/FoodPage'));
 const RealEstatePage = lazy(() => import('@/pages/RealEstatePage'));
 const RealEstateDetailPage = lazy(() => import('@/pages/RealEstateDetailPage'));
+const LandsPage = lazy(() => import('@/pages/LandsPage'));
+const LandDetailPage = lazy(() => import('@/pages/LandDetailPage'));
 const CareersPage = lazy(() => import('@/pages/CareersPage'));
 const JobDetailPage = lazy(() => import('@/pages/JobDetailPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
@@ -67,6 +69,8 @@ const pageRoutes = (
     <Route path="food" element={<FoodPage />} />
     <Route path="real-estate" element={<RealEstatePage />} />
     <Route path="real-estate/:slug" element={<RealEstateDetailPage />} />
+    <Route path="lands" element={<LandsPage />} />
+    <Route path="lands/:slug" element={<LandDetailPage />} />
     <Route path="careers" element={<CareersPage />} />
     <Route path="careers/:slug" element={<JobDetailPage />} />
     <Route path="contact" element={<ContactPage />} />

@@ -41,6 +41,11 @@ enum RealEstateStatus {
   SOLD
 }
 
+enum LandStatus {
+  AVAILABLE
+  SOLD
+}
+
 enum EmploymentType {
   FULL_TIME
   PART_TIME
@@ -290,6 +295,34 @@ model RealEstateProject {
   sortOrder        Int              @default(0)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
+}
+
+/// A section of its own, separate from RealEstateProject (buildings): individual land plots for sale,
+/// each with its own contact — so an ad placed for one specific plot can link straight to its page.
+model LandListing {
+  id               String     @id @default(cuid())
+  slug             String     @unique
+  titleAr          String
+  titleEn          String
+  /// e.g. "500 م²" / "2 dunams" — free text, units vary by listing
+  areaAr           String?
+  areaEn           String?
+  /// [{ ar, en }] paragraphs
+  description      Json       @default("[]")
+  locationAr       String
+  locationEn       String
+  featuredImageUrl String
+  /// [{ src, caption:{ar,en}, kind?:'image'|'video', poster? }]
+  gallery          Json       @default("[]")
+  /// [{ ar, en }]
+  features         Json       @default("[]")
+  contactPhone     String
+  whatsappNumber   String
+  status           LandStatus @default(AVAILABLE)
+  published        Boolean    @default(true)
+  sortOrder        Int        @default(0)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
 }
 
 // ───────────────────────── Careers ─────────────────────────

@@ -3,6 +3,8 @@ import type {
   TeamMember,
   EmploymentType,
   Job,
+  LandListing,
+  LandStatus,
   NewsItem,
   Prisma,
   RealEstateProject,
@@ -141,6 +143,27 @@ export function toRealEstate(p: RealEstateProject) {
     sortOrder: p.sortOrder,
     createdAt: p.createdAt,
     updatedAt: p.updatedAt,
+  };
+}
+
+// ───────── Land listings ─────────
+
+export function toLand(l: LandListing) {
+  return {
+    id: l.id,
+    slug: l.slug,
+    title: loc(l.titleAr, l.titleEn),
+    area: locOpt(l.areaAr, l.areaEn),
+    description: list<Localized>(l.description),
+    location: loc(l.locationAr, l.locationEn),
+    featuredImage: l.featuredImageUrl,
+    gallery: list<{ src: string; caption: Localized; kind?: 'image' | 'video'; poster?: string }>(l.gallery),
+    features: list<Localized>(l.features),
+    contactPhone: l.contactPhone,
+    whatsappNumber: l.whatsappNumber,
+    status: l.status.toLowerCase() as Lowercase<LandStatus>,
+    published: l.published,
+    sortOrder: l.sortOrder,
   };
 }
 

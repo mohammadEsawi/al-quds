@@ -138,6 +138,23 @@ export interface RealEstateProject {
   status: 'planning' | 'construction' | 'available' | 'sold';
 }
 
+/** A land plot for sale — a section of its own, separate from RealEstateProject (buildings). */
+export interface LandListing {
+  id: string;
+  slug: string;
+  title: LocalizedText;
+  /** e.g. "500 م²" — free text, units vary by listing. */
+  area?: LocalizedText;
+  description: LocalizedText[];
+  location: LocalizedText;
+  featuredImage: string;
+  gallery: GalleryImage[];
+  features: LocalizedText[];
+  contactPhone: string;
+  whatsappNumber: string;
+  status: 'available' | 'sold';
+}
+
 export type EmploymentType = 'fullTime' | 'partTime' | 'contract' | 'internship';
 
 export interface Job {

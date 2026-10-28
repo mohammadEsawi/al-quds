@@ -18,6 +18,7 @@ import type {
   DashboardDTO,
   VisitStatsDTO,
   JobDTO,
+  LandDTO,
   MediaDTO,
   MessageDTO,
   NewsItemDTO,
@@ -95,6 +96,13 @@ export const adminApi = {
     create: (body: unknown) => data<RealEstateDTO>(api.post('/admin/real-estate', body)),
     update: (id: string, body: unknown) => data<RealEstateDTO>(api.put(`/admin/real-estate/${id}`, body)),
     remove: (id: string) => none(api.delete(`/admin/real-estate/${id}`)),
+  },
+  lands: {
+    list: () => data<LandDTO[]>(api.get('/admin/lands')),
+    get: (id: string) => data<LandDTO>(api.get(`/admin/lands/${id}`)),
+    create: (body: unknown) => data<LandDTO>(api.post('/admin/lands', body)),
+    update: (id: string, body: unknown) => data<LandDTO>(api.put(`/admin/lands/${id}`, body)),
+    remove: (id: string) => none(api.delete(`/admin/lands/${id}`)),
   },
   jobs: {
     list: (params?: Params) => data<Paged<JobDTO>>(api.get('/admin/jobs', { params: clean(params) })),

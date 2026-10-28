@@ -49,6 +49,7 @@ import {
   updateWaterLabel,
 } from '../services/products.service.js';
 import { createProject, deleteProject, getAdminProject, listAdminProjects, updateProject } from '../services/realEstate.service.js';
+import { createLand, deleteLand, getAdminLand, listAdminLands, updateLand } from '../services/lands.service.js';
 import { idParams } from '../validators/common.js';
 import { createUser, deleteUser, listUsers, updateUser } from '../services/users.service.js';
 import {
@@ -62,6 +63,7 @@ import {
   createJobSchema,
   createNewsItemSchema,
   createProductSchema,
+  createLandSchema,
   createRealEstateSchema,
   createTeamMemberSchema,
   createUserSchema,
@@ -78,6 +80,7 @@ import {
   updateNewsItemSchema,
   updateProductSchema,
   updateQuoteSchema,
+  updateLandSchema,
   updateRealEstateSchema,
   updateTeamMemberSchema,
   updateSettingSchema,
@@ -186,6 +189,24 @@ adminRoutes.put('/real-estate/:id', anyStaff, validate(idParams, 'params'), vali
 });
 adminRoutes.delete('/real-estate/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
   await deleteProject(id(req));
+  res.status(204).end();
+});
+
+// ───────── Land listings ─────────
+adminRoutes.get('/lands', anyStaff, async (_req, res) => {
+  res.json(await listAdminLands());
+});
+adminRoutes.get('/lands/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  res.json(await getAdminLand(id(req)));
+});
+adminRoutes.post('/lands', anyStaff, validate(createLandSchema), async (req, res) => {
+  res.status(201).json(await createLand(req.body));
+});
+adminRoutes.put('/lands/:id', anyStaff, validate(idParams, 'params'), validate(updateLandSchema), async (req, res) => {
+  res.json(await updateLand(id(req), req.body));
+});
+adminRoutes.delete('/lands/:id', anyStaff, validate(idParams, 'params'), async (req, res) => {
+  await deleteLand(id(req));
   res.status(204).end();
 });
 

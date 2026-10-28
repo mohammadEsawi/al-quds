@@ -56,6 +56,7 @@ const suites = [
   { file: '08-team.test.mjs', title: 'Board, executive management and the About page content' },
   { file: '09-analytics.test.mjs', title: 'Visits/countries widget (page-view tracking)', env: { TRUST_PROXY: 'true' } },
   { file: '10-news.test.mjs', title: 'Homepage latest news' },
+  { file: '11-lands.test.mjs', title: 'Land listings' },
 ].filter((s) => !only || s.file.includes(only));
 
 const baseEnv = {

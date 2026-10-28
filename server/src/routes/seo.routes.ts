@@ -8,7 +8,7 @@ export const seoRoutes = Router();
 const site = (env.SITE_URL ?? env.CLIENT_URL).replace(/\/+$/, '');
 const LOCALES = ['ar', 'en'] as const;
 // /preforms and /caps are their own pages again (see PreformsPage.tsx and CapsPage.tsx).
-const STATIC_PAGES = ['', '/about', '/about/board', '/about/executive', '/about/chairman-message', '/about/gm-message', '/sectors', '/water', '/plastic', '/preforms', '/caps', '/products', '/food', '/real-estate', '/careers', '/contact', '/quote', '/privacy', '/terms'];
+const STATIC_PAGES = ['', '/about', '/about/board', '/about/executive', '/about/chairman-message', '/about/gm-message', '/sectors', '/water', '/plastic', '/preforms', '/caps', '/products', '/food', '/real-estate', '/lands', '/careers', '/contact', '/quote', '/privacy', '/terms'];
 
 const xml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -29,16 +29,18 @@ seoRoutes.get('/robots.txt', (_req, res) => {
 });
 
 seoRoutes.get('/sitemap.xml', async (_req, res) => {
-  const [products, jobs, projects] = await Promise.all([
+  const [products, jobs, projects, lands] = await Promise.all([
     prisma.product.findMany({ where: { status: 'PUBLISHED' }, select: { slug: true, updatedAt: true } }),
     prisma.job.findMany({ where: { status: 'OPEN', OR: [{ deadline: null }, { deadline: { gte: new Date() } }] }, select: { slug: true, updatedAt: true } }),
     prisma.realEstateProject.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+    prisma.landListing.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
   ]);
   const entries: Entry[] = [
     ...STATIC_PAGES.map((path) => ({ path })),
     ...products.map((p) => ({ path: `/products/${p.slug}`, lastmod: p.updatedAt })),
     ...jobs.map((j) => ({ path: `/careers/${j.slug}`, lastmod: j.updatedAt })),
     ...projects.map((p) => ({ path: `/real-estate/${p.slug}`, lastmod: p.updatedAt })),
+    ...lands.map((l) => ({ path: `/lands/${l.slug}`, lastmod: l.updatedAt })),
   ];
   res
     .type('application/xml')

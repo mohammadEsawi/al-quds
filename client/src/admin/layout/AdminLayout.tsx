@@ -11,6 +11,7 @@ import {
   Home,
   Image as ImageIcon,
   KeyRound,
+  LandPlot,
   LayoutDashboard,
   LogOut,
   Mail,
@@ -65,7 +66,8 @@ const NAV: { title: string; items: NavItem[] }[] = [
     title: 'المحتوى',
     items: [
       { to: '/admin/sectors', label: 'القطاعات', icon: Shapes },
-      { to: '/admin/real-estate', label: 'العقار', icon: Building2 },
+      { to: '/admin/real-estate', label: 'العقار (مشاريع)', icon: Building2 },
+      { to: '/admin/lands', label: 'الأراضي', icon: LandPlot },
       { to: '/admin/jobs', label: 'الوظائف', icon: Briefcase },
       { to: '/admin/team', label: 'الإدارة (مجلس + تنفيذية)', icon: UsersRound },
       { to: '/admin/news', label: 'آخر الأخبار', icon: Newspaper },

@@ -1,6 +1,6 @@
 import { type ComponentType, type ReactNode, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Building2, ChevronDown, LandPlot, Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router';
 import { useAboutTabs } from '@/components/about/AboutTabs';
 import { ButtonLink } from '@/components/ui/Button';
@@ -156,11 +156,19 @@ export function Header() {
             ))}
           </NavDropdown>
 
-          {links.slice(2, 5).map((l) => (
-            <LocalizedNavLink key={l.to} to={l.to} className={linkClass}>
-              {l.label}
-            </LocalizedNavLink>
-          ))}
+          <LocalizedNavLink to="/products" className={linkClass}>
+            {t.nav.products}
+          </LocalizedNavLink>
+
+          {/* Real estate: residential projects or lands, two distinct sections */}
+          <NavDropdown to="/real-estate" label={t.nav.realEstate} linkClass={linkClass} width="w-64">
+            <DropdownItem to="/real-estate" label={t.nav.realEstateProjects} icon={Building2} />
+            <DropdownItem to="/lands" label={t.nav.lands} icon={LandPlot} />
+          </NavDropdown>
+
+          <LocalizedNavLink to="/careers" className={linkClass}>
+            {t.nav.careers}
+          </LocalizedNavLink>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -221,6 +229,24 @@ export function Header() {
                   {l.to === '/about' && (
                     <ul className="mb-1 ms-4 border-s-2 border-gray-100 ps-3">
                       {aboutItems.map(({ to, label }) => (
+                        <li key={to}>
+                          <LocalizedNavLink
+                            to={to}
+                            end
+                            className={({ isActive }) => cn('block rounded-lg px-3 py-2.5 text-base font-medium', isActive ? 'text-primary' : 'text-gray-600')}
+                          >
+                            {label}
+                          </LocalizedNavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {l.to === '/real-estate' && (
+                    <ul className="mb-1 ms-4 border-s-2 border-gray-100 ps-3">
+                      {[
+                        { to: '/real-estate', label: t.nav.realEstateProjects },
+                        { to: '/lands', label: t.nav.lands },
+                      ].map(({ to, label }) => (
                         <li key={to}>
                           <LocalizedNavLink
                             to={to}

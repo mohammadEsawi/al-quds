@@ -3,6 +3,7 @@ import type {
   ContentStatus,
   EmploymentTypeKey,
   JobStatusKey,
+  LandStatus,
   ProductSectorKey,
   RealEstateStatus,
   Role,
@@ -45,6 +46,11 @@ export const realEstateStatusLabels: Record<RealEstateStatus, string> = {
   construction: 'قيد الإنشاء',
   available: 'متاح',
   sold: 'مباع',
+};
+
+export const landStatusLabels: Record<LandStatus, string> = {
+  available: 'متاحة',
+  sold: 'مباعة',
 };
 
 export const roleLabels: Record<Role, string> = {

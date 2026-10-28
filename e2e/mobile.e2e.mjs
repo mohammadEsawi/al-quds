@@ -9,7 +9,7 @@ const SHOTDIR = fs.mkdtempSync(path.join(os.tmpdir(), 'lamico-mobile-'));
 const routes = [
   // /preforms and /caps are their own pages again.
   '', '/about', '/about/board', '/about/executive', '/about/chairman-message', '/about/gm-message', '/sectors', '/water', '/plastic', '/preforms', '/caps', '/products', '/products/al-quds-water-1-5l', '/products/preform-200ml',
-  '/food', '/real-estate', '/real-estate/academy-house', '/careers', '/careers/accountant', '/contact', '/privacy', '/terms', '/does-not-exist',
+  '/food', '/real-estate', '/real-estate/academy-house', '/lands', '/careers', '/careers/accountant', '/contact', '/privacy', '/terms', '/does-not-exist',
 ];
 const viewports = [
   { name: 'phone-360', width: 360, height: 740, mobile: true },

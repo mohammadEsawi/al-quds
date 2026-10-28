@@ -9,6 +9,7 @@ import { submitApplication } from '../services/applications.service.js';
 import { getCompany, getPublicSetting } from '../services/company.service.js';
 import { createContactMessage } from '../services/inbox.service.js';
 import { getPublicJob, listPublicJobs } from '../services/jobs.service.js';
+import { getPublicLand, listPublicLands } from '../services/lands.service.js';
 import { listPublicNews } from '../services/news.service.js';
 import { getPublicProduct, listPublicProducts, listPublicSectors, listPublicWaterLabels } from '../services/products.service.js';
 import { createQuoteRequest } from '../services/quotes.service.js';
@@ -56,6 +57,15 @@ publicRoutes.get('/real-estate', async (_req, res) => {
 
 publicRoutes.get('/real-estate/:slug', validate(slugParams, 'params'), async (req, res) => {
   res.json(await getPublicProject(req.params['slug'] as string));
+});
+
+// Land listings — a separate section from the real-estate projects above
+publicRoutes.get('/lands', async (_req, res) => {
+  res.json(await listPublicLands());
+});
+
+publicRoutes.get('/lands/:slug', validate(slugParams, 'params'), async (req, res) => {
+  res.json(await getPublicLand(req.params['slug'] as string));
 });
 
 // Board of directors and executive management

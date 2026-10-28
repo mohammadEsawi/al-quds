@@ -198,6 +198,25 @@ export interface RealEstateDTO {
   updatedAt: string;
 }
 
+export type LandStatus = 'available' | 'sold';
+
+export interface LandDTO {
+  id: string;
+  slug: string;
+  title: Loc;
+  area?: Loc;
+  description: Loc[];
+  location: Loc;
+  featuredImage: string;
+  gallery: { src: string; caption: Loc; kind?: 'image' | 'video'; poster?: string }[];
+  features: Loc[];
+  contactPhone: string;
+  whatsappNumber: string;
+  status: LandStatus;
+  published: boolean;
+  sortOrder: number;
+}
+
 export type EmploymentTypeKey = 'fullTime' | 'partTime' | 'contract' | 'internship';
 export type JobStatusKey = 'draft' | 'open' | 'closed';
 

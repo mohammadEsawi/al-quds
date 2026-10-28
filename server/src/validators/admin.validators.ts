@@ -114,6 +114,31 @@ export const createRealEstateSchema = z
   .required({ name: true, location: true, featuredImage: true, contactPhone: true, whatsappNumber: true });
 export const updateRealEstateSchema = z.object(realEstateShape).partial();
 
+// ───────── Land listings ─────────
+
+const landShape = {
+  slug: slugSchema,
+  title: localizedRequired,
+  area: localizedOptional,
+  description: localizedList,
+  location: localizedRequired,
+  featuredImage: assetUrl,
+  gallery: z
+    .array(z.object({ src: assetUrl, caption: localizedOptional, kind: z.enum(['image', 'video']).optional(), poster: assetUrl.optional() }))
+    .max(60),
+  features: localizedList,
+  contactPhone: phone,
+  whatsappNumber: waNumber,
+  status: z.enum(['available', 'sold']),
+  published: z.boolean(),
+  sortOrder,
+};
+export const createLandSchema = z
+  .object(landShape)
+  .partial()
+  .required({ title: true, location: true, featuredImage: true, contactPhone: true, whatsappNumber: true });
+export const updateLandSchema = z.object(landShape).partial();
+
 // ───────── Jobs ─────────
 
 const jobShape = {

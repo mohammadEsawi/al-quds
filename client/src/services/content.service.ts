@@ -14,6 +14,7 @@ import type {
   CompanyInfo,
   HomeContent,
   Job,
+  LandListing,
   LegalDocument,
   NewsItem,
   Product,
@@ -84,6 +85,12 @@ export const getRealEstateProjects = (): Promise<RealEstateProject[]> =>
 
 export const getRealEstateProject = (slug: string): Promise<RealEstateProject | undefined> =>
   loadOne<RealEstateProject>(`/real-estate/${encodeURIComponent(slug)}`, () => seedProjects.find((p) => p.slug === slug));
+
+/** Land plots for sale — a section of its own, separate from the real-estate projects above. */
+export const getLands = (): Promise<LandListing[]> => load<LandListing[]>('/lands', () => []);
+
+export const getLand = (slug: string): Promise<LandListing | undefined> =>
+  loadOne<LandListing>(`/lands/${encodeURIComponent(slug)}`, () => undefined);
 
 export const getJobs = (): Promise<Job[]> => load<Job[]>('/jobs', () => seedJobs.filter((j) => j.status === 'open'));
 

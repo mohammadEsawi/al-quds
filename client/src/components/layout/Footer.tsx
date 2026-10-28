@@ -14,7 +14,8 @@ export function Footer() {
     { to: '/about/executive', label: t.aboutNav.executive },
     { to: '/products', label: t.nav.products },
     { to: '/quote', label: t.quote.pageTitle },
-    { to: '/real-estate', label: t.nav.realEstate },
+    { to: '/real-estate', label: t.nav.realEstateProjects },
+    { to: '/lands', label: t.nav.lands },
     { to: '/careers', label: t.nav.careers },
     { to: '/contact', label: t.nav.contact },
   ];
