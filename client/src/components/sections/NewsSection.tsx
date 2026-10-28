@@ -7,8 +7,8 @@ import { getNews } from '@/services/content.service';
 
 // A near-empty grid trails off to one side instead of sitting centered; constrain and center it instead.
 const layoutByCount: Record<number, string> = {
-  1: 'max-w-sm sm:grid-cols-1',
-  2: 'max-w-3xl sm:grid-cols-2',
+  1: 'max-w-md sm:grid-cols-1',
+  2: 'max-w-4xl sm:grid-cols-2',
 };
 
 /** Homepage "latest news" cards — admin-managed, so this renders nothing until at least one exists. */
@@ -23,7 +23,7 @@ export function NewsSection() {
   return (
     <Section id="news">
       <SectionHeader overline={t.home.newsOverline} title={t.home.newsTitle} />
-      <ul className={cn('mx-auto grid max-w-5xl gap-8', layoutByCount[data.length] ?? 'sm:grid-cols-2 lg:grid-cols-3')}>
+      <ul className={cn('mx-auto grid max-w-6xl gap-8', layoutByCount[data.length] ?? 'sm:grid-cols-2 lg:grid-cols-3')}>
         {data.map((item, index) => {
           const body = (
             <>

@@ -8,11 +8,24 @@
     <link rel="apple-touch-icon" href="/assets/branding/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      The fonts stylesheet is loaded without blocking rendering: fetched as `media="print"` (browsers
+      still fetch it at normal priority, just without blocking first paint on it), then switched to
+      `all` by splash.js. It's done there rather than an inline onload="" because the CSP has no
+      script-src 'unsafe-inline'. The <noscript> fallback covers JavaScript being unavailable.
+    -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
+      media="print"
     />
-    <link rel="preload" as="image" href="/assets/branding/lamico-logo.webp" type="image/webp" />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link rel="preload" as="image" href="/assets/branding/lamico-logo.webp" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="/splash.css" />
     <title>شركة لاميكو الاستثمارية</title>
   </head>

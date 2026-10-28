@@ -7,6 +7,14 @@
  *    and the "lamico:splash-done" event lets the homepage start its intro
  */
 (function () {
+  // Switches the fonts stylesheet (loaded as media="print" in index.html so it never blocks first
+  // paint) over to media="all" once this script runs. No inline onload="" here — the CSP has no
+  // script-src 'unsafe-inline', so the swap has to happen in an external file like this one.
+  var fontsLink = document.querySelector('link[href*="fonts.googleapis.com"][media="print"]');
+  if (fontsLink) fontsLink.media = 'all';
+})();
+
+(function () {
   var el = document.getElementById('splash');
   if (!el) return;
   var rise = el.querySelector('.splash-rise');
