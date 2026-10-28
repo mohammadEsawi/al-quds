@@ -34,12 +34,14 @@ export default function LandsPage() {
           {query.data?.map((land, index) => (
             <Reveal key={land.id}>
               <article className="grid items-center gap-8 overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-card lg:grid-cols-2">
-                <img
-                  src={land.featuredImage}
-                  alt={pick(land.title)}
-                  loading="lazy"
-                  className={`h-full max-h-[560px] w-full object-cover ${index % 2 ? 'lg:order-2' : ''}`}
-                />
+                <div className={`flex h-full max-h-[720px] items-center justify-center bg-gray-50 p-4 ${index % 2 ? 'lg:order-2' : ''}`}>
+                  <img
+                    src={land.featuredImage}
+                    alt={pick(land.title)}
+                    loading="lazy"
+                    className="max-h-[680px] w-full object-contain"
+                  />
+                </div>
                 <div className="p-8 sm:p-12">
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                     {t.lands.status[land.status]}
