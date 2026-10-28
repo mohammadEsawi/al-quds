@@ -9,6 +9,7 @@ import { errorHandler, notFoundHandler } from './middleware/error.js';
 import { adminLimiter, apiLimiter } from './middleware/rateLimit.js';
 import { allowedOrigins, noStore, originGuard, permissionsPolicy, rejectNulInUrl } from './middleware/security.js';
 import { apiRouter } from './routes/index.js';
+import { previewRoutes } from './routes/preview.routes.js';
 import { seoRoutes } from './routes/seo.routes.js';
 
 export function createApp() {
@@ -44,6 +45,9 @@ export function createApp() {
   );
 
   app.use(seoRoutes);
+  // Only reached for link-preview bots — nginx forwards them here by User-Agent; everyone else
+  // keeps getting the static SPA build (see deploy/nginx.conf and preview.routes.ts).
+  app.use(previewRoutes);
 
   app.use(['/api/admin', '/api/auth'], noStore, originGuard);
   app.use('/api/admin', adminLimiter);
